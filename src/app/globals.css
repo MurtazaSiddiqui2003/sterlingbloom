@@ -1,5 +1,30 @@
 @import "tailwindcss";
+/* @import "base";
+@import "components";
+@import "utilities"; */
 
-:root {
-  --bg: #ffffff;
+html {
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 text-white bg-yellow-600 hover:bg-yellow-700 transition-colors duration-300 cursor-pointer;
+  }
+
+  .btn-ghost {
+    @apply px-6 py-3 text-white border border-white hover:bg-white/30 hover:text-black transition-colors duration-300 cursor-pointer;
+  }
+
+  .eyebrow {
+    @apply text-sm inline-flex text-yellow-600 tracking-widest uppercase border-1 border-yellow-600 rounded-3xl px-2 py-1;
+  }
+
+  .special-text {
+    @apply bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent;
+  }
+}
+
+section {
+  width: 100vw;
 }
