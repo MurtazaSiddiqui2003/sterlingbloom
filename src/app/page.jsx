@@ -86,9 +86,9 @@ const Home = () => {
           <div className="relative w-150 z-10 flex flex-col justify-center items-left min-h-screen text-white text-left px-4">
           <h1 className="text-5xl">Creating Meaningful Celebrations Through Thoughtful Designs</h1>
           <p className="">Custom Event Design &amp; Decor for Weddings, Corporate Events &amp; Private Celebrations.</p>
-          <div className="py-5">
+          <div className="py-5 flex gap-2">
             <a href="" className="px-4 py-2 bg-yellow-600">Book A Constultation</a>
-            <a href="" className="px-4 py-2 bg-transparent">View Our Work</a>
+            <a href="" className="px-4 py-2 bg-transparent border-1">View Our Work</a>
           </div>
         </div>
       </section>
