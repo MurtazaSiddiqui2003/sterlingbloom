@@ -13,7 +13,7 @@ export default function Footer() {
         </p>
       </div>
 
-      <div className="flex flex-col text-center">
+      <div className="sm:hidden md:flex flex-col text-center">
         <h4 className="text-center font-bold">Quick Links</h4>
         <div className="flex flex-col ">
           <a href="#about">About</a>
@@ -25,7 +25,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-col text-center">
+      <div className="sm:hidden md:flex flex-col text-center">
         <h4 className="text-center font-bold">Contact Us</h4>
         <div className="flex flex-col ">
           <a href="tel:+1234567890">📞 &nbsp; +1-(234)-567-890</a>
