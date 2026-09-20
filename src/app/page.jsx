@@ -2,7 +2,7 @@ import Image from "next/image";
 import Hero from "./components/hero";
 import About from "./components/about";
 import Services from "./components/services";
-import Portfolio from "./components/portfolio";
+import Gallery from "./components/gallery";
 import Process from "./components/process";
 import Packages from "./components/packages";
 import Testimonials from "./components/testimonials";
@@ -14,7 +14,7 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <Portfolio />
+      <Gallery />
       <Process />
       <Packages />
       <Testimonials />
