@@ -40,10 +40,10 @@ section {
   }
 
   .section-heading {
-    @apply text-4xl font-light leading-[1.08] tracking-[-0.03em] text-[#211d19] sm:text-5xl lg:text-6xl;
+    @apply text-[2.1rem] font-light leading-[1.08] tracking-[-0.03em] text-[#211d19] sm:text-5xl lg:text-6xl;
   }
 
   .section-copy {
-    @apply text-base leading-7 text-gray-600 sm:text-lg sm:leading-8;
+    @apply text-[0.95rem] leading-7 text-gray-600 sm:text-lg sm:leading-8;
   }
 }
