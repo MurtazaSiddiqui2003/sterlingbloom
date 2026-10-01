@@ -8,7 +8,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="process" className="bg-[#F8F7F4] py-16 sm:py-20 lg:py-24">
+    <section id="process" className="bg-[#F8F7F4] py-14 sm:py-18 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
           <p className="eyebrow">OUR PROCESS</p>
@@ -22,12 +22,12 @@ export default function Process() {
           </p>
         </div>
 
-        <div className="relative mt-12 lg:mt-14">
+        <div className="relative mt-10 lg:mt-12">
           <div className="absolute left-[10%] right-[10%] top-[52px] hidden h-px bg-[#D8C39A] lg:block" />
 
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-2">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-2">
             {processSteps.map((step, index) => (
-              <div key={step.number} className="group relative px-4 text-center">
+              <div key={step.number} className="group relative px-3 text-center">
                 <span className="text-[10px] font-medium tracking-[0.25em] text-[#B68A35]">
                   {step.number}
                 </span>
@@ -36,7 +36,7 @@ export default function Process() {
                   {index + 1}
                 </div>
 
-                <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl font-medium text-[#211d19]">
+                <h3 className="mt-5 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight text-[#211d19]">
                   {step.title}
                 </h3>
 
