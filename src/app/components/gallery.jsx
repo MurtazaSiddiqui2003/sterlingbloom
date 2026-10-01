@@ -11,121 +11,70 @@ export default function Gallery() {
       ? gallery
       : gallery.filter((item) => item.category === activeCategory);
 
+  const categories = [
+    { label: "All", value: "all" },
+    { label: "Weddings", value: "weddings" },
+    { label: "Nikah", value: "nikah" },
+    { label: "Mehndi", value: "mehndi" },
+    { label: "Corporate", value: "corporate" },
+  ];
+
   return (
-    <section id="portfolio" className="bg-[#F8F7F4] pt-24 pb-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        {/* Section Heading */}
+    <section id="portfolio" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
-          <p className="eyebrow inline-flex">FEATURED WORK</p>
-
-          <div className="mx-auto mt-5 mb-8 h-px w-20 bg-[#B68A35]" />
-
-          <h2
-            className="
-              text-5xl
-              lg:text-6xl
-              font-light
-              leading-tight
-              tracking-tight
-            "
-          >
+          <p className="eyebrow">FEATURED WORK</p>
+          <div className="mx-auto mt-5 h-px w-16 bg-[#B68A35]" />
+          <h2 className="section-heading mx-auto mt-7 max-w-4xl">
             A Glimpse of Our Creations
           </h2>
+          <p className="section-copy mx-auto mt-5 max-w-2xl">
+            A selection of celebrations shaped through thoughtful styling,
+            considered details, and a distinct sense of place.
+          </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="mt-12 flex justify-center gap-8 flex-wrap">
-          {[
-            { label: "All", value: "all" },
-            { label: "Weddings", value: "weddings" },
-            { label: "Nikah", value: "nikah" },
-            { label: "Mehndi", value: "mehndi" },
-            { label: "Corporate", value: "corporate" },
-          ].map((category) => (
+        <div className="mt-10 flex gap-6 overflow-x-auto pb-2 sm:mt-12 sm:justify-center sm:gap-8">
+          {categories.map((category) => (
             <button
               key={category.value}
               onClick={() => setActiveCategory(category.value)}
-              className={`
-                relative
-                pb-3
-                text-lg
-                transition-all
-                duration-300
-                ${
-                  activeCategory === category.value
-                    ? "font-medium text-[#B68A35]"
-                    : "text-gray-500 hover:text-black"
-                }
-              `}
+              className={
+                "relative shrink-0 pb-3 text-sm transition-all duration-300 sm:text-base " +
+                (activeCategory === category.value
+                  ? "font-medium text-[#B68A35]"
+                  : "text-gray-500 hover:text-[#211d19]")
+              }
             >
               {category.label}
-
               <span
-                className={`
-                  absolute
-                  left-0
-                  -bottom-0.5
-                  h-[2px]
-                  bg-[#B68A35]
-                  transition-all
-                  duration-300
-                  ${activeCategory === category.value ? "w-full" : "w-0"}
-                `}
+                className={
+                  "absolute bottom-0 left-0 h-px bg-[#B68A35] transition-all duration-300 " +
+                  (activeCategory === category.value ? "w-full" : "w-0")
+                }
               />
             </button>
           ))}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="mt-16 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
           {filteredGallery.map((item) => (
             <div
               key={item.id}
-              className="group relative aspect-[4/3] overflow-hidden"
+              className="group relative aspect-[4/3] overflow-hidden rounded-[18px] bg-white"
             >
-              {/* Image */}
               <img
                 src={item.image}
                 alt={item.title}
-                className="
-          h-full
-          w-full
-          object-cover
-          transition-transform
-          duration-700
-          group-hover:scale-105
-        "
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-
-              {/* Overlay */}
-              <div
-                className="
-          absolute
-          inset-0
-          flex
-          items-end
-          bg-black/0
-          p-6
-          transition-all
-          duration-500
-          group-hover:bg-black/45
-        "
-              >
-                <div
-                  className="
-            translate-y-4
-            opacity-0
-            transition-all
-            duration-500
-            group-hover:translate-y-0
-            group-hover:opacity-100
-          "
-                >
-                  <p className="text-sm uppercase tracking-[0.2em] text-white/70">
+              <div className="absolute inset-0 flex items-end bg-black/0 p-5 transition-all duration-500 group-hover:bg-black/45 sm:p-6">
+                <div className="translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/75 sm:text-xs">
                     {item.category}
                   </p>
-
-                  <h3 className="mt-2 text-2xl font-light text-white">
+                  <h3 className="mt-1.5 font-[family-name:var(--font-display)] text-2xl font-medium text-white sm:text-3xl">
                     {item.title}
                   </h3>
                 </div>
@@ -133,25 +82,11 @@ export default function Gallery() {
             </div>
           ))}
         </div>
-        <div className="mt-12 flex justify-center">
-          <button
-            className="
-      border
-      border-[#B68A35]
-      px-8
-      py-3
-      text-sm
-      uppercase
-      tracking-[0.15em]
-      text-[#B68A35]
-      transition-all
-      duration-300
-      hover:bg-[#B68A35]
-      hover:text-white
-    "
-          >
+
+        <div className="mt-10 flex justify-center sm:mt-12">
+          <a href="#contact" className="btn-primary">
             View More Work
-          </button>
+          </a>
         </div>
       </div>
     </section>
