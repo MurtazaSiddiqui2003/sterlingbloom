@@ -1,30 +1,47 @@
 @import "tailwindcss";
-/* @import "base";
-@import "components";
-@import "utilities"; */
 
-html {
-  scroll-behavior: smooth;
+:root {
+  --sb-cream: #f8f7f4;
+  --sb-brown: #1d1813;
+  --sb-gold: #b68a35;
+  --sb-gold-light: #d6b56d;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--sb-cream);
+  color: #211d19;
+  overflow-x: hidden;
+}
+
+section {
+  width: 100%;
+  scroll-margin-top: 80px;
 }
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 text-white bg-yellow-600 hover:bg-yellow-700 transition-colors duration-300 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-full bg-[#B68A35] px-7 py-3.5 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9f762c] hover:shadow-lg hover:shadow-[#B68A35]/20;
   }
 
   .btn-ghost {
-    @apply px-6 py-3 text-white border border-white hover:bg-white/30 hover:text-black transition-colors duration-300 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-full border border-white/70 bg-white/5 px-7 py-3.5 text-sm font-medium tracking-wide text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-[#1D1813];
   }
 
   .eyebrow {
-    @apply text-sm inline-flex text-yellow-600 tracking-widest uppercase border-1 border-yellow-600 rounded-3xl px-2 py-1;
+    @apply inline-flex items-center rounded-full border border-[#B68A35]/70 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-[#B68A35] sm:text-xs;
   }
 
   .special-text {
-    @apply bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#D6B56D] to-[#B68A35] bg-clip-text text-transparent;
   }
-}
 
-section {
-  width: 100vw;
+  .section-heading {
+    @apply text-4xl font-light leading-[1.08] tracking-[-0.03em] text-[#211d19] sm:text-5xl lg:text-6xl;
+  }
+
+  .section-copy {
+    @apply text-base leading-7 text-gray-600 sm:text-lg sm:leading-8;
+  }
 }
