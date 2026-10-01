@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
-
 import heroContent from "./constants/hero";
 import { useGSAP } from "@gsap/react";
 
@@ -17,89 +16,24 @@ export default function Hero() {
   const videoRef = useRef(null);
   const scrollRef = useRef(null);
   const eyebrowRef = useRef(null);
-
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power3.out",
-        },
-      });
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.fromTo(
-        videoRef.current,
-        {
-          scale: 1.15,
-        },
-        {
-          scale: 1,
-          duration: 2.5,
-        },
-      )
-
-        .from(
-          eyebrowRef.current,
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.6,
-          },
-          "-=0.8",
-        )
-
-        .from(
-          titleRef.current,
-          {
-            opacity: 0,
-            y: 80,
-            duration: 1,
-          },
-          "-=2",
-        )
-        .from(
-          textRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-          },
-          "-=0.5",
-        )
-
-        .from(
-          buttonsRef.current,
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.6,
-          },
-          "-=0.3",
-        )
-
-        .from(
-          scrollRef.current,
-          {
-            opacity: 0,
-            y: 15,
-            duration: 0.5,
-          },
-          "-=0.2",
-        );
+      tl.fromTo(videoRef.current, { scale: 1.12 }, { scale: 1, duration: 2.5 })
+        .from(eyebrowRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=0.8")
+        .from(titleRef.current, { opacity: 0, y: 60, duration: 1 }, "-=0.6")
+        .from(textRef.current, { opacity: 0, y: 25, duration: 0.8 }, "-=0.5")
+        .from(buttonsRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
+        .from(scrollRef.current, { opacity: 0, y: 15, duration: 0.5 }, "-=0.2");
     },
     { scope: heroRef },
   );
@@ -108,7 +42,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-[92svh] overflow-hidden lg:min-h-screen"
     >
       <video
         ref={videoRef}
@@ -116,49 +50,61 @@ export default function Hero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 min-h-full w-full object-cover z-0"
+        poster="/images/about.jpg"
+        aria-hidden="true"
+        className="absolute inset-0 z-0 h-full w-full object-cover"
       >
-        <source src="/videos/hero.mp4" type="video/mp4" className="z-0" />
-        <source src="/videos/hero.webm" type="video/webm" className="z-0" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src="/videos/hero.webm" type="video/webm" />
       </video>
-      <div className="absolute inset-0 bg-black/40 z-10" />
-      <div className="relative max-w-3xl md:max-w-4xl z-10 flex flex-col justify-center items-left min-h-screen text-white text-center md:text-left px-4">
-        <div className="max-w-7xl mx-auto w-full px-6 ">
-          <p ref={eyebrowRef} className="ml-8 mt-5 eyebrow inline-block w-fit">
-            {heroContent.eyebrow}
-          </p>
-          <h1
-            ref={titleRef}
-            className="text-4xl md:text-5xl lg:text-7xl px-5 py-4 font-light leading-tight tracking-tight"
-          >
-            {heroContent.title.before}
-            <span className="special-text">{heroContent.title.highlight}</span>
-            {heroContent.title.after}
-          </h1>
-          <p ref={textRef} className="text-xl px-8 py-4">
-            {heroContent.description}
-          </p>
-          <div
-            ref={buttonsRef}
-            className=" flex-col px-8 py-5 flex md:flex-row gap-2"
-          >
-            <Link href="#contact" className="btn-primary">
-              {heroContent.primaryButton}
-            </Link>
-            <Link href="#portfolio" className="btn-ghost">
-              {heroContent.secondaryButton}
-            </Link>
+
+      <div className="absolute inset-0 z-10 bg-black/45" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/55 via-black/25 to-black/10" />
+
+      <div className="relative z-10 flex min-h-[92svh] items-center px-5 pt-20 sm:px-8 lg:min-h-screen lg:px-12">
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-4xl">
+            <p ref={eyebrowRef} className="eyebrow border-white/40 text-white">
+              {heroContent.eyebrow}
+            </p>
+
+            <h1
+              ref={titleRef}
+              className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-5xl font-medium leading-[0.98] tracking-[-0.025em] text-white sm:text-6xl lg:text-8xl"
+            >
+              {heroContent.title.before}{" "}
+              <span className="special-text">{heroContent.title.highlight}</span>
+              {heroContent.title.after}
+            </h1>
+
+            <p
+              ref={textRef}
+              className="mt-6 max-w-2xl text-base leading-7 text-white/85 sm:text-lg sm:leading-8 lg:text-xl"
+            >
+              {heroContent.description}
+            </p>
+
+            <div ref={buttonsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="#contact" className="btn-primary">
+                {heroContent.primaryButton}
+              </Link>
+              <Link href="#portfolio" className="btn-ghost">
+                {heroContent.secondaryButton}
+              </Link>
+            </div>
           </div>
         </div>
+
         <div
           ref={scrollRef}
-          className={`absolute bottom-5 left-1/2 -translate-x-1/2 ${isScrolled ? "hidden" : "visible"}`}
+          className={
+            "absolute bottom-7 left-1/2 -translate-x-1/2 transition-opacity " +
+            (isScrolled ? "opacity-0" : "opacity-100")
+          }
         >
-          <div className="flex flex-col items-center gap-2 text-white/80">
-            <span className="mb-2 text-xs tracking-[0.3em] uppercase animate-bounce">
-              Scroll Down ↓
-            </span>
-          </div>
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/70">
+            Scroll to explore ↓
+          </span>
         </div>
       </div>
     </section>
