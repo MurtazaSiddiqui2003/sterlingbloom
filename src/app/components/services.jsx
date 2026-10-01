@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import services from "./constants/services";
 
 export default function Services() {
   const [activeService, setActiveService] = useState(0);
+  const active = services[activeService];
 
   return (
     <section id="services" className="bg-white py-20 sm:py-24 lg:py-28">
@@ -25,7 +27,9 @@ export default function Services() {
           {services.map((service, index) => (
             <button
               key={service.id}
+              type="button"
               onClick={() => setActiveService(index)}
+              aria-pressed={activeService === index}
               className={
                 "relative shrink-0 px-3 pb-3 text-sm font-medium transition-all duration-300 sm:text-base " +
                 (activeService === index
@@ -39,6 +43,7 @@ export default function Services() {
                   "absolute bottom-0 left-3 h-px bg-[#B68A35] transition-all duration-300 " +
                   (activeService === index ? "right-3" : "right-full")
                 }
+                aria-hidden="true"
               />
             </button>
           ))}
@@ -47,8 +52,8 @@ export default function Services() {
         <div className="mt-10 grid items-center gap-10 lg:mt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div className="group relative overflow-hidden rounded-[28px] bg-[#F8F7F4] shadow-xl shadow-black/10">
             <img
-              src={services[activeService].image}
-              alt={services[activeService].title}
+              src={active.image}
+              alt={active.title}
               className="h-[420px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[520px] lg:h-[600px]"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
@@ -58,13 +63,15 @@ export default function Services() {
             <p className="eyebrow mb-5">FEATURED SERVICE</p>
             <div className="mb-7 h-px w-16 bg-[#B68A35]" />
             <h3 className="font-[family-name:var(--font-display)] text-4xl font-medium leading-tight tracking-[-0.02em] text-[#211d19] sm:text-5xl">
-              {services[activeService].title}
+              {active.title}
             </h3>
             <p className="mt-6 max-w-xl text-base leading-7 text-gray-600 sm:mt-8 sm:text-lg sm:leading-8">
-              {services[activeService].description}
+              {active.description}
             </p>
             <div className="mt-8">
-              <button className="btn-primary">Learn More</button>
+              <Link href="#contact" className="btn-primary">
+                Discuss This Service
+              </Link>
             </div>
           </div>
         </div>
