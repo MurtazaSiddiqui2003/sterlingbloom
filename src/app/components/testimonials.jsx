@@ -21,136 +21,45 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section
-      id="testimonials"
-      className="bg-[#F8F7F4] py-20 lg:py-24"
-    >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-        {/* Section Heading */}
+    <section id="testimonials" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
-
-          <p className="eyebrow inline-flex">
-            TESTIMONIALS
-          </p>
-
-          <div className="mx-auto mt-5 h-px w-20 bg-[#B68A35]" />
-
-          <h2
-            className="
-              mt-8
-              text-4xl
-              font-light
-              leading-tight
-              tracking-tight
-              sm:text-5xl
-              lg:text-6xl
-            "
-          >
+          <p className="eyebrow">TESTIMONIALS</p>
+          <div className="mx-auto mt-5 h-px w-16 bg-[#B68A35]" />
+          <h2 className="section-heading mx-auto mt-7 max-w-4xl">
             Kind Words From Our Clients
           </h2>
-
-          <p
-            className="
-              mx-auto
-              mt-6
-              max-w-2xl
-              text-sm
-              leading-7
-              text-gray-500
-              sm:text-base
-            "
-          >
-            Every celebration is personal. Here is what some of
-            our clients have shared about their experience with
-            Sterling Bloom.
+          <p className="section-copy mx-auto mt-5 max-w-2xl">
+            Every celebration is personal. Here is what some of our clients
+            have shared about their experience with Sterling Bloom.
           </p>
-
         </div>
 
-        {/* Testimonial Cards */}
-        <div
-          className="
-            mt-14
-            grid
-            grid-cols-1
-            gap-6
-            md:grid-cols-3
-            lg:mt-16
-          "
-        >
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 md:grid-cols-3 lg:gap-6">
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.name}
-              className="
-                group
-                flex
-                flex-col
-                border
-                border-gray-200
-                bg-white
-                p-8
-                transition-all
-                duration-500
-                hover:-translate-y-1
-                hover:border-[#D6B56D]
-                hover:shadow-[0_15px_40px_rgba(0,0,0,0.05)]
-                lg:p-10
-              "
+              className="group flex flex-col rounded-[22px] border border-gray-200 bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[#D6B56D] hover:shadow-[0_18px_45px_rgba(0,0,0,0.06)] sm:p-8 lg:p-10"
             >
-
-              {/* Stars */}
-              <div
-                className="
-                  text-sm
-                  tracking-[0.25em]
-                  text-[#B68A35]
-                "
-              >
+              <div className="text-sm tracking-[0.25em] text-[#B68A35]" aria-label="5 out of 5 stars">
                 ★★★★★
               </div>
 
-              {/* Quote */}
-              <p
-                className="
-                  mt-7
-                  flex-1
-                  text-base
-                  leading-8
-                  text-gray-600
-                "
-              >
+              <p className="mt-7 flex-1 font-[family-name:var(--font-display)] text-xl leading-8 text-gray-700 sm:text-2xl">
                 “{testimonial.review}”
               </p>
 
-              {/* Divider */}
               <div className="mt-8 h-px w-10 bg-[#D6B56D]" />
 
-              {/* Client */}
               <div className="mt-5">
-
-                <h3 className="text-base font-medium text-gray-900">
-                  {testimonial.name}
-                </h3>
-
-                <p
-                  className="
-                    mt-1
-                    text-xs
-                    uppercase
-                    tracking-[0.15em]
-                    text-[#B68A35]
-                  "
-                >
+                <h3 className="text-base font-medium text-gray-900">{testimonial.name}</h3>
+                <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[#B68A35]">
                   {testimonial.event}
                 </p>
-
               </div>
-
             </article>
           ))}
         </div>
-
       </div>
     </section>
   );
