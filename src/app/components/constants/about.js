@@ -16,7 +16,7 @@ const aboutContent = {
     "Private Celebrations",
   ],
 
-  button: "Learn More",
+  button: "Start Your Event",
 };
 
 export default aboutContent;
