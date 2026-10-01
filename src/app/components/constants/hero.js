@@ -3,7 +3,7 @@ const heroContent = {
   title: {
     before: "Creating ",
     highlight: "Meaningful Celebrations",
-    after: " Through Elegant Designs",
+    after: " With Intentional Design",
   },
   description:
     "Custom event design and decor for weddings, corporate events, and private celebrations—thoughtfully styled to feel unforgettable.",
