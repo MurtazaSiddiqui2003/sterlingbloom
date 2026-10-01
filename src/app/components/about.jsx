@@ -4,103 +4,49 @@ import aboutContent from "./constants/about";
 
 export default function About() {
   return (
-    <section id="about" className="bg-[#F8F7F4] py-24">
-      {/* Container */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* ================= Image ================= */}
+    <section id="about" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <div
-              className="group
-    relative
-    h-[600px]
-    lg:h-[760px]
-    overflow-hidden
-    rounded-[32px]
-    shadow-2xl
-    ring-1
-    ring-black/5
-  "
-            >
+            <div className="group relative h-[460px] overflow-hidden rounded-[28px] shadow-2xl shadow-black/10 sm:h-[600px] lg:h-[720px]">
               <Image
                 src="/images/about.jpg"
                 alt="Luxury wedding decor by Sterling Bloom"
                 fill
-                className="
-  object-cover
-  transition-transform
-  duration-700
-  group-hover:scale-105
-"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
                 priority={false}
               />
             </div>
           </div>
 
-          {/* ================= Content ================= */}
-          <div className="lg:pt-12">
-            {/* Eyebrow */}
+          <div className="lg:pt-6">
             <p className="eyebrow">{aboutContent.eyebrow}</p>
-            <div className="mt-5 mb-8 h-px w-20 bg-[#C9A96E]" />
-            {/* Heading */}
-            <h2
-              className="
-text-5xl
-lg:text-6xl
-font-light
-leading-[1.1]
-tracking-tight
-text-gray-900
-max-w-xl
-"
-            >
+            <div className="mt-5 mb-7 h-px w-16 bg-[#C9A96E]" />
+
+            <h2 className="section-heading max-w-xl">
               {aboutContent.title.before}{" "}
-              <span className="text-[#B68A35]">
-                {aboutContent.title.highlight}
-              </span>{" "}
+              <span className="text-[#B68A35]">{aboutContent.title.highlight}</span>{" "}
               {aboutContent.title.after}
             </h2>
 
-            {/* Description */}
-            <p className="mt-8 text-lg leading-8 text-gray-600">
+            <p className="section-copy mt-6">
               {aboutContent.description}
             </p>
 
-            {/* Features */}
-            <ul className="mt-10 space-y-5">
+            <ul className="mt-8 space-y-4">
               {aboutContent.features.map((feature, index) => (
                 <li
                   key={index}
-                  className="flex items-center gap-4 text-lg text-gray-800"
+                  className="flex items-start gap-3 text-base text-gray-800 sm:text-lg"
                 >
-                  <span className="text-[#C9A96E] text-xl">✓</span>
-
+                  <span className="mt-0.5 text-[#C9A96E]">✓</span>
                   <span>{feature}</span>
                 </li>
               ))}
             </ul>
 
-            {/* Button */}
-            <div className="mt-10">
-              <Link
-                href="/about"
-                className="
-                  inline-flex
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-[#C9A96E]
-                  px-8
-                  py-4
-                  text-white
-                  font-medium
-                  transition-all
-                  duration-300
-                  hover:scale-105
-                  hover:bg-[#b9965d]
-                "
-              >
+            <div className="mt-9">
+              <Link href="/about" className="btn-primary">
                 {aboutContent.button}
               </Link>
             </div>
