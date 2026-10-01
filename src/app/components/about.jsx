@@ -29,7 +29,7 @@ export default function About() {
               {aboutContent.title.after}
             </h2>
 
-            <p className="section-copy mt-6">
+            <p className="section-copy mt-6 max-w-xl">
               {aboutContent.description}
             </p>
 
@@ -39,14 +39,16 @@ export default function About() {
                   key={index}
                   className="flex items-start gap-3 text-base text-gray-800 sm:text-lg"
                 >
-                  <span className="mt-0.5 text-[#C9A96E]">✓</span>
+                  <span className="mt-0.5 text-[#C9A96E]" aria-hidden="true">
+                    ✓
+                  </span>
                   <span>{feature}</span>
                 </li>
               ))}
             </ul>
 
             <div className="mt-9">
-              <Link href="/about" className="btn-primary">
+              <Link href="#contact" className="btn-primary">
                 {aboutContent.button}
               </Link>
             </div>
