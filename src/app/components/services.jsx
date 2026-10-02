@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Reveal from "./reveal";
 import services from "./constants/services";
 
 export default function Services() {
@@ -50,7 +49,7 @@ export default function Services() {
           ))}
         </div>
 
-        <Reveal className="mt-10 grid items-center gap-10 lg:mt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        
           <div className="relative overflow-hidden rounded-[28px] bg-[#F8F7F4] shadow-xl shadow-black/10">
             <img
               src={active.image}
