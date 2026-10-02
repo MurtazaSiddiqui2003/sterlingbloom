@@ -106,6 +106,32 @@ export default function ContentEditor({ initialContent }) {
 
   return (
     <div className="space-y-6">
+      <SectionCard eyebrow="NAVIGATION" title="Navigation">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label="Brand Name" value={content.nav.brand} onChange={(v) => update("nav", "brand", v)} />
+          <Field label="Consultation Button" value={content.nav.cta} onChange={(v) => update("nav", "cta", v)} />
+        </div>
+        <div className="space-y-3">
+          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">Navigation Links</p>
+          {content.nav.links.map(([label, href], index) => (
+            <div key={index} className="grid gap-2 sm:grid-cols-[1fr_1.4fr_auto]">
+              <input value={label} onChange={(e) => {
+                const links = [...content.nav.links];
+                links[index] = [e.target.value, links[index][1]];
+                update("nav", "links", links);
+              }} className="rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B68A35]" placeholder="Label" />
+              <input value={href} onChange={(e) => {
+                const links = [...content.nav.links];
+                links[index] = [links[index][0], e.target.value];
+                update("nav", "links", links);
+              }} className="rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B68A35]" placeholder="#section" />
+              <button type="button" onClick={() => update("nav", "links", content.nav.links.filter((_, i) => i !== index))} className="rounded-xl border px-4 text-xs text-gray-500 hover:border-red-300 hover:text-red-600">Remove</button>
+            </div>
+          ))}
+          <button type="button" onClick={() => update("nav", "links", [...content.nav.links, ["New Link", "#contact"]])} className="text-xs font-medium uppercase tracking-[0.12em] text-[#B68A35]">+ Add navigation link</button>
+        </div>
+      </SectionCard>
+
       <SectionCard eyebrow="HERO" title="Hero Section">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.hero.eyebrow} onChange={(v) => update("hero", "eyebrow", v)} />
