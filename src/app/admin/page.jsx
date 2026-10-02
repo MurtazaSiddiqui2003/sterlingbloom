@@ -1,18 +1,15 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { isAdminAuthenticated } from "../../lib/admin-auth";
-
-const stats = [
-  { label: "New inquiries", value: "—", note: "MongoDB connection pending" },
-  { label: "Upcoming events", value: "—", note: "Event management coming next" },
-  { label: "Portfolio items", value: "—", note: "Cloudinary connection pending" },
-  { label: "Client stories", value: "—", note: "Verified testimonials only" },
-];
+import connectDB from "../../lib/mongodb";
+import Inquiry from "../../models/Inquiry";
 
 const modules = [
   {
     title: "Inquiries",
     description: "Review consultation requests, contact details, event types, and follow-up status.",
-    status: "Next",
+    status: "Live",
+    href: "/admin/inquiries",
   },
   {
     title: "Portfolio",
