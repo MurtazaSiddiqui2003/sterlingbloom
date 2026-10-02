@@ -17,8 +17,7 @@ export default function Services({ content }) {
             {content.heading}
           </h2>
           <p className="section-copy mx-auto mt-5 max-w-2xl">
-            Thoughtful design, refined styling, and seamless execution for
-            celebrations that feel distinctly yours.
+            {content.description}
           </p>
         </div>
 
@@ -57,7 +56,7 @@ export default function Services({ content }) {
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 rounded-full border border-white/30 bg-black/20 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-white backdrop-blur-sm sm:bottom-6 sm:left-6">
-              {String(activeService + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
+              {String(activeService + 1).padStart(2, "0")} / {String(content.items.length).padStart(2, "0")}
             </div>
           </div>
 
