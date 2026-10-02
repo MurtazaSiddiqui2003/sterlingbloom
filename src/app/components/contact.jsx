@@ -106,7 +106,7 @@ export default function Contact({ content }) {
               {status === "error" && <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">We couldn't submit your inquiry. Please try again.</p>}
 
               <button type="submit" disabled={status === "loading"} className="btn-primary w-full rounded-lg py-4 text-xs uppercase tracking-[0.18em] disabled:cursor-not-allowed disabled:opacity-60">
-                {status === "loading" ? "Sending..." : "{content.formButton}"}
+                {status === "loading" ? "Sending..." : content.formButton}
               </button>
             </form>
 
