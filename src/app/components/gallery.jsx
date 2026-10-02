@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import gallery from "./constants/gallery";
+import Reveal from "./reveal";
 
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState("all");
