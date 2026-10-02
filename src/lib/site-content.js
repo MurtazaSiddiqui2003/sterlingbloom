@@ -1,0 +1,154 @@
+import connectDB from "./mongodb";
+import SiteContent from "../models/SiteContent";
+
+export const defaultSiteContent = {
+  nav: {
+    brand: "Sterling Bloom",
+    links: [
+      ["About", "#about"],
+      ["Services", "#services"],
+      ["Portfolio", "#portfolio"],
+      ["Process", "#process"],
+      ["Packages", "#packages"],
+      ["Testimonials", "#testimonials"],
+    ],
+    cta: "Book Consultation",
+  },
+  hero: {
+    eyebrow: "✨ Luxury Event Decor",
+    before: "Creating ",
+    highlight: "Meaningful Celebrations",
+    after: " With Intentional Design",
+    description: "Custom event design and decor for weddings, corporate events, and private celebrations—thoughtfully styled to feel unforgettable.",
+    primaryButton: "Book a Consultation",
+    secondaryButton: "View Our Work",
+    backgroundImage: "/images/about.jpg",
+    video: "/videos/hero.mp4",
+  },
+  about: {
+    eyebrow: "ABOUT STERLING BLOOM",
+    before: "Designing",
+    highlight: "Exceptional Experiences",
+    after: "For Every Occasion",
+    description: "At Sterling Bloom Decor, we transform weddings, corporate events, and private celebrations into timeless experiences through elegant styling, thoughtful design, and meticulous attention to detail.",
+    features: ["Luxury Wedding Decor", "Corporate Event Styling", "Private Celebrations"],
+    button: "Start Your Event",
+    image: "/images/about.jpg",
+  },
+  services: {
+    eyebrow: "OUR SERVICES",
+    heading: "Designed For Every Occasion",
+    description: "Thoughtful design, refined styling, and seamless execution for celebrations that feel distinctly yours.",
+    items: [
+      { id: 1, title: "Luxury Weddings", description: "Elegant wedding décor crafted to create timeless memories with premium floral arrangements and bespoke styling.", image: "/images/services/wedding.jpg" },
+      { id: 2, title: "Nikah Ceremonies", description: "Graceful and sophisticated Nikah setups designed with tradition and modern elegance.", image: "/images/services/nikah.jpg" },
+      { id: 3, title: "Mehndi Events", description: "Colorful and vibrant Mehndi celebrations featuring immersive themes and artistic décor.", image: "/images/services/mehndi.jpg" },
+      { id: 4, title: "Corporate Events", description: "Professional event styling that reflects your brand while creating memorable experiences.", image: "/images/services/corporate.jpg" },
+    ],
+    featuredLabel: "FEATURED SERVICE",
+    button: "Discuss This Service",
+    note: "Tailored to your event",
+  },
+  gallery: {
+    eyebrow: "FEATURED WORK",
+    heading: "A Glimpse of Our Creations",
+    description: "A selection of celebrations shaped through thoughtful styling, considered details, and a distinct sense of place.",
+    categories: [
+      ["All", "all"],
+      ["Weddings", "weddings"],
+      ["Nikah", "nikah"],
+      ["Mehndi", "mehndi"],
+      ["Corporate", "corporate"],
+    ],
+    items: [
+      { id: 1, title: "Elegant Wedding", category: "weddings", image: "/images/gallery/wedding-1.jpg" },
+      { id: 2, title: "Floral Wedding", category: "weddings", image: "/images/gallery/wedding-2.jpg" },
+      { id: 3, title: "Nikah Celebration", category: "nikah", image: "/images/gallery/nikah-1.jpg" },
+      { id: 4, title: "Mehndi Celebration", category: "mehndi", image: "/images/gallery/mehndi-1.jpg" },
+      { id: 5, title: "Corporate Event", category: "corporate", image: "/images/gallery/corporate-1.jpg" },
+      { id: 6, title: "Luxury Reception", category: "weddings", image: "/images/gallery/wedding-3.jpg" },
+    ],
+    note: "More celebrations, details, and event stories coming soon.",
+    button: "View More Work",
+  },
+  process: {
+    eyebrow: "OUR PROCESS",
+    heading: "From Concept to Celebration",
+    description: "From the first conversation to the final detail, we carefully transform your vision into a memorable celebration.",
+    steps: [
+      { number: "01", title: "Consultation", description: "We listen to your ideas, understand your vision, and discover what makes your celebration unique." },
+      { number: "02", title: "Concept & Moodboard", description: "We turn your ideas into a refined visual direction that brings your celebration to life." },
+      { number: "03", title: "Planning", description: "We plan every detail with precision, from styling and florals to layout and execution." },
+      { number: "04", title: "Installation", description: "Our team transforms the venue with careful attention to every design element." },
+      { number: "05", title: "Celebrate", description: "Everything comes together beautifully, leaving you free to enjoy your special occasion." },
+    ],
+  },
+  packages: {
+    eyebrow: "PACKAGES",
+    heading: "Choose Your Experience",
+    description: "Thoughtfully designed experiences that can be tailored to the style, scale, and vision of your event.",
+    items: [
+      { name: "Bronze", description: "Perfect for intimate celebrations with elegant styling and thoughtful details.", features: ["Event styling", "Basic floral arrangements", "Table styling"], featured: false },
+      { name: "Silver", description: "A refined experience combining thoughtful design with elevated event styling.", features: ["Complete event styling", "Premium floral arrangements", "Customized decor", "Table styling"], featured: true },
+      { name: "Gold", description: "Our complete experience for celebrations where every detail deserves attention.", features: ["Full event design", "Premium floral styling", "Customized decor", "Venue transformation", "Dedicated planning support"], featured: false },
+    ],
+    note: "Every celebration is different. Final pricing is tailored to your event requirements, guest count, venue, and design scope.",
+    button: "Request Pricing",
+    featuredLabel: "Most Popular",
+  },
+  testimonials: {
+    eyebrow: "TESTIMONIALS",
+    heading: "Kind Words From Our Clients",
+    description: "Every celebration is personal. Here is what some of our clients have shared about their experience with Sterling Bloom.",
+    items: [
+      { name: "Ayesha & Hamza", event: "Wedding", review: "Sterling Bloom turned our wedding vision into something even more beautiful than we imagined. Every detail felt thoughtful and perfectly executed." },
+      { name: "Sarah Khan", event: "Nikah Ceremony", review: "The attention to detail and creativity were incredible. Our Nikah setup felt elegant, intimate, and completely personal to us." },
+      { name: "Hassan Malik", event: "Corporate Event", review: "Professional from start to finish. The team understood our requirements and transformed the venue into a beautiful experience for our guests." },
+    ],
+    label: "Client Story",
+    note: "Client stories shown here are sample presentation content and should be replaced with verified feedback before launch.",
+  },
+  contact: {
+    eyebrow: "LET'S CREATE TOGETHER",
+    heading: "Let's Create Something",
+    highlight: "Beautiful Together",
+    description: "Tell us about your event, your vision, and the experience you want to create. Our team would love to help bring it to life.",
+    phone: "+92 300 1234567",
+    email: "hello@sterlingbloom.com",
+    location: "Karachi, Pakistan",
+    note: "Final details, availability, and pricing are discussed during your consultation.",
+    formEyebrow: "INQUIRY FORM",
+    formHeading: "Start Your Celebration",
+    formDescription: "Share a few details and we will get back to you about your event.",
+    formButton: "Request Consultation",
+    formFootnote: "We’ll review your inquiry and follow up with next steps.",
+  },
+  footer: {
+    eyebrow: "Sterling Bloom",
+    heading: "Beautifully considered.",
+    highlight: "Meaningfully remembered.",
+    description: "Thoughtfully designed celebrations, beautiful spaces, and unforgettable experiences crafted with intention.",
+    instagram: "Instagram · Coming Soon",
+    facebook: "Facebook · Coming Soon",
+    contactLabel: "Contact",
+    exploreLabel: "Explore",
+    location: "Karachi, Pakistan",
+    phone: "+92 300 1234567",
+    email: "hello@sterlingbloom.com",
+    button: "Get In Touch",
+    copyrightName: "Sterling Bloom Decor",
+    closing: "Designed with intention.",
+  },
+};
+
+export async function getSiteContent() {
+  try {
+    await connectDB();
+    const record = await SiteContent.findOne({ key: "main" }).lean();
+    if (!record?.content) return defaultSiteContent;
+    return { ...defaultSiteContent, ...record.content };
+  } catch (error) {
+    console.error("Site content load failed:", error);
+    return defaultSiteContent;
+  }
+}
