@@ -12,8 +12,8 @@ const modules = [
     href: "/admin/inquiries",
   },
   {
-    title: "Portfolio",
-    description: "Upload, categorize, feature, and remove event imagery through Cloudinary.",
+    title: "Website Content",
+    description: "Edit headings, copy, services, portfolio entries, packages, testimonials, and contact content without code.",
     status: "Live",
     href: "/admin/content",
   },
