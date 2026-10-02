@@ -1,32 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import gallery from "./constants/gallery";
 
-export default function Gallery() {
+export default function Gallery({ content }) {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const filteredGallery =
     activeCategory === "all"
-      ? gallery
-      : gallery.filter((item) => item.category === activeCategory);
+      ? content.items
+      : content.items.filter((item) => item.category === activeCategory);
 
-  const categories = [
-    { label: "All", value: "all" },
-    { label: "Weddings", value: "weddings" },
-    { label: "Nikah", value: "nikah" },
-    { label: "Mehndi", value: "mehndi" },
-    { label: "Corporate", value: "corporate" },
-  ];
+  const categories = content.categories.map(([label, value]) => ({ label, value }));
 
   return (
     <section data-reveal id="portfolio" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
-          <p className="eyebrow">FEATURED WORK</p>
+          <p className="eyebrow">{content.eyebrow}</p>
           <div className="mx-auto mt-5 h-px w-16 bg-[#B68A35]" />
           <h2 className="section-heading mx-auto mt-7 max-w-4xl">
-            A Glimpse of Our Creations
+            {content.heading}
           </h2>
           <p className="section-copy mx-auto mt-5 max-w-2xl">
             A selection of celebrations shaped through thoughtful styling,
@@ -99,10 +92,10 @@ export default function Gallery() {
 
         <div className="mt-10 text-center sm:mt-12">
           <p className="mx-auto mb-5 max-w-md text-sm leading-6 text-gray-500">
-            More celebrations, details, and event stories coming soon.
+            {content.note}
           </p>
           <a href="#contact" className="btn-primary">
-            View More Work
+            {content.button}
           </a>
         </div>
       </div>
