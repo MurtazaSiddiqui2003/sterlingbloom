@@ -9,7 +9,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="process" className="bg-[#F8F7F4] py-14 sm:py-18 lg:py-20">
+    <section data-reveal id="process" className="bg-[#F8F7F4] py-14 sm:py-18 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
           <p className="eyebrow">OUR PROCESS</p>
