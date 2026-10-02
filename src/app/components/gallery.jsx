@@ -60,7 +60,7 @@ export default function Gallery() {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3">
+        <Reveal className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3">
           {filteredGallery.map((item, index) => (
             <article
               key={item.id}
