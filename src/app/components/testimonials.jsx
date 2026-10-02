@@ -19,6 +19,8 @@ const testimonials = [
   },
 ];
 
+import Reveal from "./reveal";
+
 export default function Testimonials() {
   return (
     <section id="testimonials" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
