@@ -7,19 +7,22 @@ import Packages from "./components/packages";
 import Testimonials from "./components/testimonials";
 import Contact from "./components/contact";
 import ScrollReveal from "./components/scroll-reveal";
+import { getSiteContent } from "../lib/site-content";
 
-export default function Home() {
+export default async function Home() {
+  const content = await getSiteContent();
+
   return (
     <main>
       <ScrollReveal />
-      <Hero />
-      <About />
-      <Services />
-      <Gallery />
-      <Process />
-      <Packages />
-      <Testimonials />
-      <Contact />
+      <Hero content={content.hero} />
+      <About content={content.about} />
+      <Services content={content.services} />
+      <Gallery content={content.gallery} />
+      <Process content={content.process} />
+      <Packages content={content.packages} />
+      <Testimonials content={content.testimonials} />
+      <Contact content={content.contact} />
     </main>
   );
 }
