@@ -2,20 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import services from "./constants/services";
 
-export default function Services() {
+export default function Services({ content }) {
   const [activeService, setActiveService] = useState(0);
-  const active = services[activeService];
+  const active = content.items[activeService] || content.items[0];
 
   return (
     <section data-reveal id="services" className="bg-white py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
-          <p className="eyebrow">OUR SERVICES</p>
+          <p className="eyebrow">{content.eyebrow}</p>
           <div className="mx-auto mt-5 h-px w-16 bg-[#B68A35]" />
           <h2 className="section-heading mx-auto mt-7 max-w-3xl">
-            Designed For Every Occasion
+            {content.heading}
           </h2>
           <p className="section-copy mx-auto mt-5 max-w-2xl">
             Thoughtful design, refined styling, and seamless execution for
@@ -24,7 +23,7 @@ export default function Services() {
         </div>
 
         <div className="mt-10 flex justify-center gap-2 overflow-x-auto pb-2 sm:mt-12 sm:gap-8">
-          {services.map((service, index) => (
+          {content.items.map((service, index) => (
             <button
               key={service.id}
               type="button"
@@ -63,7 +62,7 @@ export default function Services() {
           </div>
 
           <div className="lg:pl-2">
-            <p className="eyebrow mb-5">FEATURED SERVICE</p>
+            <p className="eyebrow mb-5">{content.featuredLabel}</p>
             <div className="mb-7 h-px w-16 bg-[#B68A35]" />
 
             <div className="flex items-end justify-between gap-5">
@@ -81,10 +80,10 @@ export default function Services() {
 
             <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link href="#contact" className="btn-primary">
-                Discuss This Service
+                {content.button}
               </Link>
               <span className="text-xs uppercase tracking-[0.18em] text-gray-400">
-                Tailored to your event
+                {content.note}
               </span>
             </div>
           </div>
