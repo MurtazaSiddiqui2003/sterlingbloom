@@ -18,29 +18,37 @@ export default function Contact() {
               to create. Our team would love to help bring it to life.
             </p>
 
-            <div className="mt-9 grid gap-5 sm:grid-cols-3 lg:grid-cols-1 lg:gap-5">
+            <div className="mt-9 grid gap-5 sm:grid-cols-3 lg:grid-cols-1 lg:gap-6">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#D6B56D]">Phone</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#D6B56D]">Phone</p>
                 <p className="mt-1 text-sm text-white/80">+92 300 1234567</p>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#D6B56D]">Email</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#D6B56D]">Email</p>
                 <p className="mt-1 text-sm text-white/80">hello@sterlingbloom.com</p>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#D6B56D]">Location</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#D6B56D]">Location</p>
                 <p className="mt-1 text-sm text-white/80">Karachi, Pakistan</p>
               </div>
             </div>
+
+            <p className="mt-8 border-l border-[#B68A35] pl-4 text-xs leading-6 text-white/45">
+              Final details, availability, and pricing are discussed during
+              your consultation.
+            </p>
           </div>
 
           <div className="rounded-[24px] bg-white p-6 shadow-2xl shadow-black/20 sm:p-9 lg:p-10">
             <div className="mb-8">
-              <h3 className="font-[family-name:var(--font-display)] text-3xl font-medium text-gray-900">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#B68A35]">
+                INQUIRY FORM
+              </p>
+              <h3 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-medium text-gray-900 sm:text-4xl">
                 Start Your Celebration
               </h3>
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                Share a few details and we will get back to you.
+              <p className="mt-2 max-w-md text-sm leading-6 text-gray-500">
+                Share a few details and we will get back to you about your event.
               </p>
             </div>
 
@@ -51,25 +59,30 @@ export default function Contact() {
                 ["phone", "Phone Number", "tel", "Enter your phone number"],
               ].map(([id, label, type, placeholder]) => (
                 <div key={id}>
-                  <label htmlFor={id} className="mb-2 block text-[10px] uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
+                  <label htmlFor={id} className="mb-2 block text-[10px] font-medium uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
                     {label}
                   </label>
                   <input
                     id={id}
+                    name={id}
                     type={type}
                     placeholder={placeholder}
-                    className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none transition focus:border-[#B68A35] focus:ring-2 focus:ring-[#B68A35]/10"
+                    required
+                    autoComplete={id === "name" ? "name" : id === "email" ? "email" : "tel"}
+                    className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none transition placeholder:text-gray-400 focus:border-[#B68A35] focus:ring-2 focus:ring-[#B68A35]/10"
                   />
                 </div>
               ))}
 
               <div>
-                <label htmlFor="event" className="mb-2 block text-[10px] uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
+                <label htmlFor="event" className="mb-2 block text-[10px] font-medium uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
                   Event Type
                 </label>
                 <select
                   id="event"
+                  name="event"
                   defaultValue=""
+                  required
                   className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3.5 text-sm text-gray-600 outline-none transition focus:border-[#B68A35] focus:ring-2 focus:ring-[#B68A35]/10"
                 >
                   <option value="" disabled>Select an event</option>
@@ -83,14 +96,16 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="mb-2 block text-[10px] uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
+                <label htmlFor="message" className="mb-2 block text-[10px] font-medium uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
                   Tell Us About Your Event
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows="4"
                   placeholder="Tell us about your event, date, venue, and vision..."
-                  className="w-full resize-none rounded-lg border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none transition focus:border-[#B68A35] focus:ring-2 focus:ring-[#B68A35]/10"
+                  required
+                  className="w-full resize-none rounded-lg border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none transition placeholder:text-gray-400 focus:border-[#B68A35] focus:ring-2 focus:ring-[#B68A35]/10"
                 />
               </div>
 
@@ -98,6 +113,10 @@ export default function Contact() {
                 Request Consultation
               </button>
             </form>
+
+            <p className="mt-4 text-center text-[11px] leading-5 text-gray-400">
+              We’ll review your inquiry and follow up with next steps.
+            </p>
           </div>
         </div>
       </div>
