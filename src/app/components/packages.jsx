@@ -1,4 +1,3 @@
-import Reveal from "./reveal";
 
 export default function Packages() {
   const packages = [
@@ -49,7 +48,7 @@ export default function Packages() {
           </p>
         </div>
 
-        <Reveal className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 md:grid-cols-3 lg:gap-6">
+        
           {packages.map((pkg, index) => (
             <article
               key={pkg.name}
