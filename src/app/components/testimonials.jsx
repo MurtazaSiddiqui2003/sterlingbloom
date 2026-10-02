@@ -36,30 +36,60 @@ export default function Testimonials() {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 md:grid-cols-3 lg:gap-6">
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, index) => (
             <article
               key={testimonial.name}
-              className="group flex flex-col rounded-[22px] border border-gray-200 bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[#D6B56D] hover:shadow-[0_18px_45px_rgba(0,0,0,0.06)] sm:p-8 lg:p-10"
+              className={
+                "relative flex flex-col overflow-hidden rounded-[22px] border bg-white p-7 sm:p-8 lg:p-10 " +
+                (index === 1
+                  ? "border-[#D6B56D] shadow-[0_18px_50px_rgba(0,0,0,0.06)] md:-translate-y-2"
+                  : "border-gray-200")
+              }
             >
-              <div className="text-sm tracking-[0.25em] text-[#B68A35]" aria-label="5 out of 5 stars">
-                ★★★★★
+              <span
+                className="absolute right-7 top-5 font-[family-name:var(--font-display)] text-7xl font-light leading-none text-[#D6B56D]/25"
+                aria-hidden="true"
+              >
+                “
+              </span>
+
+              <div className="relative z-10 flex items-center justify-between gap-4">
+                <span
+                  className="text-xs tracking-[0.25em] text-[#B68A35]"
+                  aria-label="5 out of 5 stars"
+                >
+                  ★★★★★
+                </span>
+                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
+                  Verified Client
+                </span>
               </div>
 
-              <p className="mt-7 flex-1 font-[family-name:var(--font-display)] text-xl leading-8 text-gray-700 sm:text-2xl">
+              <p className="relative z-10 mt-7 flex-1 font-[family-name:var(--font-display)] text-xl leading-8 text-gray-700 sm:text-2xl">
                 “{testimonial.review}”
               </p>
 
-              <div className="mt-8 h-px w-10 bg-[#D6B56D]" />
-
-              <div className="mt-5">
-                <h3 className="text-base font-medium text-gray-900">{testimonial.name}</h3>
-                <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[#B68A35]">
-                  {testimonial.event}
-                </p>
+              <div className="mt-8 flex items-end justify-between gap-4 border-t border-gray-100 pt-5">
+                <div>
+                  <h3 className="text-base font-medium text-gray-900">
+                    {testimonial.name}
+                  </h3>
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[#B68A35]">
+                    {testimonial.event}
+                  </p>
+                </div>
+                <span className="font-[family-name:var(--font-display)] text-2xl text-[#D6B56D]/50">
+                  0{index + 1}
+                </span>
               </div>
             </article>
           ))}
         </div>
+
+        <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-6 text-gray-400">
+          Client stories shown here are sample presentation content and should
+          be replaced with verified feedback before launch.
+        </p>
       </div>
     </section>
   );
