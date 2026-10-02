@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "./reveal";
 import aboutContent from "./constants/about";
 
 export default function About() {
