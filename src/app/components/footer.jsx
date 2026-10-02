@@ -1,3 +1,5 @@
+import Reveal from "./reveal";
+
 export default function Footer() {
   return (
     <footer className="bg-[#1D1813] text-white">
