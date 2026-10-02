@@ -24,7 +24,8 @@ export const metadata = {
     "Sterling Bloom, luxury event decor, wedding decor, event design, event styling, corporate event decor, private celebrations",
 };
 
-export default async function RootLayout({ children }) {\n  const content = await getSiteContent();
+export default async function RootLayout({ children }) {
+  const content = await getSiteContent();
   return (
     <html
       lang="en"
