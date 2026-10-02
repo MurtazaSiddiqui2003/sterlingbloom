@@ -47,7 +47,7 @@ export default function Packages() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 md:grid-cols-3 lg:gap-6">
+        <Reveal className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 md:grid-cols-3 lg:gap-6">
           {packages.map((pkg, index) => (
             <article
               key={pkg.name}
