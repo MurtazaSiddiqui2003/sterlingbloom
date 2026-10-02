@@ -3,12 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
-import heroContent from "./constants/hero";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
-export default function Hero() {
+export default function Hero({ content }) {
   const heroRef = useRef(null);
   const titleRef = useRef(null);
   const textRef = useRef(null);
@@ -50,11 +49,11 @@ export default function Hero() {
         muted
         loop
         playsInline
-        poster="/images/about.jpg"
+        poster={content.backgroundImage}
         aria-hidden="true"
         className="absolute inset-0 z-0 h-full w-full object-cover"
       >
-        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src={content.video} type="video/mp4" />
         <source src="/videos/hero.webm" type="video/webm" />
       </video>
 
@@ -65,31 +64,31 @@ export default function Hero() {
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-4xl">
             <p ref={eyebrowRef} className="eyebrow border-white/40 text-white">
-              {heroContent.eyebrow}
+              {content.eyebrow}
             </p>
 
             <h1
               ref={titleRef}
               className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-5xl font-medium leading-[0.98] tracking-[-0.025em] text-white sm:text-6xl lg:text-8xl"
             >
-              {heroContent.title.before}{" "}
-              <span className="special-text">{heroContent.title.highlight}</span>
-              {heroContent.title.after}
+              {content.before}{" "}
+              <span className="special-text">{content.highlight}</span>
+              {content.after}
             </h1>
 
             <p
               ref={textRef}
               className="mt-6 max-w-2xl text-base leading-7 text-white/85 sm:text-lg sm:leading-8 lg:text-xl"
             >
-              {heroContent.description}
+              {content.description}
             </p>
 
             <div ref={buttonsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="#contact" className="btn-primary">
-                {heroContent.primaryButton}
+                {content.primaryButton}
               </Link>
               <Link href="#portfolio" className="btn-ghost">
-                {heroContent.secondaryButton}
+                {content.secondaryButton}
               </Link>
             </div>
           </div>
