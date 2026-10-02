@@ -19,7 +19,6 @@ const testimonials = [
   },
 ];
 
-import Reveal from "./reveal";
 
 export default function Testimonials() {
   return (
@@ -37,7 +36,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <Reveal className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 md:grid-cols-3 lg:gap-6">
+        
           {testimonials.map((testimonial, index) => (
             <article
               key={testimonial.name}
