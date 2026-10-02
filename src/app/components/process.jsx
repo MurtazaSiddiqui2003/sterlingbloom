@@ -1,4 +1,3 @@
-import Reveal from "./reveal";
 
 export default function Process() {
   const processSteps = [
@@ -24,7 +23,7 @@ export default function Process() {
           </p>
         </div>
 
-        <Reveal className="relative mt-10 lg:mt-12">
+        
           <div className="absolute left-[10%] right-[10%] top-[52px] hidden h-px bg-[#D8C39A] lg:block" />
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-2">
