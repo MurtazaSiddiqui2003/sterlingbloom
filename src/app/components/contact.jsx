@@ -1,7 +1,7 @@
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#2A2118] py-20 sm:py-24 lg:py-28">
+    <section data-reveal id="contact" className="relative overflow-hidden bg-[#2A2118] py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         
           <div className="text-white lg:sticky lg:top-28">
