@@ -2,6 +2,7 @@ import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import { getSiteContent } from "../lib/site-content";
 
 const displayFont = Cormorant_Garamond({
   variable: "--font-display",
@@ -23,16 +24,16 @@ export const metadata = {
     "Sterling Bloom, luxury event decor, wedding decor, event design, event styling, corporate event decor, private celebrations",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {\n  const content = await getSiteContent();
   return (
     <html
       lang="en"
       className={displayFont.variable + " " + bodyFont.variable + " h-full antialiased"}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-body)]">
-        <Navbar />
+        <Navbar content={content.nav} />
         {children}
-        <Footer />
+        <Footer content={content.footer} contact={content.contact} />
       </body>
     </html>
   );
