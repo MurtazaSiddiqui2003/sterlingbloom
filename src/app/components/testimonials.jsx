@@ -61,7 +61,7 @@ export default function Testimonials() {
                   ★★★★★
                 </span>
                 <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
-                  Verified Client
+                  Client Story
                 </span>
               </div>
 
