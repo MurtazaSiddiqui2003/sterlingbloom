@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import Reveal from "./reveal";
 import aboutContent from "./constants/about";
 
 export default function About() {
   return (
     <section id="about" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <Reveal className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        
           <div>
             <div className="group relative h-[460px] overflow-hidden rounded-[28px] shadow-2xl shadow-black/10 sm:h-[600px] lg:h-[720px]">
               <Image
