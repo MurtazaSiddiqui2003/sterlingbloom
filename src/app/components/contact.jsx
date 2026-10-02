@@ -1,3 +1,5 @@
+import Reveal from "./reveal";
+
 export default function Contact() {
   return (
     <section id="contact" className="relative overflow-hidden bg-[#2A2118] py-20 sm:py-24 lg:py-28">
