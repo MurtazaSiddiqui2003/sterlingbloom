@@ -18,6 +18,12 @@ const modules = [
     href: "/admin/content",
   },
   {
+    title: "Media Library",
+    description: "Upload and organize Cloudinary images and videos for the website.",
+    status: "Live",
+    href: "/admin/media",
+  },
+  {
     title: "Events & Clients",
     description: "Keep client and event details organized without editing website code.",
     status: "Planned",
