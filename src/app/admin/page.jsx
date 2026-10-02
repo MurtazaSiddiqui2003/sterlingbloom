@@ -14,7 +14,8 @@ const modules = [
   {
     title: "Portfolio",
     description: "Upload, categorize, feature, and remove event imagery through Cloudinary.",
-    status: "Next",
+    status: "Live",
+    href: "/admin/content",
   },
   {
     title: "Events & Clients",
