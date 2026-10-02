@@ -3,15 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Navbar() {
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Process", href: "#process" },
-    { name: "Packages", href: "#packages" },
-    { name: "Testimonials", href: "#testimonials" },
-  ];
+export default function Navbar({ content }) {
+  const navLinks = content.links.map(([name, href]) => ({ name, href }));
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,7 +29,7 @@ export default function Navbar() {
           href="/"
           className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-wide sm:text-3xl"
         >
-          Sterling Bloom
+          {content.brand}
         </Link>
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
@@ -50,7 +43,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link href="#contact" className="btn-primary ml-2 px-5 py-2.5">
-            Book Consultation
+            {content.cta}
           </Link>
         </div>
 
