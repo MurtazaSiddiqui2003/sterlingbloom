@@ -1,3 +1,5 @@
+import Reveal from "./reveal";
+
 export default function Process() {
   const processSteps = [
     { number: "01", title: "Consultation", description: "We listen to your ideas, understand your vision, and discover what makes your celebration unique." },
