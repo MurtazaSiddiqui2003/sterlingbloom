@@ -34,13 +34,9 @@ export default function Footer() {
               unforgettable experiences crafted with intention.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
-              <a href="#" className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/50 transition hover:text-[#D6B56D]">
-                Instagram
-              </a>
-              <a href="#" className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/50 transition hover:text-[#D6B56D]">
-                Facebook
-              </a>
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-[10px] font-medium uppercase tracking-[0.18em] text-white/35">
+              <span>Instagram · Coming Soon</span>
+              <span>Facebook · Coming Soon</span>
             </div>
           </div>
 
