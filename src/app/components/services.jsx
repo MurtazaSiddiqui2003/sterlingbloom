@@ -9,7 +9,7 @@ export default function Services() {
   const active = services[activeService];
 
   return (
-    <section id="services" className="bg-white py-20 sm:py-24 lg:py-28">
+    <section data-reveal id="services" className="bg-white py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
           <p className="eyebrow">OUR SERVICES</p>
