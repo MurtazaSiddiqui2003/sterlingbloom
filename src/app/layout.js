@@ -16,6 +16,8 @@ const bodyFont = DM_Sans({
   weight: ["400", "500", "600"],
 });
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Sterling Bloom | Luxury Event Decor",
   description:
