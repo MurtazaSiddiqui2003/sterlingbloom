@@ -6,10 +6,12 @@ import Process from "./components/process";
 import Packages from "./components/packages";
 import Testimonials from "./components/testimonials";
 import Contact from "./components/contact";
+import ScrollReveal from "./components/scroll-reveal";
 
 export default function Home() {
   return (
     <main>
+      <ScrollReveal />
       <Hero />
       <About />
       <Services />
