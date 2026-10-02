@@ -2,13 +2,13 @@ export default function Footer() {
   return (
     <footer className="bg-[#1D1813] text-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="border-b border-white/10 py-12 sm:py-16">
+        <div className="border-b border-white/10 py-12 sm:py-16 lg:py-20">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <p className="text-[10px] uppercase tracking-[0.28em] text-[#D6B56D]">
+              <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#D6B56D]">
                 Sterling Bloom
               </p>
-              <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-medium leading-tight sm:text-5xl lg:text-6xl">
+              <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-6xl">
                 Beautifully considered.
                 <br />
                 <span className="text-[#D6B56D]">Meaningfully remembered.</span>
@@ -17,14 +17,14 @@ export default function Footer() {
 
             <a
               href="#contact"
-              className="inline-flex w-fit items-center border border-[#D6B56D]/70 px-6 py-3 text-xs uppercase tracking-[0.18em] text-[#D6B56D] transition-all duration-300 hover:bg-[#D6B56D] hover:text-[#1D1813]"
+              className="inline-flex w-fit items-center rounded-[10px] border border-[#D6B56D]/70 px-6 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-[#D6B56D] transition-all duration-300 hover:bg-[#D6B56D] hover:text-[#1D1813]"
             >
               Start a conversation
             </a>
           </div>
         </div>
 
-        <div className="grid gap-12 py-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 py-12 sm:py-14 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <h3 className="font-[family-name:var(--font-display)] text-3xl font-medium">
               Sterling Bloom
@@ -34,18 +34,18 @@ export default function Footer() {
               unforgettable experiences crafted with intention.
             </p>
 
-            <div className="mt-6 flex gap-5">
-              <a href="#" className="text-[10px] uppercase tracking-[0.18em] text-white/50 transition hover:text-[#D6B56D]">
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
+              <a href="#" className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/50 transition hover:text-[#D6B56D]">
                 Instagram
               </a>
-              <a href="#" className="text-[10px] uppercase tracking-[0.18em] text-white/50 transition hover:text-[#D6B56D]">
+              <a href="#" className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/50 transition hover:text-[#D6B56D]">
                 Facebook
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#D6B56D]">
+            <h3 className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#D6B56D]">
               Explore
             </h3>
             <ul className="mt-6 space-y-3.5">
@@ -55,6 +55,7 @@ export default function Footer() {
                 ["Portfolio", "#portfolio"],
                 ["Our Process", "#process"],
                 ["Packages", "#packages"],
+                ["Testimonials", "#testimonials"],
               ].map(([label, href]) => (
                 <li key={label}>
                   <a href={href} className="text-sm text-white/55 transition hover:text-white">
@@ -66,7 +67,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#D6B56D]">
+            <h3 className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#D6B56D]">
               Contact
             </h3>
             <div className="mt-6 space-y-3.5 text-sm text-white/55">
@@ -76,7 +77,7 @@ export default function Footer() {
             </div>
             <a
               href="#contact"
-              className="mt-6 inline-flex border border-white/20 px-5 py-2.5 text-[10px] uppercase tracking-[0.18em] text-white/75 transition hover:border-[#D6B56D] hover:text-[#D6B56D]"
+              className="mt-6 inline-flex rounded-[10px] border border-white/20 px-5 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white/75 transition hover:border-[#D6B56D] hover:text-[#D6B56D]"
             >
               Get In Touch
             </a>
