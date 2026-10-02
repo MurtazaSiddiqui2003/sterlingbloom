@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#1D1813] text-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="border-b border-white/10 py-12 sm:py-16 lg:py-20">
+        <Reveal className="border-b border-white/10 py-12 sm:py-16 lg:py-20">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#D6B56D]">
