@@ -38,7 +38,9 @@ export default function Gallery() {
           {categories.map((category) => (
             <button
               key={category.value}
+              type="button"
               onClick={() => setActiveCategory(category.value)}
+              aria-pressed={activeCategory === category.value}
               className={
                 "relative shrink-0 pb-3 text-sm transition-all duration-300 sm:text-base " +
                 (activeCategory === category.value
@@ -52,38 +54,53 @@ export default function Gallery() {
                   "absolute bottom-0 left-0 h-px bg-[#B68A35] transition-all duration-300 " +
                   (activeCategory === category.value ? "w-full" : "w-0")
                 }
+                aria-hidden="true"
               />
             </button>
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
-          {filteredGallery.map((item) => (
-            <div
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3">
+          {filteredGallery.map((item, index) => (
+            <article
               key={item.id}
-              className="group relative aspect-[4/3] overflow-hidden rounded-[18px] bg-white"
+              className={
+                "group relative overflow-hidden rounded-[20px] bg-white " +
+                (index === 0 ? "sm:row-span-2" : "")
+              }
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 flex items-end bg-black/0 p-5 transition-all duration-500 group-hover:bg-black/45 sm:p-6">
-                <div className="translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/75 sm:text-xs">
+              <div
+                className={
+                  "relative overflow-hidden " +
+                  (index === 0 ? "aspect-[4/5] h-full" : "aspect-[4/3]")
+                }
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading={index < 3 ? "eager" : "lazy"}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+                />
+
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/75 sm:text-xs">
                     {item.category}
                   </p>
-                  <h3 className="mt-1.5 font-[family-name:var(--font-display)] text-2xl font-medium text-white sm:text-3xl">
+                  <h3 className="mt-1 font-[family-name:var(--font-display)] text-2xl font-medium leading-tight text-white sm:text-3xl">
                     {item.title}
                   </h3>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center sm:mt-12">
+        <div className="mt-10 text-center sm:mt-12">
+          <p className="mx-auto mb-5 max-w-md text-sm leading-6 text-gray-500">
+            More celebrations, details, and event stories coming soon.
+          </p>
           <a href="#contact" className="btn-primary">
             View More Work
           </a>
