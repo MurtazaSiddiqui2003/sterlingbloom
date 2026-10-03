@@ -2,18 +2,23 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar({ content }) {
+  const pathname = usePathname();
   const navLinks = content.links.map(([name, href]) => ({ name, href }));
 
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    if (pathname?.startsWith("/admin")) return;
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (pathname?.startsWith("/admin")) return null;
+
+  return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
 
   return (
     <nav
