@@ -34,7 +34,7 @@ export default function Navbar({ content }) {
           {navLinks.map((link) => (
             <Link key={link.name} href={link.href} className="text-sm transition-colors hover:text-[#D6B56D]">{link.name}</Link>
           ))}
-          <a href={consultationHref} onClick={openCalendly} className="btn-primary ml-2 px-5 py-2.5">{content.cta}</a>
+          <a href={consultationHref} onClick={consultationHref.includes("calendly.com") ? openCalendly : undefined} className="btn-primary ml-2 px-5 py-2.5">{content.cta}</a>
         </div>
 
         <button className="rounded-[2px] border border-current/30 px-3 py-1.5 text-lg md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu" aria-expanded={isOpen} aria-controls="mobile-navigation">
@@ -48,7 +48,7 @@ export default function Navbar({ content }) {
             {navLinks.map((link) => (
               <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-sm">{link.name}</Link>
             ))}
-            <a href={consultationHref} onClick={(event) => { setIsOpen(false); openCalendly(event); }} className="btn-primary mt-1 w-full">{content.cta}</a>
+            <a href={consultationHref} onClick={(event) => { setIsOpen(false); if (consultationHref.includes("calendly.com")) openCalendly(event); }} className="btn-primary mt-1 w-full">{content.cta}</a>
           </div>
         </div>
       )}
