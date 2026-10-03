@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { openCalendly } from "../../lib/calendly-popup";
+import { isCalendlyUrl, openCalendly } from "../../lib/calendly-popup";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -86,9 +86,15 @@ export default function Hero({ content }) {
             </p>
 
             <div ref={buttonsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href={primaryHref} className="btn-primary">
-                {content.primaryButton}
-              </Link>
+              {isCalendlyUrl(primaryHref) ? (
+                <button type="button" onClick={openCalendly} className="btn-primary">
+                  {content.primaryButton}
+                </button>
+              ) : (
+                <Link href={primaryHref} className="btn-primary">
+                  {content.primaryButton}
+                </Link>
+              )}
               <Link href={content.secondaryButtonHref || "#portfolio"} className="btn-ghost">
                 {content.secondaryButton}
               </Link>
