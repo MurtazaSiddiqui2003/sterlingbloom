@@ -47,7 +47,7 @@ export default function Navbar({ content }) {
               {link.name}
             </Link>
           ))}
-          <Link href="#contact" className="btn-primary ml-2 px-5 py-2.5">
+          <Link href={content.ctaHref || "#contact"} className="btn-primary ml-2 px-5 py-2.5">
             {content.cta}
           </Link>
         </div>
@@ -80,11 +80,11 @@ export default function Navbar({ content }) {
               </Link>
             ))}
             <Link
-              href="#contact"
+              href={content.ctaHref || "#contact"}
               onClick={() => setIsOpen(false)}
               className="btn-primary mt-1 w-full"
             >
-              Book Consultation
+              {content.cta}
             </Link>
           </div>
         </div>
