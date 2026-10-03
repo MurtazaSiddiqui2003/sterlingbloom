@@ -11,6 +11,7 @@ export default function Services({ content }) {
   const imageRef = useRef(null);
   const contentRef = useRef(null);
   const numberRef = useRef(null);
+  const transitionRef = useRef(null);
 
   const prefersReducedMotion = () =>
     typeof window !== "undefined" &&
@@ -19,48 +20,67 @@ export default function Services({ content }) {
   useEffect(() => {
     if (!stageRef.current || prefersReducedMotion()) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        [imageRef.current, contentRef.current],
-        { opacity: 0, y: 22 },
-        { opacity: 1, y: 0, duration: 0.85, ease: "power3.out", stagger: 0.08 },
-      );
-      gsap.fromTo(
-        imageRef.current,
-        { clipPath: "inset(0 0 0 14%)", scale: 1.04 },
-        { clipPath: "inset(0 0 0 0%)", scale: 1, duration: 1.05, ease: "power4.out" },
-      );
-      gsap.fromTo(
-        numberRef.current,
-        { opacity: 0, x: 18 },
-        { opacity: 1, x: 0, duration: 0.6, delay: 0.2, ease: "power3.out" },
-      );
-    }, stageRef);
+    gsap.set([imageRef.current, contentRef.current], {
+      opacity: 0,
+      filter: "blur(4px)",
+      scale: 0.985,
+    });
 
-    return () => ctx.revert();
+    gsap.to([imageRef.current, contentRef.current], {
+      opacity: 1,
+      filter: "blur(0px)",
+      scale: 1,
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: 0.06,
+    });
+
+    gsap.fromTo(
+      numberRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.65, delay: 0.12, ease: "power2.out" },
+    );
+
+    return () => {
+      gsap.killTweensOf([imageRef.current, contentRef.current, numberRef.current]);
+    };
   }, [activeService]);
 
   const selectService = (index) => {
-    if (index === activeService || !stageRef.current || prefersReducedMotion()) {
+    if (index === activeService) return;
+
+    if (prefersReducedMotion()) {
       setActiveService(index);
       return;
     }
 
-    const ctx = gsap.context(() => {
-      gsap.timeline({
-        defaults: { ease: "power3.inOut" },
-        onComplete: () => setActiveService(index),
-      })
-        .to(imageRef.current, {
-          clipPath: "inset(0 100% 0 0%)",
-          scale: 1.025,
-          opacity: 0,
-          duration: 0.48,
-        })
-        .to(contentRef.current, { x: -24, opacity: 0, duration: 0.35 }, "<0.05");
-    }, stageRef);
+    transitionRef.current?.kill();
 
-    return () => ctx.revert();
+    const timeline = gsap.timeline({
+      defaults: { ease: "power2.inOut" },
+      onComplete: () => setActiveService(index),
+    });
+
+    transitionRef.current = timeline;
+
+    // Soft dissolve: no horizontal slide or clip-path wipe.
+    timeline
+      .to(imageRef.current, {
+        opacity: 0,
+        filter: "blur(5px)",
+        scale: 1.018,
+        duration: 0.42,
+      })
+      .to(
+        contentRef.current,
+        {
+          opacity: 0,
+          filter: "blur(4px)",
+          scale: 0.99,
+          duration: 0.36,
+        },
+        "<0.02",
+      );
   };
 
   return (
