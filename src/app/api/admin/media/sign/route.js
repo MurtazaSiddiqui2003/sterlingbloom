@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "../../../../lib/admin-auth";
 // import { cloudinaryConfig, isCloudinaryConfigured, signCloudinaryParams } from "../../../../lib/cloudinary";
-import { cloudinaryConfig, isCloudinaryConfigured, signCloudinaryParams } from "@/lib/cloudinary";
+// import { cloudinaryConfig, isCloudinaryConfigured, signCloudinaryParams } from "@/lib/cloudinary";
+import { cloudinaryConfig, isCloudinaryConfigured, signCloudinaryParams } from "../../../../../lib/cloudinary";
 
 export async function GET() {
   if (!(await isAdminAuthenticated())) return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
