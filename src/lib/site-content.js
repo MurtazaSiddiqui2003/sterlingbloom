@@ -108,6 +108,11 @@ export const defaultSiteContent = {
     label: "Client Story",
     note: "Client stories shown here are sample presentation content and should be replaced with verified feedback before launch.",
   },
+  calendly: {
+    eyebrow: "BOOK A CONSULTATION",
+    heading: "Choose a Time That Works For You",
+    description: "Prefer to speak with us directly? Pick a convenient consultation time and let’s start planning your celebration.",
+  },
   contact: {
     eyebrow: "LET'S CREATE TOGETHER",
     heading: "Let's Create Something",
