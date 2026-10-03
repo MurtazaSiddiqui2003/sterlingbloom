@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { openCalendly } from "../../lib/calendly-popup";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
