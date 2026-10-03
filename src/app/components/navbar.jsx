@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BrandLogo from "./brand-logo";
+import { openCalendly } from "../../lib/calendly-popup";
 
 export default function Navbar({ content }) {
   const pathname = usePathname();
@@ -23,17 +24,17 @@ export default function Navbar({ content }) {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <nav className={"fixed top-0 z-50 w-full transition-all duration-300 " + (isScrolled ? "bg-[#F8F7F4]/95 text-[#6f5226] shadow-sm backdrop-blur-md" : "bg-[#1D1813]/20 text-white backdrop-blur-[2px]")}>
+    <nav className="fixed top-0 z-50 w-full bg-[#F8F7F4]/95 text-[#6f5226] shadow-sm backdrop-blur-md transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
         <Link href="/" aria-label="Sterling Bloom home">
-          <BrandLogo priority className={"h-auto w-[150px] sm:w-[180px] " + (isScrolled ? "" : "brightness-0 invert")} />
+          <BrandLogo priority className="h-14 w-14 object-contain sm:h-16 sm:w-16" />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
           {navLinks.map((link) => (
             <Link key={link.name} href={link.href} className="text-sm transition-colors hover:text-[#D6B56D]">{link.name}</Link>
           ))}
-          <Link href={consultationHref} className="btn-primary ml-2 px-5 py-2.5">{content.cta}</Link>
+          <a href={consultationHref} onClick={openCalendly} className="btn-primary ml-2 px-5 py-2.5">{content.cta}</a>
         </div>
 
         <button className="rounded-[2px] border border-current/30 px-3 py-1.5 text-lg md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu" aria-expanded={isOpen} aria-controls="mobile-navigation">
@@ -47,7 +48,7 @@ export default function Navbar({ content }) {
             {navLinks.map((link) => (
               <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-sm">{link.name}</Link>
             ))}
-            <Link href={consultationHref} onClick={() => setIsOpen(false)} className="btn-primary mt-1 w-full">{content.cta}</Link>
+            <a href={consultationHref} onClick={(event) => { setIsOpen(false); openCalendly(event); }} className="btn-primary mt-1 w-full">{content.cta}</a>
           </div>
         </div>
       )}
