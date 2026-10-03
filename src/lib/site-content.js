@@ -4,6 +4,7 @@ import SiteContent from "../models/SiteContent";
 export const defaultSiteContent = {
   nav: {
     brand: "Sterling Bloom",
+    logo: "/images/sterling-bloom-logo.svg",
     links: [
       ["About", "#about"],
       ["Services", "#services"],
@@ -13,7 +14,7 @@ export const defaultSiteContent = {
       ["Testimonials", "#testimonials"],
     ],
     cta: "Book Consultation",
-    ctaHref: "#contact",
+    ctaHref: "https://calendly.com/murtazasiddiqui250/30min",
   },
   hero: {
     eyebrow: "✨ Luxury Event Decor",
@@ -22,7 +23,7 @@ export const defaultSiteContent = {
     after: " With Intentional Design",
     description: "Custom event design and decor for weddings, corporate events, and private celebrations—thoughtfully styled to feel unforgettable.",
     primaryButton: "Book a Consultation",
-    primaryButtonHref: "#contact",
+    primaryButtonHref: "https://calendly.com/murtazasiddiqui250/30min",
     secondaryButton: "View Our Work",
     secondaryButtonHref: "#portfolio",
     backgroundImage: "/images/about.jpg",
@@ -56,13 +57,7 @@ export const defaultSiteContent = {
     eyebrow: "FEATURED WORK",
     heading: "A Glimpse of Our Creations",
     description: "A selection of celebrations shaped through thoughtful styling, considered details, and a distinct sense of place.",
-    categories: [
-      ["All", "all"],
-      ["Weddings", "weddings"],
-      ["Nikah", "nikah"],
-      ["Mehndi", "mehndi"],
-      ["Corporate", "corporate"],
-    ],
+    categories: [["All", "all"], ["Weddings", "weddings"], ["Nikah", "nikah"], ["Mehndi", "mehndi"], ["Corporate", "corporate"]],
     items: [
       { id: 1, title: "Elegant Wedding", category: "weddings", image: "/images/gallery/wedding-1.jpg" },
       { id: 2, title: "Floral Wedding", category: "weddings", image: "/images/gallery/wedding-2.jpg" },
@@ -133,11 +128,14 @@ export const defaultSiteContent = {
   },
   footer: {
     eyebrow: "Sterling Bloom",
+    logo: "/images/sterling-bloom-logo.svg",
     heading: "Beautifully considered.",
     highlight: "Meaningfully remembered.",
     description: "Thoughtfully designed celebrations, beautiful spaces, and unforgettable experiences crafted with intention.",
-    instagram: "Instagram · Coming Soon",
-    facebook: "Facebook · Coming Soon",
+    instagram: "Instagram",
+    instagramHref: "",
+    facebook: "Facebook",
+    facebookHref: "",
     contactLabel: "Contact",
     exploreLabel: "Explore",
     location: "Karachi, Pakistan",
@@ -155,9 +153,7 @@ function mergeContent(defaults, saved) {
   return Object.fromEntries(
     Object.entries(defaults).map(([key, defaultValue]) => {
       const savedValue = saved[key];
-      if (defaultValue && typeof defaultValue === "object" && !Array.isArray(defaultValue)) {
-        return [key, mergeContent(defaultValue, savedValue)];
-      }
+      if (defaultValue && typeof defaultValue === "object" && !Array.isArray(defaultValue)) return [key, mergeContent(defaultValue, savedValue)];
       return [key, savedValue === undefined ? defaultValue : savedValue];
     }),
   );
