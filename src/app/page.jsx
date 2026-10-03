@@ -6,6 +6,7 @@ import Process from "./components/process";
 import Packages from "./components/packages";
 import Testimonials from "./components/testimonials";
 import Contact from "./components/contact";
+import CalendlyBooking from "./components/calendly-booking";
 import ScrollReveal from "./components/scroll-reveal";
 import { getSiteContent } from "../lib/site-content";
 
@@ -22,6 +23,7 @@ export default async function Home() {
       <Process content={content.process} />
       <Packages content={content.packages} />
       <Testimonials content={content.testimonials} />
+      <CalendlyBooking content={content.calendly} />
       <Contact content={content.contact} />
     </main>
   );
