@@ -53,7 +53,8 @@ export default function Gallery({ content }) {
           ))}
         </div>
 
-        
+        {/* Missing grid wrapper restored below */}
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filteredGallery.map((item, index) => (
             <article
               key={item.id}
