@@ -167,6 +167,7 @@ export default function ContentEditor({ initialContent }) {
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Brand Name" value={content.nav.brand} onChange={(v) => update("nav", "brand", v)} />
           <Field label="Consultation Button" value={content.nav.cta} onChange={(v) => update("nav", "cta", v)} />
+          <Field label="Consultation Button Action" value={content.nav.ctaHref} onChange={(v) => update("nav", "ctaHref", v)} hint="Example: #contact, /consultation, or an external URL." />
         </div>
         <div className="space-y-3">
           <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">Navigation Links</p>
@@ -423,6 +424,7 @@ export default function ContentEditor({ initialContent }) {
           <Field label="Phone" value={content.footer.phone} onChange={(v) => update("footer", "phone", v)} />
           <Field label="Email" value={content.footer.email} onChange={(v) => update("footer", "email", v)} />
           <Field label="Button" value={content.footer.button} onChange={(v) => update("footer", "button", v)} />
+          <Field label="Button Action" value={content.footer.buttonHref} onChange={(v) => update("footer", "buttonHref", v)} hint="Example: #contact, /consultation, or an external URL." />
         </div>
         <Field label="Description" value={content.footer.description} onChange={(v) => update("footer", "description", v)} multiline />
       </SectionCard>
