@@ -26,7 +26,7 @@ export default function Navbar({ content }) {
     <nav className={"fixed top-0 z-50 w-full transition-all duration-300 " + (isScrolled ? "bg-[#F8F7F4]/95 text-[#6f5226] shadow-sm backdrop-blur-md" : "bg-[#1D1813]/20 text-white backdrop-blur-[2px]")}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
         <Link href="/" aria-label="Sterling Bloom home">
-          <BrandLogo priority className="h-auto w-[150px] text-current sm:w-[180px]" />
+          <BrandLogo priority className={"h-auto w-[150px] sm:w-[180px] " + (isScrolled ? "" : "brightness-0 invert")} />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
