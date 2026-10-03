@@ -193,10 +193,12 @@ export default function ContentEditor({ initialContent }) {
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.hero.eyebrow} onChange={(v) => update("hero", "eyebrow", v)} />
           <Field label="Primary Button" value={content.hero.primaryButton} onChange={(v) => update("hero", "primaryButton", v)} />
+          <Field label="Primary Button Action" value={content.hero.primaryButtonHref} onChange={(v) => update("hero", "primaryButtonHref", v)} hint="Example: #contact, /consultation, or an external URL." />
           <Field label="Heading Before Highlight" value={content.hero.before} onChange={(v) => update("hero", "before", v)} />
           <Field label="Highlighted Heading" value={content.hero.highlight} onChange={(v) => update("hero", "highlight", v)} />
           <Field label="Heading After Highlight" value={content.hero.after} onChange={(v) => update("hero", "after", v)} />
           <Field label="Secondary Button" value={content.hero.secondaryButton} onChange={(v) => update("hero", "secondaryButton", v)} />
+          <Field label="Secondary Button Action" value={content.hero.secondaryButtonHref} onChange={(v) => update("hero", "secondaryButtonHref", v)} hint="Example: #portfolio or /portfolio." />
         </div>
         <Field label="Description" value={content.hero.description} onChange={(v) => update("hero", "description", v)} multiline />
         <div className="grid gap-5 sm:grid-cols-2">
