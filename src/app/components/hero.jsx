@@ -9,6 +9,7 @@ gsap.registerPlugin(useGSAP);
 
 export default function Hero({ content }) {
   const heroRef = useRef(null);
+  const primaryHref = content.primaryButtonHref && content.primaryButtonHref !== "#contact" ? content.primaryButtonHref : "https://calendly.com/murtazasiddiqui250/30min";
   const titleRef = useRef(null);
   const textRef = useRef(null);
   const buttonsRef = useRef(null);
@@ -84,7 +85,7 @@ export default function Hero({ content }) {
             </p>
 
             <div ref={buttonsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href={content.primaryButtonHref || "#contact"} className="btn-primary">
+              <Link href={primaryHref} className="btn-primary">
                 {content.primaryButton}
               </Link>
               <Link href={content.secondaryButtonHref || "#portfolio"} className="btn-ghost">
