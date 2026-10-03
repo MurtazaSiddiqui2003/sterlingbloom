@@ -380,6 +380,17 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
+      <SectionCard eyebrow="CONSULTATION" title="Calendly Booking">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label="Eyebrow" value={content.calendly.eyebrow} onChange={(v) => update("calendly", "eyebrow", v)} />
+          <Field label="Heading" value={content.calendly.heading} onChange={(v) => update("calendly", "heading", v)} />
+        </div>
+        <Field label="Description" value={content.calendly.description} onChange={(v) => update("calendly", "description", v)} multiline />
+        <p className="rounded-xl border border-[#D6B56D]/40 bg-[#FBF7ED] px-4 py-3 text-xs leading-5 text-gray-600">
+          Calendly authentication stays server-side. The public booking page is loaded from your Calendly account after the Vercel environment variable is configured.
+        </p>
+      </SectionCard>
+
       <SectionCard eyebrow="CONTACT" title="Contact & Inquiry">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.contact.eyebrow} onChange={(v) => update("contact", "eyebrow", v)} />
