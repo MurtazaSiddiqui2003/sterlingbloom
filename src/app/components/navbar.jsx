@@ -8,6 +8,7 @@ import BrandLogo from "./brand-logo";
 export default function Navbar({ content }) {
   const pathname = usePathname();
   const navLinks = content.links.map(([name, href]) => ({ name, href }));
+  const consultationHref = content.ctaHref && content.ctaHref !== "#contact" ? content.ctaHref : "https://calendly.com/murtazasiddiqui250/30min";
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -32,7 +33,7 @@ export default function Navbar({ content }) {
           {navLinks.map((link) => (
             <Link key={link.name} href={link.href} className="text-sm transition-colors hover:text-[#D6B56D]">{link.name}</Link>
           ))}
-          <Link href={content.ctaHref || "https://calendly.com/murtazasiddiqui250/30min"} className="btn-primary ml-2 px-5 py-2.5">{content.cta}</Link>
+          <Link href={consultationHref} className="btn-primary ml-2 px-5 py-2.5">{content.cta}</Link>
         </div>
 
         <button className="rounded-[2px] border border-current/30 px-3 py-1.5 text-lg md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu" aria-expanded={isOpen} aria-controls="mobile-navigation">
@@ -46,7 +47,7 @@ export default function Navbar({ content }) {
             {navLinks.map((link) => (
               <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-sm">{link.name}</Link>
             ))}
-            <Link href={content.ctaHref || "https://calendly.com/murtazasiddiqui250/30min"} onClick={() => setIsOpen(false)} className="btn-primary mt-1 w-full">{content.cta}</Link>
+            <Link href={consultationHref} onClick={() => setIsOpen(false)} className="btn-primary mt-1 w-full">{content.cta}</Link>
           </div>
         </div>
       )}
