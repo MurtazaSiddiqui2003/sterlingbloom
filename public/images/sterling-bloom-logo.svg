@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150" role="img" aria-labelledby="title desc">
   <title id="title">Sterling Bloom Design &amp; Decor</title>
   <desc id="desc">Sterling Bloom wordmark with a refined floral mark and Design &amp; Decor subtitle.</desc>
-  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+  <g fill="none" stroke="#1D1813" stroke-width="3" stroke-linecap="round">
     <path d="M48 73c12-27 39-38 58-15-19 4-34 18-38 38"/>
     <path d="M53 76c-20-8-36-1-42 18 20 1 35-5 42-18Z"/>
     <path d="M54 75c5-19 18-31 38-36-1 20-13 35-38 36Z"/>
-    <circle cx="53" cy="77" r="5" fill="currentColor" stroke="none"/>
+    <circle cx="53" cy="77" r="5" fill="#1D1813" stroke="none"/>
   </g>
-  <text x="120" y="76" fill="currentColor" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="600" letter-spacing="1">sterling bloom</text>
-  <text x="123" y="111" fill="currentColor" font-family="Arial, Helvetica, sans-serif" font-size="14" letter-spacing="7">DESIGN &amp; DECOR</text>
+  <text x="120" y="76" fill="#1D1813" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="600" letter-spacing="1">sterling bloom</text>
+  <text x="123" y="111" fill="#1D1813" font-family="Arial, Helvetica, sans-serif" font-size="14" letter-spacing="7">DESIGN &amp; DECOR</text>
 </svg>
