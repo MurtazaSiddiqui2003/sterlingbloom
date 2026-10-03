@@ -1,4 +1,10 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 export default function Footer({ content, contact }) {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin")) return null;
   const explore = [
     ["About", "#about"],
     ["Services", "#services"],
