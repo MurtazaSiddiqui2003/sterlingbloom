@@ -3,10 +3,10 @@ import Image from "next/image";
 export default function BrandLogo({ className = "", priority = false }) {
   return (
     <Image
-      src="/images/sterling-bloom-logo.svg"
-      alt="Sterling Bloom Design & Decor"
-      width={220}
-      height={64}
+      src="/images/Sterling Bloom - Final Logo.svg"
+      alt="Sterling Bloom"
+      width={1500}
+      height={1500}
       priority={priority}
       className={className}
     />
