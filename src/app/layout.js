@@ -1,4 +1,5 @@
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -28,12 +29,14 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const content = await getSiteContent();
+
   return (
     <html
       lang="en"
       className={displayFont.variable + " " + bodyFont.variable + " h-full antialiased"}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-body)]">
+        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
         <Navbar content={content.nav} />
         {children}
         <Footer content={content.footer} contact={content.contact} />
