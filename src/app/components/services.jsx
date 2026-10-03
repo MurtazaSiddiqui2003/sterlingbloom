@@ -86,7 +86,6 @@ export default function Services({ content }) {
               </span>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );
