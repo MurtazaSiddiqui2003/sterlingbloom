@@ -148,12 +148,24 @@ export const defaultSiteContent = {
   },
 };
 
+function mergeContent(defaults, saved) {
+  if (!saved || typeof saved !== "object" || Array.isArray(saved)) return defaults;
+  return Object.fromEntries(
+    Object.entries(defaults).map(([key, defaultValue]) => {
+      const savedValue = saved[key];
+      if (defaultValue && typeof defaultValue === "object" && !Array.isArray(defaultValue)) {
+        return [key, mergeContent(defaultValue, savedValue)];
+      }
+      return [key, savedValue === undefined ? defaultValue : savedValue];
+    }),
+  );
+}
+
 export async function getSiteContent() {
   try {
     await connectDB();
     const record = await SiteContent.findOne({ key: "main" }).lean();
-    if (!record?.content) return defaultSiteContent;
-    return { ...defaultSiteContent, ...record.content };
+    return mergeContent(defaultSiteContent, record?.content);
   } catch (error) {
     console.error("Site content load failed:", error);
     return defaultSiteContent;
