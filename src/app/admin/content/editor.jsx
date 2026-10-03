@@ -18,6 +18,63 @@ function Field({ label, value, onChange, multiline = false, hint }) {
   );
 }
 
+
+
+function MediaPicker({ label, value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function openPicker() {
+    setOpen(true);
+    setLoading(true);
+    try {
+      const response = await fetch("/api/admin/media", { cache: "no-store" });
+      const data = await response.json();
+      if (response.ok) setItems(data.items || []);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div>
+      <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">{label}</span>
+      <div className="mt-2 flex gap-3">
+        <input value={value ?? ""} onChange={(e) => onChange(e.target.value)} className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-[#B68A35]" placeholder="Media URL" />
+        <button type="button" onClick={openPicker} className="shrink-0 rounded-xl border border-[#D6B56D] px-4 py-3 text-xs font-medium uppercase tracking-[0.12em] text-[#B68A35] hover:bg-[#B68A35]/5">Choose</button>
+      </div>
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-3 sm:items-center">
+          <div className="max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-[22px] bg-[#F8F7F4] shadow-2xl">
+            <div className="flex items-center justify-between border-b border-black/10 bg-white px-5 py-4">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#B68A35]">MEDIA LIBRARY</p>
+                <h3 className="font-[family-name:var(--font-display)] text-2xl font-medium">Choose an asset</h3>
+              </div>
+              <button type="button" onClick={() => setOpen(false)} className="rounded-lg border px-3 py-2 text-xs text-gray-500">Close</button>
+            </div>
+            <div className="max-h-[70vh] overflow-y-auto p-5">
+              {loading ? <p className="text-sm text-gray-400">Loading library…</p> : items.length ? (
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                  {items.map((item) => (
+                    <button type="button" key={item.publicId} onClick={() => { onChange(item.secureUrl); setOpen(false); }} className="overflow-hidden rounded-xl border border-gray-200 bg-white text-left transition hover:-translate-y-0.5 hover:border-[#B68A35]">
+                      <div className="aspect-[4/3] bg-gray-100">
+                        {item.resourceType === "video" ? <video src={item.secureUrl} muted className="h-full w-full object-cover" /> : <img src={item.secureUrl} alt="" className="h-full w-full object-cover" />}
+                      </div>
+                      <p className="truncate px-3 py-2 text-xs text-gray-600">{item.title || item.publicId}</p>
+                    </button>
+                  ))}
+                </div>
+              ) : <p className="text-sm text-gray-400">No media yet. Upload something in Media Library first.</p>}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function SectionCard({ eyebrow, title, children }) {
   return (
     <section className="rounded-[22px] border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
@@ -143,7 +200,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
         <Field label="Description" value={content.hero.description} onChange={(v) => update("hero", "description", v)} multiline />
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Background Image" value={content.hero.backgroundImage} onChange={(v) => update("hero", "backgroundImage", v)} hint="Cloudinary media selector will replace this field in the Media Library phase." />
+          <MediaPicker label="Background Image" value={content.hero.backgroundImage} onChange={(v) => update("hero", "backgroundImage", v)} />
           <Field label="Hero Video" value={content.hero.video} onChange={(v) => update("hero", "video", v)} />
         </div>
       </SectionCard>
@@ -155,7 +212,7 @@ export default function ContentEditor({ initialContent }) {
           <Field label="Heading Before Highlight" value={content.about.before} onChange={(v) => update("about", "before", v)} />
           <Field label="Highlighted Heading" value={content.about.highlight} onChange={(v) => update("about", "highlight", v)} />
           <Field label="Heading After Highlight" value={content.about.after} onChange={(v) => update("about", "after", v)} />
-          <Field label="Image" value={content.about.image} onChange={(v) => update("about", "image", v)} />
+          <MediaPicker label="Image" value={content.about.image} onChange={(v) => update("about", "image", v)} />
         </div>
         <Field label="Description" value={content.about.description} onChange={(v) => update("about", "description", v)} multiline />
         <div>
@@ -193,7 +250,7 @@ export default function ContentEditor({ initialContent }) {
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Title" value={item.title} onChange={(v) => updateArray("services", "items", index, "title", v)} />
-                <Field label="Image" value={item.image} onChange={(v) => updateArray("services", "items", index, "image", v)} />
+                <MediaPicker label="Image" value={item.image} onChange={(v) => updateArray("services", "items", index, "image", v)} />
               </div>
               <div className="mt-4">
                 <Field label="Description" value={item.description} onChange={(v) => updateArray("services", "items", index, "description", v)} multiline />
@@ -222,7 +279,7 @@ export default function ContentEditor({ initialContent }) {
               <div className="grid gap-4 sm:grid-cols-3">
                 <Field label="Title" value={item.title} onChange={(v) => updateArray("gallery", "items", index, "title", v)} />
                 <Field label="Category" value={item.category} onChange={(v) => updateArray("gallery", "items", index, "category", v)} />
-                <Field label="Image" value={item.image} onChange={(v) => updateArray("gallery", "items", index, "image", v)} />
+                <MediaPicker label="Image" value={item.image} onChange={(v) => updateArray("gallery", "items", index, "image", v)} />
               </div>
             </div>
           ))}
