@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Gallery({ content }) {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [visibleCount, setVisibleCount] = useState(5);
 
   const filteredGallery =
     activeCategory === "all"
@@ -11,6 +12,11 @@ export default function Gallery({ content }) {
       : content.items.filter((item) => item.category === activeCategory);
 
   const categories = content.categories.map(([label, value]) => ({ label, value }));
+
+  useEffect(() => setVisibleCount(5), [activeCategory]);
+
+  const visibleGallery = filteredGallery.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredGallery.length;
 
   return (
     <section data-reveal id="portfolio" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
@@ -55,7 +61,7 @@ export default function Gallery({ content }) {
 
         {/* Missing grid wrapper restored below */}
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredGallery.map((item, index) => (
+          {visibleGallery.map((item, index) => (
             <article
               key={item.id}
               className={
@@ -95,9 +101,9 @@ export default function Gallery({ content }) {
           <p className="mx-auto mb-5 max-w-md text-sm leading-6 text-gray-500">
             {content.note}
           </p>
-          <a href="#contact" className="btn-primary">
-            {content.button}
-          </a>
+          <button type="button" onClick={() => setVisibleCount((count) => Math.min(count + 4, filteredGallery.length))} className="btn-primary">
+            {hasMore ? content.button : "All Work Shown"}
+          </button>
         </div>
       </div>
     </section>
