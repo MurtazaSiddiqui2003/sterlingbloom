@@ -26,7 +26,7 @@ export default function Footer({ content, contact }) {
               <span className="text-[#D6B56D]">{content.highlight}</span>
             </h2>
           </div>
-          <a href="#contact" className="inline-flex w-fit items-center rounded-[10px] border border-[#D6B56D]/70 px-6 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-[#D6B56D] transition-all duration-300 hover:bg-[#D6B56D] hover:text-[#1D1813]">
+          <a href={content.buttonHref || "#contact"} className="inline-flex w-fit items-center rounded-[10px] border border-[#D6B56D]/70 px-6 py-3.5 text-xs font-medium uppercase tracking-[0.18em] text-[#D6B56D] transition-all duration-300 hover:bg-[#D6B56D] hover:text-[#1D1813]">
             Start a conversation
           </a>
         </div>
@@ -57,7 +57,7 @@ export default function Footer({ content, contact }) {
               <p>{contact.phone}</p>
               <p>{contact.email}</p>
             </div>
-            <a href="#contact" className="mt-6 inline-flex rounded-[10px] border border-white/20 px-5 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white/75 transition hover:border-[#D6B56D] hover:text-[#D6B56D]">{content.button}</a>
+            <a href={content.buttonHref || "#contact"} className="mt-6 inline-flex rounded-[10px] border border-white/20 px-5 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white/75 transition hover:border-[#D6B56D] hover:text-[#D6B56D]">{content.button}</a>
           </div>
         </div>
 
