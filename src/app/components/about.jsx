@@ -52,7 +52,6 @@ export default function About({ content }) {
               </Link>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );
