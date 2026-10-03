@@ -84,10 +84,10 @@ export default function Hero({ content }) {
             </p>
 
             <div ref={buttonsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="#contact" className="btn-primary">
+              <Link href={content.primaryButtonHref || "#contact"} className="btn-primary">
                 {content.primaryButton}
               </Link>
-              <Link href="#portfolio" className="btn-ghost">
+              <Link href={content.secondaryButtonHref || "#portfolio"} className="btn-ghost">
                 {content.secondaryButton}
               </Link>
             </div>
