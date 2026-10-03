@@ -9,7 +9,7 @@ export default function BrandLogo({ className = "", priority = false }) {
         fill
         priority={priority}
         sizes="180px"
-        className="object-contain object-center scale-[1.65]"
+        className="object-contain object-center scale-[1.64]"
       />
     </span>
   );
