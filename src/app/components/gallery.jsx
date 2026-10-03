@@ -28,8 +28,7 @@ export default function Gallery({ content }) {
             {content.heading}
           </h2>
           <p className="section-copy mx-auto mt-5 max-w-2xl">
-            A selection of celebrations shaped through thoughtful styling,
-            considered details, and a distinct sense of place.
+            {content.description}
           </p>
         </div>
 
