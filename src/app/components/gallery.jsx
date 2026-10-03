@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 export default function Gallery({ content }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(5);
-  const gridRef = useRef(null);
+  const gridRef = useRef(null);\n  const previousVisibleCount = useRef(5);
 
   const prefersReducedMotion = () =>
     typeof window !== "undefined" &&
@@ -22,12 +22,18 @@ export default function Gallery({ content }) {
   const hasMore = visibleCount < filteredGallery.length;
 
   useEffect(() => {
-    if (!gridRef.current || prefersReducedMotion()) return;
+    if (!gridRef.current || prefersReducedMotion()) {
+      previousVisibleCount.current = visibleCount;
+      return;
+    }
 
-    const cards = gridRef.current.querySelectorAll("[data-gallery-card]");
+    const cards = Array.from(gridRef.current.querySelectorAll("[data-gallery-card]"));
+    const isShowingMore = visibleCount > previousVisibleCount.current;
+    const targets = isShowingMore ? cards.slice(previousVisibleCount.current) : cards;
+
     gsap.fromTo(
-      cards,
-      { opacity: 0, y: 30, scale: 0.965, clipPath: "inset(8% 0 0 0)" },
+      targets,
+      { opacity: 0, y: isShowingMore ? 28 : 30, scale: 0.965, clipPath: "inset(8% 0 0 0)" },
       {
         opacity: 1,
         y: 0,
@@ -38,6 +44,8 @@ export default function Gallery({ content }) {
         stagger: { each: 0.075, from: "start" },
       },
     );
+
+    previousVisibleCount.current = visibleCount;
   }, [activeCategory, visibleCount]);
 
   const changeCategory = (category) => {
@@ -65,26 +73,9 @@ export default function Gallery({ content }) {
   };
 
   const showMore = () => {
-    const previousCount = visibleCount;
-    setVisibleCount((count) => Math.min(count + 4, filteredGallery.length));
-
-    requestAnimationFrame(() => {
-      if (!gridRef.current || prefersReducedMotion()) return;
-      const cards = Array.from(gridRef.current.querySelectorAll("[data-gallery-card]")).slice(previousCount);
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 28, scale: 0.96, clipPath: "inset(0 0 12% 0)" },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          clipPath: "inset(0)",
-          duration: 0.65,
-          ease: "power3.out",
-          stagger: 0.07,
-        },
-      );
-    });
+    if (hasMore) {
+      setVisibleCount((count) => Math.min(count + 4, filteredGallery.length));
+    }
   };
 
   return (
