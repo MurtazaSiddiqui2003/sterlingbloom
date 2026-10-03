@@ -35,7 +35,7 @@ export default function Footer({ content, contact }) {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="flex flex-col gap-8 py-12 lg:flex-row lg:items-end lg:justify-between lg:py-16">
           <div className="max-w-2xl">
-            <BrandLogo priority className="h-auto w-[190px] brightness-0 invert sm:w-[220px]" />
+            <BrandLogo priority className="h-16 w-16 object-contain sm:h-[72px] sm:w-[72px]" />
             <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.28em] text-[#D6B56D]">{content.eyebrow}</p>
             <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-6xl">
               {content.heading}
@@ -50,7 +50,7 @@ export default function Footer({ content, contact }) {
 
         <div className="grid gap-12 py-12 sm:py-14 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <BrandLogo className="h-auto w-[175px] brightness-0 invert" />
+            <BrandLogo className="h-14 w-14 object-contain" />
             <p className="mt-5 max-w-md text-sm leading-7 text-white/55">{content.description}</p>
             <div className="mt-7 flex items-center gap-3">
               {content.instagramHref ? (
