@@ -13,6 +13,7 @@ export const defaultSiteContent = {
       ["Testimonials", "#testimonials"],
     ],
     cta: "Book Consultation",
+    ctaHref: "#contact",
   },
   hero: {
     eyebrow: "✨ Luxury Event Decor",
@@ -143,6 +144,7 @@ export const defaultSiteContent = {
     phone: "+92 300 1234567",
     email: "hello@sterlingbloom.com",
     button: "Get In Touch",
+    buttonHref: "#contact",
     copyrightName: "Sterling Bloom Decor",
     closing: "Designed with intention.",
   },
