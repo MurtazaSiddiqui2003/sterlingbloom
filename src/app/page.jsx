@@ -5,6 +5,7 @@ import Gallery from "./components/gallery";
 import Process from "./components/process";
 import Packages from "./components/packages";
 import Testimonials from "./components/testimonials";
+import InstagramStrip from "./components/instagram-strip";
 import Contact from "./components/contact";
 import CalendlyBooking from "./components/calendly-booking";
 import ScrollReveal from "./components/scroll-reveal";
@@ -23,6 +24,7 @@ export default async function Home() {
       <Process content={content.process} />
       <Packages content={content.packages} />
       <Testimonials content={content.testimonials} />
+      <InstagramStrip content={content.instagramStrip} />
       <CalendlyBooking content={content.calendly} />
       <Contact content={content.contact} />
     </main>
