@@ -18,7 +18,7 @@ export default function About({ content }) {
             </div>
           </div>
 
-          <div className="lg:pt-6">
+          <div className="mt-8 lg:mt-0 lg:pt-6">
             <p className="eyebrow">{content.eyebrow}</p>
             <div className="mt-5 mb-7 h-px w-16 bg-[#C9A96E]" />
 
