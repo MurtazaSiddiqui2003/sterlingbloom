@@ -24,7 +24,7 @@ export default function Navbar({ content }) {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <nav className="fixed top-0 z-50 w-full transparent text-[#6f5226] shadow-sm backdrop-blur-md transition-all duration-300">
+    <nav className="fixed top-0 z-50 w-full bg-[#F8F7F4]/95 text-[#6f5226] shadow-sm backdrop-blur-md transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
         <Link href="/" aria-label="Sterling Bloom home">
           <BrandLogo priority className="h-14 w-14 object-contain sm:h-16 sm:w-16" />
