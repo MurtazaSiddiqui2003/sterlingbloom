@@ -43,7 +43,7 @@ export default function Hero({ content }) {
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-[92svh] overflow-hidden lg:min-h-screen"
+      className="relative min-h-[100svh] overflow-hidden lg:min-h-screen"
     >
       <video
         ref={videoRef}
