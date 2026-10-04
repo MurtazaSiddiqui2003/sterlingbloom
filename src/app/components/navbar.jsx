@@ -43,13 +43,26 @@ export default function Navbar({ content }) {
           )}
         </div>
 
-        <button className="rounded-[2px] border border-current/30 px-3 py-1.5 text-lg md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu" aria-expanded={isOpen} aria-controls="mobile-navigation">
-          {isOpen ? "×" : "☰"}
+        <button
+          className="group relative flex h-11 w-11 items-center justify-center rounded-[2px] border border-current/30 md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+        >
+          <span className="relative block h-5 w-5" aria-hidden="true">
+            <span className={"absolute left-0 top-1 h-px w-5 origin-center bg-current transition-transform duration-300 ease-out " + (isOpen ? "translate-y-1.5 rotate-45" : "")} />
+            <span className={"absolute left-0 top-2.5 h-px w-5 bg-current transition-all duration-200 ease-out " + (isOpen ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100")} />
+            <span className={"absolute left-0 top-4 h-px w-5 origin-center bg-current transition-transform duration-300 ease-out " + (isOpen ? "-translate-y-1.5 -rotate-45" : "")} />
+          </span>
         </button>
       </div>
 
-      {isOpen && (
-        <div id="mobile-navigation" className="border-t border-black/5 bg-[#F8F7F4] px-5 pb-6 pt-4 text-[#6f5226] shadow-lg md:hidden">
+      <div
+        id="mobile-navigation"
+        aria-hidden={!isOpen}
+        className={"overflow-hidden border-t border-black/5 bg-[#F8F7F4] px-5 text-[#6f5226] shadow-lg transition-all duration-300 ease-out md:hidden " + (isOpen ? "max-h-[420px] pb-6 pt-4 opacity-100" : "max-h-0 pb-0 pt-0 opacity-0")}
+      >
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-sm">{link.name}</Link>
@@ -63,7 +76,7 @@ export default function Navbar({ content }) {
             )}
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
