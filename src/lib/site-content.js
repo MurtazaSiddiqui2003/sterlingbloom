@@ -106,6 +106,22 @@ export const defaultSiteContent = {
     label: "Client Story",
     note: "Client stories shown here are sample presentation content and should be replaced with verified feedback before launch.",
   },
+  instagramStrip: {
+    eyebrow: "FOLLOW ALONG",
+    heading: "Moments From Sterling Bloom",
+    description: "A glimpse behind the celebrations, details, and spaces we create.",
+    handle: "Instagram",
+    url: "",
+    button: "Follow on Instagram",
+    items: [
+      { image: "/images/gallery/wedding-1.jpg", alt: "Sterling Bloom wedding decor" },
+      { image: "/images/gallery/wedding-2.jpg", alt: "Sterling Bloom wedding styling" },
+      { image: "/images/gallery/nikah-1.jpg", alt: "Sterling Bloom Nikah decor" },
+      { image: "/images/gallery/mehndi-1.jpg", alt: "Sterling Bloom Mehndi decor" },
+      { image: "/images/gallery/corporate-1.jpg", alt: "Sterling Bloom corporate event" },
+      { image: "/images/gallery/wedding-3.jpg", alt: "Sterling Bloom reception decor" },
+    ],
+  },
   calendly: {
     eyebrow: "BOOK A CONSULTATION",
     heading: "Choose a Time That Works For You",
