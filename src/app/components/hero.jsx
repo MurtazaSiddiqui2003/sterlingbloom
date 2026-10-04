@@ -62,7 +62,7 @@ export default function Hero({ content }) {
       <div className="absolute inset-0 z-10 bg-black/45" />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/55 via-black/25 to-black/10" />
 
-      <div className="relative z-10 flex min-h-[92svh] items-center px-5 pt-20 sm:px-8 lg:min-h-screen lg:px-12">
+      <div className="relative z-10 flex min-h-[100svh] items-start px-5 pb-20 pt-[6.75rem] sm:items-center sm:px-8 sm:pt-20 lg:min-h-screen lg:px-12">
         <div className="mx-auto w-full max-w-7xl">
           <div className="max-w-4xl">
             <p ref={eyebrowRef} className="eyebrow border-white/40 text-white">
@@ -71,7 +71,7 @@ export default function Hero({ content }) {
 
             <h1
               ref={titleRef}
-              className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-5xl font-medium leading-[0.98] tracking-[-0.025em] text-white sm:text-6xl lg:text-8xl"
+              className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-[3.25rem] font-medium leading-[0.94] tracking-[-0.025em] sm:text-6xl text-white sm:text-6xl lg:text-8xl"
             >
               {content.before}{" "}
               <span className="special-text">{content.highlight}</span>
@@ -80,12 +80,12 @@ export default function Hero({ content }) {
 
             <p
               ref={textRef}
-              className="mt-6 max-w-2xl text-base leading-7 text-white/85 sm:text-lg sm:leading-8 lg:text-xl"
+              className="mt-5 max-w-2xl text-[0.95rem] leading-7 text-white/85 sm:mt-6 sm:text-lg sm:leading-8 lg:text-xl"
             >
               {content.description}
             </p>
 
-            <div ref={buttonsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div ref={buttonsRef} className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
               {isCalendlyUrl(primaryHref) ? (
                 <button type="button" onClick={openCalendly} className="btn-primary">
                   {content.primaryButton}
@@ -105,7 +105,7 @@ export default function Hero({ content }) {
         <div
           ref={scrollRef}
           className={
-            "absolute bottom-7 left-1/2 -translate-x-1/2 transition-opacity " +
+            "absolute bottom-7 left-1/2 hidden -translate-x-1/2 transition-opacity sm:block " +
             (isScrolled ? "opacity-0" : "opacity-100")
           }
         >
