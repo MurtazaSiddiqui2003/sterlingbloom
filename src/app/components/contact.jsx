@@ -71,7 +71,7 @@ export default function Contact({ content }) {
         />
       )}
       <div className="pointer-events-none absolute inset-0 bg-[#2A2118]/88" aria-hidden="true" />
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="text-white lg:sticky lg:top-28">
             <p className="inline-flex border border-[#C9A45C] px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-[#D6B56D] sm:text-xs">{content.eyebrow}</p>
