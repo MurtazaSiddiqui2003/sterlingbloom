@@ -428,6 +428,7 @@ export default function ContentEditor({ initialContent }) {
           <Field label="Highlighted Heading" value={content.contact.highlight} onChange={(v) => update("contact", "highlight", v)} />
           <Field label="Email" value={content.contact.email} onChange={(v) => update("contact", "email", v)} />
           <Field label="Location" value={content.contact.location} onChange={(v) => update("contact", "location", v)} />
+          <Field label="Hours" value={content.contact.hours || ""} onChange={(v) => update("contact", "hours", v)} />
           <Field label="Form Eyebrow" value={content.contact.formEyebrow} onChange={(v) => update("contact", "formEyebrow", v)} />
           <Field label="Form Heading" value={content.contact.formHeading} onChange={(v) => update("contact", "formHeading", v)} />
           <Field label="Form Button" value={content.contact.formButton} onChange={(v) => update("contact", "formButton", v)} />
@@ -436,6 +437,7 @@ export default function ContentEditor({ initialContent }) {
         <Field label="Consultation Note" value={content.contact.note} onChange={(v) => update("contact", "note", v)} />
         <Field label="Form Description" value={content.contact.formDescription} onChange={(v) => update("contact", "formDescription", v)} />
         <Field label="Form Footnote" value={content.contact.formFootnote} onChange={(v) => update("contact", "formFootnote", v)} />
+        <MediaPicker label="Contact Background Image" value={content.contact.backgroundImage || ""} onChange={(v) => update("contact", "backgroundImage", v)} />
       </SectionCard>
 
       <SectionCard eyebrow="FOOTER" title="Footer">
