@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { isAdminAuthenticated } from "../../lib/admin-auth";
 import connectDB from "../../lib/mongodb";
 import Inquiry from "../../models/Inquiry";
+import Review from "../../models/Review";
 
 const modules = [
   {
@@ -16,6 +17,12 @@ const modules = [
     description: "Edit headings, copy, services, portfolio entries, packages, testimonials, and contact content without code.",
     status: "Live",
     href: "/admin/content",
+  },
+  {
+    title: "Customer Reviews",
+    description: "Review customer submissions, approve verified feedback, and publish it to the website.",
+    status: "Live",
+    href: "/admin/reviews",
   },
   {
     title: "Media Library",
@@ -42,12 +49,14 @@ export default async function AdminDashboard() {
 
   let newInquiries = 0;
   let totalInquiries = 0;
+  let pendingReviews = 0;
 
   try {
     await connectDB();
-    [newInquiries, totalInquiries] = await Promise.all([
+    [newInquiries, totalInquiries, pendingReviews] = await Promise.all([
       Inquiry.countDocuments({ status: "new" }),
       Inquiry.countDocuments(),
+      Review.countDocuments({ status: "pending" }),
     ]);
   } catch (error) {
     console.error("Admin dashboard stats failed:", error);
@@ -57,7 +66,7 @@ export default async function AdminDashboard() {
     { label: "New inquiries", value: String(newInquiries), note: "Awaiting follow-up" },
     { label: "Total inquiries", value: String(totalInquiries), note: "All website requests" },
     { label: "Portfolio items", value: "—", note: "Cloudinary connection next" },
-    { label: "Client stories", value: "—", note: "Verified testimonials only" },
+    { label: "Pending reviews", value: String(pendingReviews), note: "Awaiting approval" },
   ];
 
   return (
