@@ -77,10 +77,11 @@ export default function Contact({ content }) {
             <p className="inline-flex border border-[#C9A45C] px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-[#D6B56D] sm:text-xs">{content.eyebrow}</p>
             <h2 className="mt-7 max-w-xl font-[family-name:var(--font-display)] text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-6xl">{content.heading}<span className="block text-[#D6B56D]">{content.highlight}</span></h2>
             <p className="mt-6 max-w-lg text-base leading-7 text-white/65 sm:text-lg sm:leading-8">{content.description}</p>
-            <div className="mt-9 grid gap-5 sm:grid-cols-3 lg:grid-cols-1 lg:gap-6">
+            <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-1 lg:gap-6">
               <a href={`tel:${String(content.phone || "").replace(/[^+\\d]/g, "")}`} className="transition hover:text-[#D6B56D]"><p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#D6B56D]">Phone</p><p className="mt-1 text-sm text-white/80">{content.phone}</p></a>
               <a href={`mailto:${content.email || ""}`} className="transition hover:text-[#D6B56D]"><p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#D6B56D]">Email</p><p className="mt-1 text-sm text-white/80">{content.email}</p></a>
               <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(content.location || "")}`} target="_blank" rel="noreferrer" className="transition hover:text-[#D6B56D]"><p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#D6B56D]">Location</p><p className="mt-1 text-sm text-white/80">{content.location}</p></a>
+              <div><p className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#D6B56D]">Hours</p><p className="mt-1 text-sm leading-6 text-white/80">{content.hours}</p></div>
             </div>
             <p className="mt-8 border-l border-[#B68A35] pl-4 text-xs leading-6 text-white/45">{content.note}</p>
           </div>
