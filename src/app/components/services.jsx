@@ -93,7 +93,7 @@ export default function Services({ content }) {
           <p className="section-copy mx-auto mt-5 max-w-2xl">{content.description}</p>
         </div>
 
-        <div className="mt-10 flex justify-center gap-2 overflow-x-auto pb-2 sm:mt-12 sm:gap-8">
+        <div className="-mx-5 mt-7 flex justify-start gap-2 overflow-x-auto px-5 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:mt-12 sm:justify-center sm:gap-8 sm:px-0">
           {content.items.map((service, index) => (
             <button
               key={service.id}
