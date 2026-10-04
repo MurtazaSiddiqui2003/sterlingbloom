@@ -25,9 +25,9 @@ export default function Navbar({ content }) {
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-[#F8F7F4]/95 text-[#6f5226] shadow-sm backdrop-blur-md transition-all duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8 sm:py-4 lg:px-10">
         <Link href="/" aria-label="Sterling Bloom home">
-          <BrandLogo priority className="h-14 w-14 object-contain sm:h-16 sm:w-16" />
+          <BrandLogo priority className="h-11 w-11 object-contain sm:h-14 sm:w-14" />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
