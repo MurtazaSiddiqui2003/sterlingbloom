@@ -383,6 +383,32 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
+      <SectionCard eyebrow="INSTAGRAM" title="Instagram Strip">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label="Eyebrow" value={content.instagramStrip.eyebrow} onChange={(v) => update("instagramStrip", "eyebrow", v)} />
+          <Field label="Handle / Label" value={content.instagramStrip.handle} onChange={(v) => update("instagramStrip", "handle", v)} hint="Use the public Instagram handle, e.g. @sterlingbloomdecor." />
+          <Field label="Heading" value={content.instagramStrip.heading} onChange={(v) => update("instagramStrip", "heading", v)} />
+          <Field label="Instagram URL" value={content.instagramStrip.url} onChange={(v) => update("instagramStrip", "url", v)} hint="Public profile URL, e.g. https://instagram.com/yourhandle" />
+          <Field label="Button" value={content.instagramStrip.button} onChange={(v) => update("instagramStrip", "button", v)} />
+        </div>
+        <Field label="Description" value={content.instagramStrip.description} onChange={(v) => update("instagramStrip", "description", v)} multiline />
+        <div className="space-y-4">
+          {content.instagramStrip.items.map((item, index) => (
+            <div key={index} className="rounded-2xl border border-gray-200 bg-[#FBFAF7] p-5">
+              <div className="mb-4 flex items-center justify-between">
+                <p className="text-xs font-medium uppercase tracking-[0.14em] text-gray-500">Instagram Image {String(index + 1).padStart(2, "0")}</p>
+                <button type="button" onClick={() => removeItem("instagramStrip", "items", index)} className="text-xs text-gray-400 hover:text-red-600">Remove</button>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <MediaPicker label="Image" value={item.image} onChange={(v) => updateArray("instagramStrip", "items", index, "image", v)} />
+                <Field label="Alt Text" value={item.alt} onChange={(v) => updateArray("instagramStrip", "items", index, "alt", v)} />
+              </div>
+            </div>
+          ))}
+          <button type="button" onClick={() => addItem("instagramStrip", "items", { image: "", alt: "Sterling Bloom event" })} className="text-xs font-medium uppercase tracking-[0.12em] text-[#B68A35]">+ Add Instagram image</button>
+        </div>
+      </SectionCard>
+
       <SectionCard eyebrow="CONSULTATION" title="Calendly Booking">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.calendly.eyebrow} onChange={(v) => update("calendly", "eyebrow", v)} />
