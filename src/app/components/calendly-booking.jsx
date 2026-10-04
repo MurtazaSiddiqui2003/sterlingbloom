@@ -17,18 +17,7 @@ export default function CalendlyBooking({ content }) {
           <p className="mt-5 text-xs uppercase tracking-[0.18em] text-gray-400">
             Your consultation opens securely in a popup
           </p>
-          <div className="mx-auto mt-10 flex max-w-sm items-center gap-4">
-            <span className="h-px flex-1 bg-black/10" />
-            <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400">or</span>
-            <span className="h-px flex-1 bg-black/10" />
-          </div>
-          <button
-            type="button"
-            onClick={openCalendly}
-            className="mt-6 border-b border-[#B68A35] pb-1 text-xs font-medium uppercase tracking-[0.18em] text-[#8c6828] transition-colors hover:text-[#B68A35]"
-          >
-            Open Calendly
-          </button>
+
         </div>
       </div>
     </section>
