@@ -6,7 +6,8 @@ import { gsap } from "gsap";
 export default function Gallery({ content }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(5);
-  const gridRef = useRef(null);\n  const previousVisibleCount = useRef(5);
+  const gridRef = useRef(null);
+  const previousVisibleCount = useRef(5);
 
   const prefersReducedMotion = () =>
     typeof window !== "undefined" &&
