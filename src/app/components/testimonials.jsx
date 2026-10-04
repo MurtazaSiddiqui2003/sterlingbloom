@@ -1,4 +1,27 @@
-export default function Testimonials({ content }) {
+import connectDB from "../../lib/mongodb";
+import Review from "../../models/Review";
+import ReviewForm from "./review-form";
+
+export default async function Testimonials({ content }) {
+  let approvedReviews = [];
+  try {
+    await connectDB();
+    approvedReviews = await Review.find({ status: "approved" })
+      .sort({ createdAt: -1 })
+      .lean();
+  } catch (error) {
+    console.error("Approved reviews load failed:", error);
+  }
+
+  const displayItems = approvedReviews.length
+    ? approvedReviews.map((review) => ({
+        name: review.name,
+        event: review.event,
+        review: review.review,
+        approved: true,
+      }))
+    : content.items.map((item) => ({ ...item, approved: false }));
+
   return (
     <section data-reveal id="testimonials" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
@@ -10,12 +33,12 @@ export default function Testimonials({ content }) {
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {content.items.map((testimonial, index) => (
-            <article key={testimonial.name || index} className={"relative flex flex-col overflow-hidden rounded-[22px] border bg-white p-7 sm:p-8 lg:p-10 " + (index === 1 ? "border-[#D6B56D] shadow-[0_18px_50px_rgba(0,0,0,0.06)] md:-translate-y-2" : "border-gray-200")}>
+          {displayItems.map((testimonial, index) => (
+            <article key={testimonial.name + index} className={"relative flex flex-col overflow-hidden rounded-[22px] border bg-white p-7 sm:p-8 lg:p-10 " + (index === 1 ? "border-[#D6B56D] shadow-[0_18px_50px_rgba(0,0,0,0.06)] md:-translate-y-2" : "border-gray-200")}>
               <span className="absolute right-7 top-5 font-[family-name:var(--font-display)] text-7xl font-light leading-none text-[#D6B56D]/25" aria-hidden="true">“</span>
               <div className="relative z-10 flex items-center justify-between gap-4">
                 <span className="text-xs tracking-[0.25em] text-[#B68A35]" aria-label="5 out of 5 stars">★★★★★</span>
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">{content.label}</span>
+                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">{testimonial.approved ? "Verified Client" : content.label}</span>
               </div>
               <p className="relative z-10 mt-7 flex-1 font-[family-name:var(--font-display)] text-xl leading-8 text-gray-700 sm:text-2xl">“{testimonial.review}”</p>
               <div className="mt-8 flex items-end justify-between gap-4 border-t border-gray-100 pt-5">
@@ -29,7 +52,11 @@ export default function Testimonials({ content }) {
           ))}
         </div>
 
-        <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-6 text-gray-400">{content.note}</p>
+        {!approvedReviews.length && (
+          <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-6 text-gray-400">{content.note}</p>
+        )}
+
+        <ReviewForm />
       </div>
     </section>
   );
