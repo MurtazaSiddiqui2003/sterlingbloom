@@ -75,7 +75,6 @@ export default function Navbar({ content }) {
               <a href={consultationHref} onClick={() => setIsOpen(false)} className="btn-primary mt-1 w-full">{content.cta}</a>
             )}
           </div>
-        </div>
       </div>
     </nav>
   );
