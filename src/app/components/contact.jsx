@@ -63,6 +63,14 @@ export default function Contact({ content }) {
 
   return (
     <section data-reveal id="contact" className="relative overflow-hidden bg-[#2A2118] py-20 sm:py-24 lg:py-28">
+      {content.backgroundImage && (
+        <div
+          className="pointer-events-none absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url("${content.backgroundImage}")` }}
+          aria-hidden="true"
+        />
+      )}
+      <div className="pointer-events-none absolute inset-0 bg-[#2A2118]/88" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="text-white lg:sticky lg:top-28">
