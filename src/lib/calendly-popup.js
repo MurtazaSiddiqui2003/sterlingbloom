@@ -3,6 +3,91 @@ const CALENDLY_SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
 
 let calendlyPromise = null;
 
+function openCalendlyIframe() {
+  const existing = document.getElementById("sterling-bloom-calendly-fallback");
+  if (existing) return;
+
+  const overlay = document.createElement("div");
+  overlay.id = "sterling-bloom-calendly-fallback";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Book a 30-Minute Consultation");
+  Object.assign(overlay.style, {
+    position: "fixed",
+    inset: "0",
+    zIndex: "2147483647",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "16px",
+    background: "rgba(20, 16, 12, 0.78)",
+    backdropFilter: "blur(6px)",
+  });
+
+  const panel = document.createElement("div");
+  Object.assign(panel.style, {
+    position: "relative",
+    width: "min(100%, 1080px)",
+    height: "min(92vh, 820px)",
+    background: "#fff",
+    overflow: "hidden",
+    boxShadow: "0 30px 80px rgba(0,0,0,.35)",
+  });
+
+  const close = document.createElement("button");
+  close.type = "button";
+  close.setAttribute("aria-label", "Close consultation booking");
+  close.textContent = "×";
+  Object.assign(close.style, {
+    position: "absolute",
+    top: "10px",
+    right: "14px",
+    zIndex: "2",
+    width: "40px",
+    height: "40px",
+    border: "0",
+    background: "rgba(255,255,255,.94)",
+    color: "#1d1813",
+    fontSize: "28px",
+    lineHeight: "40px",
+    cursor: "pointer",
+    boxShadow: "0 4px 18px rgba(0,0,0,.12)",
+  });
+
+  const iframe = document.createElement("iframe");
+  iframe.src = CALENDLY_URL;
+  iframe.title = "Sterling Bloom consultation booking";
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("allow", "payment");
+  Object.assign(iframe.style, {
+    width: "100%",
+    height: "100%",
+    minWidth: "320px",
+    border: "0",
+  });
+
+  const closeModal = () => {
+    document.body.style.overflow = "";
+    overlay.remove();
+  };
+
+  close.addEventListener("click", closeModal);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener("keydown", function handleKeydown(e) {
+    if (e.key !== "Escape") return;
+    closeModal();
+    document.removeEventListener("keydown", handleKeydown);
+  });
+
+  panel.append(close, iframe);
+  overlay.append(panel);
+  document.body.append(overlay);
+  document.body.style.overflow = "hidden";
+}
+
 function waitForCalendly(timeout = 8000) {
   if (typeof window === "undefined") return Promise.resolve(null);
   if (window.Calendly?.initPopupWidget) return Promise.resolve(window.Calendly);
@@ -59,9 +144,7 @@ export async function openCalendly(event) {
   if (Calendly?.initPopupWidget) {
     Calendly.initPopupWidget({ url: CALENDLY_URL });
   } else {
-    // If an extension/network policy blocks Calendly's widget script,
-    // keep the user on the site and provide a direct booking window.
-    window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+    openCalendlyIframe();
   }
 
   return false;
