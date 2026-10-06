@@ -36,7 +36,8 @@ export default async function RootLayout({ children }) {
       className={displayFont.variable + " " + bodyFont.variable + " h-full antialiased"}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-body)]">
-        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />\n        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
         <Navbar content={content.nav} />
         {children}
         <Footer content={content.footer} contact={content.contact} />
