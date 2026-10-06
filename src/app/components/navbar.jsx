@@ -21,14 +21,35 @@ export default function Navbar({ content }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const handlePointerDown = (event) => {
+      if (
+        event.target.closest("#mobile-navigation") ||
+        event.target.closest("[data-mobile-menu-toggle]")
+      ) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [isOpen]);
+
   if (pathname?.startsWith("/admin")) return null;
 
   const navClass = isScrolled
     ? "bg-[#F8F7F4]/96 text-[#6f5226] shadow-[0_8px_30px_rgba(29,24,19,0.08)] backdrop-blur-xl"
     : "bg-transparent text-white";
 
+  const effectiveNavClass = isOpen
+    ? "bg-[#F8F7F4]/96 text-[#6f5226] shadow-[0_8px_30px_rgba(29,24,19,0.08)] backdrop-blur-xl"
+    : navClass;
+
   return (
-    <nav className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + navClass}>
+    <nav className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
       <div className={"mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-10 " + (isScrolled ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4")}>
         <Link href="/" aria-label="Sterling Bloom home" className="shrink-0">
           <BrandLogo priority className={"h-16 w-16 transition-all duration-500 sm:h-20 sm:w-20 " + (isScrolled ? "scale-[0.9]" : "")} />
@@ -68,18 +89,22 @@ export default function Navbar({ content }) {
         aria-hidden={!isOpen}
         className={"overflow-hidden border-t border-black/5 bg-[#F8F7F4] px-5 text-[#6f5226] shadow-lg transition-all duration-300 ease-out md:hidden " + (isOpen ? "max-h-[420px] pb-6 pt-4 opacity-100" : "max-h-0 pb-0 pt-0 opacity-0")}
       >
-          <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-sm">{link.name}</Link>
-            ))}
-            {isCalendlyUrl(consultationHref) ? (
-              <button type="button" onClick={() => { setIsOpen(false); openCalendly(); }} className="btn-primary mt-1 w-full">
-                {content.cta}
-              </button>
-            ) : (
-              <a href={consultationHref} onClick={() => setIsOpen(false)} className="btn-primary mt-1 w-full">{content.cta}</a>
-            )}
-          </div>
+        <div className="flex flex-col gap-4">
+          {navLinks.map((link) => (
+            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-sm">
+              {link.name}
+            </Link>
+          ))}
+          {isCalendlyUrl(consultationHref) ? (
+            <button type="button" onClick={() => { setIsOpen(false); openCalendly(); }} className="btn-primary mt-1 w-full">
+              {content.cta}
+            </button>
+          ) : (
+            <a href={consultationHref} onClick={() => setIsOpen(false)} className="btn-primary mt-1 w-full">
+              {content.cta}
+            </a>
+          )}
+        </div>
       </div>
     </nav>
   );
