@@ -23,11 +23,15 @@ export default function Navbar({ content }) {
 
   if (pathname?.startsWith("/admin")) return null;
 
+  const navClass = isScrolled
+    ? "bg-[#F8F7F4]/96 text-[#6f5226] shadow-[0_8px_30px_rgba(29,24,19,0.08)] backdrop-blur-xl"
+    : "bg-transparent text-white";
+
   return (
-    <nav className="fixed top-0 z-50 w-screen bg-[#F8F7F4]/95 text-[#6f5226] shadow-sm backdrop-blur-md transition-all duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8 sm:py-4 lg:px-10">
-        <Link href="/" aria-label="Sterling Bloom home">
-          <BrandLogo priority className="h-15 w-15 object-contain sm:h-14 sm:w-14" />
+    <nav className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + navClass}>
+      <div className={"mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-10 " + (isScrolled ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4")}>
+        <Link href="/" aria-label="Sterling Bloom home" className="shrink-0">
+          <BrandLogo priority className={"h-20 w-20 transition-all duration-500 sm:h-24 sm:w-24 " + (isScrolled ? "scale-[0.9]" : "")} />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
