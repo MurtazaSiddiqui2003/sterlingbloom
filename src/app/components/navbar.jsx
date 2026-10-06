@@ -52,7 +52,7 @@ export default function Navbar({ content }) {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
-          aria-controls="mobile-navigation"
+          aria-controls="mobile-navigation"\n          data-mobile-menu-toggle
         >
           <span className="relative block h-5 w-5" aria-hidden="true">
             <span className={"absolute left-0 top-1 h-px w-5 origin-center bg-current transition-transform duration-300 ease-out " + (isOpen ? "translate-y-1.5 rotate-45" : "")} />
