@@ -11,10 +11,10 @@ const displayFont = Cormorant_Garamond({
   weight: ["400", "500", "600"],
 });
 
+// Removed the weight array because DM Sans is a variable font
 const bodyFont = DM_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
 export const dynamic = "force-dynamic";
