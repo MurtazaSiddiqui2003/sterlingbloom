@@ -1,21 +1,9 @@
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import ThemeToggle from "./components/theme-toggle";
 import { getSiteContent } from "../lib/site-content";
-
-const displayFont = Cormorant_Garamond({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-// Removed the weight array because DM Sans is a variable font
-const bodyFont = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-});
 
 export const dynamic = "force-dynamic";
 
@@ -33,12 +21,13 @@ export default async function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={displayFont.variable + " " + bodyFont.variable + " h-full antialiased"}
+      className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-body)]">
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
         <Navbar content={content.nav} />
+        <ThemeToggle />
         {children}
         <Footer content={content.footer} contact={content.contact} />
       </body>
