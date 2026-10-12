@@ -51,8 +51,8 @@ export default function Navbar({ content }) {
   return (
     <nav className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
       <div className={"mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-10 " + (isScrolled ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4")}>
-        <Link href="/" aria-label="Sterling Bloom home" className="shrink-0">
-          <BrandLogo priority className={"h-16 w-16 transition-all duration-500 sm:h-20 sm:w-20 " + (isScrolled ? "scale-[0.9]" : "")} />
+        <Link href="/" aria-label="Sterling Bloom home" className={"shrink-0 rounded-full transition-all duration-300 " + (isScrolled ? "bg-[#F8F7F4] p-1 shadow-[0_3px_14px_rgba(29,24,19,0.14)] ring-1 ring-[#B68A35]/30" : "")}>
+          <BrandLogo priority className="h-[76px] w-[76px] sm:h-[88px] sm:w-[88px]" />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
