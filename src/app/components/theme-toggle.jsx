@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("sterling-bloom-theme");
-    const initialDark = saved === "dark";
+    const initialDark = saved !== "light";
     setDark(initialDark);
     document.documentElement.dataset.theme = initialDark ? "dark" : "light";
     document.documentElement.style.colorScheme = initialDark ? "dark" : "light";
