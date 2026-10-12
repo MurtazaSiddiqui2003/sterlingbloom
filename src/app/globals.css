@@ -60,3 +60,87 @@ img { -webkit-user-drag: none; }
   }}
 
 /* Sterling Bloom final polish batch */
+
+
+/* Experimental Sterling Bloom dark theme preview */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --sb-cream: #171614;
+  --sb-brown: #f4efe7;
+  --sb-gold: #c5a15d;
+  --sb-gold-light: #e0c58c;
+}
+:root[data-theme="dark"] body {
+  background: #171614;
+  color: #eee8df;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+:root[data-theme="dark"] main,
+:root[data-theme="dark"] footer {
+  background-color: #171614;
+  color: #eee8df;
+}
+:root[data-theme="dark"] section {
+  color: inherit;
+}
+/* Recolor common light surfaces while leaving photography and dark hero panels intact. */
+:root[data-theme="dark"] [class*="bg-white"],
+:root[data-theme="dark"] [class*="bg-[#F8F7F4]"],
+:root[data-theme="dark"] [class*="bg-[#f8f7f4]"],
+:root[data-theme="dark"] [class*="bg-[#F8F7F4]/"],
+:root[data-theme="dark"] [class*="bg-gray-50"],
+:root[data-theme="dark"] [class*="bg-stone-50"],
+:root[data-theme="dark"] [class*="bg-[#fff"] {
+  background-color: #201e1b !important;
+}
+:root[data-theme="dark"] [class*="text-[#211d19]"],
+:root[data-theme="dark"] [class*="text-[#1D1813]"],
+:root[data-theme="dark"] [class*="text-[#1d1813]"],
+:root[data-theme="dark"] [class*="text-gray-900"],
+:root[data-theme="dark"] [class*="text-gray-800"],
+:root[data-theme="dark"] [class*="text-gray-700"],
+:root[data-theme="dark"] [class*="text-stone-900"],
+:root[data-theme="dark"] [class*="text-stone-800"] {
+  color: #eee8df !important;
+}
+:root[data-theme="dark"] [class*="text-gray-600"],
+:root[data-theme="dark"] [class*="text-gray-500"],
+:root[data-theme="dark"] [class*="text-stone-600"],
+:root[data-theme="dark"] [class*="text-stone-500"] {
+  color: #c0b8ad !important;
+}
+:root[data-theme="dark"] [class*="border-black/"],
+:root[data-theme="dark"] [class*="border-gray-"],
+:root[data-theme="dark"] [class*="border-stone-"] {
+  border-color: #454039 !important;
+}
+:root[data-theme="dark"] .section-heading { color: #f4efe7; }
+:root[data-theme="dark"] .section-copy { color: #c0b8ad; }
+:root[data-theme="dark"] .sb-theme-toggle {
+  color: #f4efe7;
+  background: #292621;
+  border-color: #76613d;
+}
+.sb-theme-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid rgba(182, 138, 53, .55);
+  background: rgba(248, 247, 244, .96);
+  color: #34291b;
+  padding: 11px 15px;
+  font-size: 12px;
+  letter-spacing: .04em;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .15);
+  backdrop-filter: blur(14px);
+  transition: background-color 250ms ease, color 250ms ease, transform 250ms ease;
+}
+.sb-theme-toggle:hover { transform: translateY(-2px); }
+.sb-theme-toggle:focus-visible { outline: 2px solid #b68a35; outline-offset: 3px; }
+@media (max-width: 640px) {
+  .sb-theme-toggle { right: 12px; bottom: 12px; padding: 10px 12px; }
+}
