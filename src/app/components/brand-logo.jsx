@@ -8,7 +8,7 @@ export default function BrandLogo({ className = "", priority = false }) {
         alt="Sterling Bloom"
         fill
         priority={priority}
-        sizes="180px"
+        sizes="160px"
         className="relative z-10 object-contain object-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.28)]"
       />
     </span>
