@@ -51,9 +51,28 @@ export default function Navbar({ content }) {
   return (
     <nav className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
       <div className={"mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-10 " + (isScrolled ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4")}>
-        <Link href="/" aria-label="Sterling Bloom home" className={"shrink-0 rounded-full transition-all duration-300 " + (isScrolled ? "bg-[#F8F7F4] p-1 shadow-[0_3px_14px_rgba(29,24,19,0.14)] ring-1 ring-[#B68A35]/30" : "")}>
-          <BrandLogo priority className="h-[76px] w-[76px] sm:h-[88px] sm:w-[88px]" />
-        </Link>
+        {(content.logoSettings?.visible ?? true) && (
+          <Link
+            href="/"
+            aria-label="Sterling Bloom home"
+            className="shrink-0 rounded-full transition-all duration-300"
+            style={{
+              padding: isScrolled && (content.logoSettings?.backgroundEnabled ?? true) ? 4 : 0,
+              backgroundColor: isScrolled && (content.logoSettings?.backgroundEnabled ?? true) ? (content.logoSettings?.background || "#F8F7F4") : "transparent",
+              border: isScrolled && (content.logoSettings?.borderEnabled ?? true) ? (String(content.logoSettings?.borderWidth ?? 1) + "px solid " + (content.logoSettings?.borderColor || "#B68A35")) : "none",
+              boxShadow: isScrolled && (content.logoSettings?.shadowEnabled ?? true) ? "0 3px 14px rgba(29,24,19,0.14)" : "none",
+            }}
+          >
+            <BrandLogo
+              priority
+              className="h-[var(--sb-logo-mobile)] w-[var(--sb-logo-mobile)] sm:h-[var(--sb-logo-desktop)] sm:w-[var(--sb-logo-desktop)]"
+              style={{
+                "--sb-logo-mobile": String(content.logoSettings?.mobileSize ?? 76) + "px",
+                "--sb-logo-desktop": String(content.logoSettings?.desktopSize ?? 88) + "px",
+              }}
+            />
+          </Link>
+        )}
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
           {navLinks.map((link) => (
