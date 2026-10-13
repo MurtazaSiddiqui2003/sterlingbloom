@@ -34,8 +34,8 @@ section { width: 100%; scroll-margin-top: 80px; }
 :root[data-site-theme] [class*="text-[#211d19]"],
 :root[data-site-theme] [class*="text-[#211D19]"] { color: var(--sb-text, #211D19); }
 :root[data-site-theme] [class*="text-gray-600"] { color: var(--sb-muted, #66615B); }
-:root[data-site-theme] section { padding-block-start: max(0px, var(--sb-section-spacing, 80px) * 0); }
-:root[data-site-theme] [class*="p-6"] { padding: var(--sb-card-padding, 24px); }
+:root[data-site-theme] section[class*="py-"] { padding-block: var(--sb-section-spacing, 80px); }
+:root[data-site-theme] [class*="rounded-[20px]"] { border-radius: var(--sb-card-radius, 20px); }
 
 
 @layer components {
