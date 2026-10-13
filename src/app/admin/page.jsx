@@ -32,13 +32,9 @@ const modules = [
   },
   {
     title: "Events & Clients",
-    description: "Keep client and event details organized without editing website code.",
-    status: "Planned",
-  },
-  {
-    title: "Content",
-    description: "Manage packages, services, and verified client stories from one place.",
-    status: "Planned",
+    description: "Organize client contacts, event dates, venues, budgets, notes, and booking status.",
+    status: "Live",
+    href: "/admin/events-clients",
   },
 ];
 
