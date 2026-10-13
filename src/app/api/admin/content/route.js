@@ -4,9 +4,14 @@ import connectDB from "../../../../lib/mongodb";
 import SiteContent from "../../../../models/SiteContent";
 import { defaultSiteContent } from "../../../../lib/site-content";
 
-export async function GET() {
+export async function GET(request) {
   if (!(await isAdminAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  const { searchParams } = new URL(request.url);
+  if (searchParams.get("defaults") === "1") {
+    return NextResponse.json({ content: defaultSiteContent });
   }
 
   try {
