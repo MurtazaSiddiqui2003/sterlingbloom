@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-export default function BrandLogo({ className = "", priority = false }) {
+export default function BrandLogo({ className = "", priority = false, style }) {
   return (
-    <span className={"relative inline-block overflow-visible " + className}>
+    <span style={style} className={"relative inline-block overflow-visible " + className}>
       <Image
         src="/images/Sterling Bloom - Final Logo.svg"
         alt="Sterling Bloom"
