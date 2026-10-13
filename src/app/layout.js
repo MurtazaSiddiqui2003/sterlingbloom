@@ -38,6 +38,8 @@ export default async function RootLayout({ children }) {
     <html
       lang="en"
       className="h-full antialiased"
+      data-site-theme={design.theme || "light"}
+      style={designStyle}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-body)]">
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
