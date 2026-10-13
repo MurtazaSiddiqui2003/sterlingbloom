@@ -100,11 +100,11 @@ function MediaPicker({ label, value, onChange }) {
   );
 }
 
-function SectionCard({ eyebrow, title, children }) {
+function SectionCard({ eyebrow, title, children, onReset }) {
   return (
     <section className="rounded-[22px] border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
       <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#B68A35]">{eyebrow}</p>
-      <h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-medium">{title}</h2>
+      <div className="flex flex-wrap items-start justify-between gap-3"><h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-medium">{title}</h2>{onReset && <button type="button" onClick={onReset} className="mt-2 border border-gray-200 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-gray-500 transition hover:border-[#B68A35] hover:text-[#B68A35]">Reset to default</button>}</div>
       <div className="mt-7 space-y-5">{children}</div>
     </section>
   );
@@ -166,6 +166,21 @@ export default function ContentEditor({ initialContent }) {
     }));
   }
 
+  async function resetSection(section) {
+    const label = section === "design" ? "theme and layout settings" : section === "nav" ? "navigation and logo settings" : section;
+    if (!window.confirm("Reset " + label + " to the original defaults? This will replace your unsaved edits for this section.")) return;
+    setMessage("");
+    try {
+      const response = await fetch("/api/admin/content?defaults=1", { cache: "no-store" });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Could not load defaults.");
+      setContent((current) => ({ ...current, [section]: data.content[section] }));
+      setMessage("Defaults restored for " + label + ". Save the website content to publish this reset.");
+    } catch (error) {
+      setMessage(error.message || "Could not restore defaults.");
+    }
+  }
+
   async function save() {
     setSaving(true);
     setMessage("");
@@ -208,7 +223,7 @@ export default function ContentEditor({ initialContent }) {
 
   return (
     <div className="space-y-6">
-      <SectionCard eyebrow="DESIGN SYSTEM" title="Theme Studio">
+      <SectionCard eyebrow="DESIGN SYSTEM" title="Theme Studio" onReset={() => resetSection("design")}>
         <p className="max-w-3xl text-sm leading-6 text-gray-500">Customize the website palette and shared layout values. Save your changes to apply them to the public site.</p>
         <div className="grid gap-5 sm:grid-cols-2">
           <label className="block">
@@ -248,7 +263,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="NAVIGATION" title="Navigation">
+      <SectionCard eyebrow="NAVIGATION" title="Navigation" onReset={() => resetSection("nav")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Brand Name" value={content.nav.brand} onChange={(v) => update("nav", "brand", v)} />
           <Field label="Consultation Button" value={content.nav.cta} onChange={(v) => update("nav", "cta", v)} />
@@ -289,7 +304,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="HERO" title="Hero Section">
+      <SectionCard eyebrow="HERO" title="Hero Section" onReset={() => resetSection("hero")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.hero.eyebrow} onChange={(v) => update("hero", "eyebrow", v)} />
           <Field label="Primary Button" value={content.hero.primaryButton} onChange={(v) => update("hero", "primaryButton", v)} />
@@ -307,7 +322,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="OUR STORY" title="About / Story">
+      <SectionCard eyebrow="OUR STORY" title="About / Story" onReset={() => resetSection("about")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.about.eyebrow} onChange={(v) => update("about", "eyebrow", v)} />
           <Field label="Button" value={content.about.button} onChange={(v) => update("about", "button", v)} />
@@ -335,7 +350,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="SERVICES" title="Services">
+      <SectionCard eyebrow="SERVICES" title="Services" onReset={() => resetSection("services")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.services.eyebrow} onChange={(v) => update("services", "eyebrow", v)} />
           <Field label="Featured Label" value={content.services.featuredLabel} onChange={(v) => update("services", "featuredLabel", v)} />
@@ -363,7 +378,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="FEATURED WORK" title="Portfolio">
+      <SectionCard eyebrow="FEATURED WORK" title="Portfolio" onReset={() => resetSection("gallery")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.gallery.eyebrow} onChange={(v) => update("gallery", "eyebrow", v)} />
           <Field label="Button" value={content.gallery.button} onChange={(v) => update("gallery", "button", v)} />
@@ -389,7 +404,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="PROCESS" title="How It Works">
+      <SectionCard eyebrow="PROCESS" title="How It Works" onReset={() => resetSection("process")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.process.eyebrow} onChange={(v) => update("process", "eyebrow", v)} />
           <Field label="Heading" value={content.process.heading} onChange={(v) => update("process", "heading", v)} />
@@ -413,7 +428,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="PACKAGES" title="Packages">
+      <SectionCard eyebrow="PACKAGES" title="Packages" onReset={() => resetSection("packages")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.packages.eyebrow} onChange={(v) => update("packages", "eyebrow", v)} />
           <Field label="Heading" value={content.packages.heading} onChange={(v) => update("packages", "heading", v)} />
@@ -456,7 +471,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="TESTIMONIALS" title="Client Stories">
+      <SectionCard eyebrow="TESTIMONIALS" title="Client Stories" onReset={() => resetSection("testimonials")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.testimonials.eyebrow} onChange={(v) => update("testimonials", "eyebrow", v)} />
           <Field label="Label" value={content.testimonials.label} onChange={(v) => update("testimonials", "label", v)} />
@@ -482,7 +497,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="INSTAGRAM" title="Instagram Strip">
+      <SectionCard eyebrow="INSTAGRAM" title="Instagram Strip" onReset={() => resetSection("instagramStrip")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.instagramStrip.eyebrow} onChange={(v) => update("instagramStrip", "eyebrow", v)} />
           <Field label="Handle / Label" value={content.instagramStrip.handle} onChange={(v) => update("instagramStrip", "handle", v)} hint="Use the public Instagram handle, e.g. @sterlingbloomdecor." />
@@ -508,7 +523,7 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
-      <SectionCard eyebrow="CONSULTATION" title="Calendly Booking">
+      <SectionCard eyebrow="CONSULTATION" title="Calendly Booking" onReset={() => resetSection("consultation")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.calendly.eyebrow} onChange={(v) => update("calendly", "eyebrow", v)} />
           <Field label="Heading" value={content.calendly.heading} onChange={(v) => update("calendly", "heading", v)} />
@@ -519,7 +534,7 @@ export default function ContentEditor({ initialContent }) {
         </p>
       </SectionCard>
 
-      <SectionCard eyebrow="CONTACT" title="Contact & Inquiry">
+      <SectionCard eyebrow="CONTACT" title="Contact & Inquiry" onReset={() => resetSection("contact")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.contact.eyebrow} onChange={(v) => update("contact", "eyebrow", v)} />
           <Field label="Phone" value={content.contact.phone} onChange={(v) => update("contact", "phone", v)} />
@@ -539,7 +554,7 @@ export default function ContentEditor({ initialContent }) {
         <MediaPicker label="Contact Background Image" value={content.contact.backgroundImage || ""} onChange={(v) => update("contact", "backgroundImage", v)} />
       </SectionCard>
 
-      <SectionCard eyebrow="FOOTER" title="Footer">
+      <SectionCard eyebrow="FOOTER" title="Footer" onReset={() => resetSection("footer")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.footer.eyebrow} onChange={(v) => update("footer", "eyebrow", v)} />
           <Field label="Closing Line" value={content.footer.closing} onChange={(v) => update("footer", "closing", v)} />
