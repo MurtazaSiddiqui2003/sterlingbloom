@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Field({ label, value, onChange, multiline = false, hint }) {
   const common = {
@@ -114,6 +114,13 @@ export default function ContentEditor({ initialContent }) {
   const [content, setContent] = useState(initialContent);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const previewRef = useRef(null);
+
+  useEffect(() => {
+    const frame = previewRef.current;
+    if (!frame?.contentWindow) return;
+    frame.contentWindow.postMessage({ type: "STERLING_BLOOM_DRAFT", content }, window.location.origin);
+  }, [content]);
 
   function update(section, key, value) {
     setContent((current) => ({
@@ -223,6 +230,19 @@ export default function ContentEditor({ initialContent }) {
 
   return (
     <div className="space-y-6">
+      <SectionCard eyebrow="LIVE PREVIEW" title="Website preview">
+        <p className="mb-4 text-sm leading-6 text-gray-500">Your unsaved edits appear here as you make them. This preview is a draft only; use Save Website Content to publish changes to the live website.</p>
+        <div className="overflow-hidden border border-gray-200 bg-[#F8F7F4]">
+          <iframe
+            ref={previewRef}
+            title="Sterling Bloom live draft preview"
+            src="/admin/content/preview"
+            onLoad={() => previewRef.current?.contentWindow?.postMessage({ type: "STERLING_BLOOM_DRAFT", content }, window.location.origin)}
+            className="h-[720px] w-full bg-white sm:h-[860px] lg:h-[980px]"
+          />
+        </div>
+        <p className="mt-3 text-[11px] text-gray-400">Tip: use the preview to review copy, images, and palette changes before publishing.</p>
+      </SectionCard>
       <SectionCard eyebrow="DESIGN SYSTEM" title="Theme Studio" onReset={() => resetSection("design")}>
         <p className="max-w-3xl text-sm leading-6 text-gray-500">Customize the website palette and shared layout values. Save your changes to apply them to the public site.</p>
         <div className="grid gap-5 sm:grid-cols-2">
