@@ -2,17 +2,8 @@ import connectDB from "../../lib/mongodb";
 import Review from "../../models/Review";
 import ReviewForm from "./review-form";
 
-export default async function Testimonials({ content }) {
-  let approvedReviews = [];
-  try {
-    await connectDB();
-    approvedReviews = await Review.find({ status: "approved" })
-      .sort({ createdAt: -1 })
-      .lean();
-  } catch (error) {
-    console.error("Approved reviews load failed:", error);
-  }
-
+export default function Testimonials({ content, approvedReviews = [] }) {
+  // Uses server-fetched reviews if provided, otherwise falls back to the preview content
   const displayItems = approvedReviews.length
     ? approvedReviews.map((review) => ({
         name: review.name,
@@ -20,16 +11,16 @@ export default async function Testimonials({ content }) {
         review: review.review,
         approved: true,
       }))
-    : content.items.map((item) => ({ ...item, approved: false }));
+    : (content?.items || []).map((item) => ({ ...item, approved: false }));
 
   return (
     <section data-reveal id="testimonials" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="text-center">
-          <p className="eyebrow">{content.eyebrow}</p>
+          <p className="eyebrow">{content?.eyebrow}</p>
           <div className="mx-auto mt-5 h-px w-16 bg-[#B68A35]" />
-          <h2 className="section-heading mx-auto mt-7 max-w-4xl">{content.heading}</h2>
-          <p className="section-copy mx-auto mt-5 max-w-2xl">{content.description}</p>
+          <h2 className="section-heading mx-auto mt-7 max-w-4xl">{content?.heading}</h2>
+          <p className="section-copy mx-auto mt-5 max-w-2xl">{content?.description}</p>
         </div>
 
         <div className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0">
@@ -38,7 +29,7 @@ export default async function Testimonials({ content }) {
               <span className="absolute right-7 top-5 font-[family-name:var(--font-display)] text-7xl font-light leading-none text-[#D6B56D]/25" aria-hidden="true">“</span>
               <div className="relative z-10 flex items-center justify-between gap-4">
                 <span className="text-xs tracking-[0.25em] text-[#B68A35]" aria-label="5 out of 5 stars">★★★★★</span>
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">{testimonial.approved ? "Verified Client" : content.label}</span>
+                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">{testimonial.approved ? "Verified Client" : content?.label}</span>
               </div>
               <p className="relative z-10 mt-5 line-clamp-6 flex-1 overflow-hidden font-[family-name:var(--font-display)] text-lg leading-7 text-gray-700 sm:mt-7 sm:text-2xl sm:leading-8">“{testimonial.review}”</p>
               <div className="mt-8 flex items-end justify-between gap-4 border-t border-gray-100 pt-5">
@@ -55,7 +46,7 @@ export default async function Testimonials({ content }) {
         <p className="mt-2 text-center text-[10px] uppercase tracking-[0.18em] text-gray-400 md:hidden">Swipe to explore reviews</p>
 
         {!approvedReviews.length && (
-          <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-6 text-gray-400">{content.note}</p>
+          <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-6 text-gray-400">{content?.note}</p>
         )}
 
         <ReviewForm />
