@@ -30,10 +30,6 @@ section { width: 100%; scroll-margin-top: 80px; }
 :root[data-site-theme] .eyebrow { border-color: var(--sb-accent, #B68A35); color: var(--sb-accent, #B68A35); }
 :root[data-site-theme] [class*="bg-[#F8F7F4]"],
 :root[data-site-theme] [class*="bg-[#f8f7f4]"] { background-color: var(--sb-page-bg, #F8F7F4); }
-:root[data-site-theme] [class*="bg-white"] { background-color: var(--sb-surface, #FFFFFF); }
-:root[data-site-theme] [class*="text-[#211d19]"],
-:root[data-site-theme] [class*="text-[#211D19]"] { color: var(--sb-text, #211D19); }
-:root[data-site-theme] [class*="text-gray-600"] { color: var(--sb-muted, #66615B); }
 :root[data-site-theme] section[class*="py-"] { padding-block: var(--sb-section-spacing, 80px); }
 :root[data-site-theme] [class*="rounded-[20px]"] { border-radius: var(--sb-card-radius, 20px); }
 
