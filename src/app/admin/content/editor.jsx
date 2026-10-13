@@ -20,6 +20,31 @@ function Field({ label, value, onChange, multiline = false, hint }) {
 
 
 
+function ColorField({ label, value, onChange }) {
+  const safeValue = /^#[0-9a-f]{6}$/i.test(value || "") ? value : "#ffffff";
+  return (
+    <label className="block">
+      <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">{label}</span>
+      <div className="mt-2 flex items-center gap-3">
+        <input aria-label={label + " color picker"} type="color" value={safeValue} onChange={(event) => onChange(event.target.value)} className="h-11 w-14 cursor-pointer rounded-lg border border-gray-200 bg-white p-1" />
+        <input value={value ?? ""} onChange={(event) => onChange(event.target.value)} className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm uppercase text-[#211d19] outline-none focus:border-[#B68A35]" placeholder="#FFFFFF" />
+      </div>
+    </label>
+  );
+}
+
+function ToggleField({ label, checked, onChange, hint }) {
+  return (
+    <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
+      <input type="checkbox" checked={Boolean(checked)} onChange={(event) => onChange(event.target.checked)} className="mt-0.5 h-4 w-4 accent-[#B68A35]" />
+      <span>
+        <span className="block text-xs font-medium text-[#211d19]">{label}</span>
+        {hint && <span className="mt-1 block text-[11px] leading-5 text-gray-500">{hint}</span>}
+      </span>
+    </label>
+  );
+}
+
 function MediaPicker({ label, value, onChange }) {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([]);
@@ -97,6 +122,26 @@ export default function ContentEditor({ initialContent }) {
     }));
   }
 
+  function updateNested(section, parent, key, value) {
+    setContent((current) => ({
+      ...current,
+      [section]: {
+        ...current[section],
+        [parent]: { ...(current[section]?.[parent] || {}), [key]: value },
+      },
+    }));
+  }
+
+  function updateDesign(group, key, value) {
+    setContent((current) => ({
+      ...current,
+      design: {
+        ...(current.design || {}),
+        [group]: { ...(current.design?.[group] || {}), [key]: value },
+      },
+    }));
+  }
+
   function updateArray(section, key, index, field, value) {
     setContent((current) => ({
       ...current,
@@ -163,6 +208,46 @@ export default function ContentEditor({ initialContent }) {
 
   return (
     <div className="space-y-6">
+      <SectionCard eyebrow="DESIGN SYSTEM" title="Theme Studio">
+        <p className="max-w-3xl text-sm leading-6 text-gray-500">Customize the website palette and shared layout values. Save your changes to apply them to the public site.</p>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label className="block">
+            <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">Theme preset</span>
+            <select value={content.design?.theme || "light"} onChange={(e) => update("design", "theme", e.target.value)} className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-[#211d19]">
+              <option value="light">Light / Ivory</option>
+              <option value="dark">Dark / Evening</option>
+              <option value="custom">Custom Palette</option>
+            </select>
+          </label>
+          <ColorField label="Page Background" value={content.design?.colors?.background || "#F8F7F4"} onChange={(v) => updateDesign("colors", "background", v)} />
+          <ColorField label="Card / Surface Background" value={content.design?.colors?.surface || "#FFFFFF"} onChange={(v) => updateDesign("colors", "surface", v)} />
+          <ColorField label="Main Text Color" value={content.design?.colors?.text || "#211D19"} onChange={(v) => updateDesign("colors", "text", v)} />
+          <ColorField label="Muted Text Color" value={content.design?.colors?.mutedText || "#66615B"} onChange={(v) => updateDesign("colors", "mutedText", v)} />
+          <ColorField label="Accent / Special Text" value={content.design?.colors?.accent || "#B68A35"} onChange={(v) => updateDesign("colors", "accent", v)} />
+          <ColorField label="Light Accent / Gradient" value={content.design?.colors?.accentLight || "#D6B56D"} onChange={(v) => updateDesign("colors", "accentLight", v)} />
+          <ColorField label="Dark Contrast Color" value={content.design?.colors?.dark || "#1D1813"} onChange={(v) => updateDesign("colors", "dark", v)} />
+        </div>
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
+          <Field label="Content Width (px)" value={content.design?.layout?.contentWidth ?? 1280} onChange={(v) => updateDesign("layout", "contentWidth", Math.max(720, Math.min(1800, Number(v) || 1280)))} hint="Range: 720–1800px." />
+          <Field label="Section Spacing (px)" value={content.design?.layout?.sectionSpacing ?? 80} onChange={(v) => updateDesign("layout", "sectionSpacing", Math.max(24, Math.min(180, Number(v) || 80)))} hint="Shared spacing scale: 24–180px." />
+          <Field label="Card Corner Radius (px)" value={content.design?.layout?.cardRadius ?? 20} onChange={(v) => updateDesign("layout", "cardRadius", Math.max(0, Math.min(48, Number(v) || 0)))} hint="Use 0 for sharp corners." />
+          <Field label="Card Padding (px)" value={content.design?.layout?.cardPadding ?? 24} onChange={(v) => updateDesign("layout", "cardPadding", Math.max(8, Math.min(64, Number(v) || 24)))} hint="Spacing token for components wired to the design system." />
+        </div>
+        <div className="mt-6 rounded-xl border border-gray-200 p-4">
+          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">Palette Preview</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {[
+              ["Background", content.design?.colors?.background || "#F8F7F4"],
+              ["Surface", content.design?.colors?.surface || "#FFFFFF"],
+              ["Text", content.design?.colors?.text || "#211D19"],
+              ["Accent", content.design?.colors?.accent || "#B68A35"],
+              ["Light accent", content.design?.colors?.accentLight || "#D6B56D"],
+              ["Dark", content.design?.colors?.dark || "#1D1813"],
+            ].map(([name, color]) => <span key={name} title={name + ": " + color} className="flex items-center gap-2 rounded-full border border-gray-200 px-3 py-2 text-[11px] text-gray-600"><span className="h-4 w-4 rounded-full border border-black/10" style={{ backgroundColor: color }} />{name}</span>)}
+          </div>
+        </div>
+      </SectionCard>
+
       <SectionCard eyebrow="NAVIGATION" title="Navigation">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Brand Name" value={content.nav.brand} onChange={(v) => update("nav", "brand", v)} />
@@ -187,6 +272,20 @@ export default function ContentEditor({ initialContent }) {
             </div>
           ))}
           <button type="button" onClick={() => update("nav", "links", [...content.nav.links, ["New Link", "#contact"]])} className="text-xs font-medium uppercase tracking-[0.12em] text-[#B68A35]">+ Add navigation link</button>
+        </div>
+        <div className="mt-6 border-t border-gray-100 pt-6">
+          <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">Logo Studio</p>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <ToggleField label="Show logo in navigation" checked={content.nav.logoSettings?.visible ?? true} onChange={(v) => updateNested("nav", "logoSettings", "visible", v)} />
+            <ToggleField label="Show background behind logo when scrolled" checked={content.nav.logoSettings?.backgroundEnabled ?? true} onChange={(v) => updateNested("nav", "logoSettings", "backgroundEnabled", v)} />
+            <ToggleField label="Show border when scrolled" checked={content.nav.logoSettings?.borderEnabled ?? true} onChange={(v) => updateNested("nav", "logoSettings", "borderEnabled", v)} />
+            <ToggleField label="Show logo shadow when scrolled" checked={content.nav.logoSettings?.shadowEnabled ?? true} onChange={(v) => updateNested("nav", "logoSettings", "shadowEnabled", v)} />
+            <Field label="Mobile Logo Size (px)" value={content.nav.logoSettings?.mobileSize ?? 76} onChange={(v) => updateNested("nav", "logoSettings", "mobileSize", Math.max(32, Math.min(140, Number(v) || 76)))} />
+            <Field label="Desktop Logo Size (px)" value={content.nav.logoSettings?.desktopSize ?? 88} onChange={(v) => updateNested("nav", "logoSettings", "desktopSize", Math.max(40, Math.min(180, Number(v) || 88)))} />
+            <ColorField label="Scrolled Logo Background" value={content.nav.logoSettings?.background || "#F8F7F4"} onChange={(v) => updateNested("nav", "logoSettings", "background", v)} />
+            <ColorField label="Scrolled Border Color" value={content.nav.logoSettings?.borderColor || "#B68A35"} onChange={(v) => updateNested("nav", "logoSettings", "borderColor", v)} />
+            <Field label="Border Thickness (px)" value={content.nav.logoSettings?.borderWidth ?? 1} onChange={(v) => updateNested("nav", "logoSettings", "borderWidth", Math.max(0, Math.min(8, Number(v) || 0)))} />
+          </div>
         </div>
       </SectionCard>
 
