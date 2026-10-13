@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Hero from "../../components/hero";
-import About from "../../components/about";
-import Services from "../../components/services";
-import Gallery from "../../components/gallery";
-import Process from "../../components/process";
-import Packages from "../../components/packages";
-import Testimonials from "../../components/testimonials";
-import InstagramStrip from "../../components/instagram-strip";
-import Contact from "../../components/contact";
-import CalendlyBooking from "../../components/calendly-booking";
+import Hero from "../../../components/hero";
+import About from "../../../components/about";
+import Services from "../../../components/services";
+import Gallery from "../../../components/gallery";
+import Process from "../../../components/process";
+import Packages from "../../../components/packages";
+import Testimonials from "../../../components/testimonials";
+import InstagramStrip from "../../../components/instagram-strip";
+import Contact from "../../../components/contact";
+import CalendlyBooking from "../../../components/calendly-booking";
 
 export default function ContentPreviewPage() {
   const [content, setContent] = useState(null);
