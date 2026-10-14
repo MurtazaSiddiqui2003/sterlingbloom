@@ -183,3 +183,23 @@ img { -webkit-user-drag: none; }
 .sb-floating-book { display: inline-flex; min-height: 2.8rem; align-items: center; justify-content: center; border: 1px solid var(--sb-accent, #B68A35); background: var(--sb-accent, #B68A35); padding: .8rem 1rem; color: #fff; font-size: .68rem; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; box-shadow: 0 5px 18px rgba(0,0,0,.12); transition: filter .2s, transform .2s; }
 .sb-floating-book:hover { filter: brightness(.93); transform: translateY(-2px); }
 @media (max-width: 480px) { .sb-floating-actions { right: .75rem; bottom: .85rem; gap: .45rem; } .sb-floating-book { min-height: 2.55rem; padding: .7rem .8rem; font-size: .62rem; } .sb-theme-toggle { width: 2.45rem; height: 2.45rem; } }
+
+
+/* Admin draft preview: reveal all sections immediately (no homepage scroll observer runs in the iframe). */
+.sb-preview [data-reveal],
+.sb-preview [data-reveal].is-visible,
+.sb-preview [data-reveal="soft"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+.sb-preview { overflow-x: clip; }
+
+/* Keep the theme control in the floating stack, above the booking button. */
+.sb-floating-actions .sb-theme-toggle {
+  position: static;
+  right: auto;
+  bottom: auto;
+  padding: 0;
+  flex: 0 0 auto;
+}
