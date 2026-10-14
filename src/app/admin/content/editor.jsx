@@ -229,7 +229,7 @@ export default function ContentEditor({ initialContent }) {
   }
 
   return (
-    <div className="grid min-w-0 grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+    <div className="grid min-w-0 grid-cols-1 items-start gap-6 2xl:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)]">
       <aside className="min-w-0 lg:sticky lg:top-4">
         <div className="overflow-hidden border border-gray-200 bg-[#F8F7F4] shadow-sm">
           <div className="flex items-center justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3">
@@ -241,12 +241,25 @@ export default function ContentEditor({ initialContent }) {
             title="Sterling Bloom live draft preview"
             src="/admin/content/preview"
             onLoad={() => previewRef.current?.contentWindow?.postMessage({ type: "STERLING_BLOOM_DRAFT", content }, window.location.origin)}
-            className="h-[62vh] min-h-[460px] w-full bg-white lg:h-[calc(100vh-7rem)] lg:min-h-[600px]"
+            className="h-[70vh] min-h-[560px] w-full bg-white lg:h-[calc(100vh-7rem)] lg:min-h-[720px]"
           />
         </div>
         <p className="mt-3 text-[11px] leading-5 text-gray-400">Changes are only a draft until you press Save Website Content. Scroll inside the preview to inspect the whole page.</p>
       </aside>
       <div className="min-w-0 space-y-6">
+      <SectionCard eyebrow="PAGE BUILDER" title="Section Visibility">
+        <p className="text-sm leading-6 text-gray-500">Choose which parts of the public website are displayed. Hidden sections stay saved and can be turned back on any time.</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {[
+            ["hero", "Hero / Homepage banner"], ["about", "About"], ["services", "Services"],
+            ["gallery", "Portfolio / Gallery"], ["process", "Our Process"], ["packages", "Packages"],
+            ["testimonials", "Testimonials"], ["instagramStrip", "Instagram Feed"], ["calendly", "Book a Consultation"],
+            ["contact", "Contact Form"], ["nav", "Navigation Bar"], ["footer", "Footer"],
+          ].map(([key, label]) => (
+            <ToggleField key={key} label={label} checked={content.visibility?.[key] ?? true} onChange={(value) => setContent((current) => ({ ...current, visibility: { ...(current.visibility || {}), [key]: value } }))} hint={content.visibility?.[key] === false ? "Hidden on the website" : "Visible on the website"} />
+          ))}
+        </div>
+      </SectionCard>
       <SectionCard eyebrow="DESIGN SYSTEM" title="Theme Studio" onReset={() => resetSection("design")}>
         <p className="max-w-3xl text-sm leading-6 text-gray-500">Customize the website palette and shared layout values. Save your changes to apply them to the public site.</p>
         <div className="grid gap-5 sm:grid-cols-2">
