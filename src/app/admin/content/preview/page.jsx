@@ -42,21 +42,21 @@ export default function ContentPreviewPage() {
     "--sb-section-spacing": String(layout.sectionSpacing || 80) + "px",
     "--sb-card-radius": String(layout.cardRadius ?? 20) + "px",
   };
-  return <div style={style} className="sb-preview min-h-screen overflow-x-hidden bg-[var(--sb-page-bg)] text-[var(--sb-text)]">
-    <Navbar content={content.nav} />
+  const visible = (key) => content.visibility?.[key] !== false;\n  return <div style={style} className="sb-preview min-h-screen overflow-x-hidden bg-[var(--sb-page-bg)] text-[var(--sb-text)]">
+    {visible("nav") && <Navbar content={content.nav} />}
     <div className="sticky top-0 z-50 border-b border-black/10 bg-white/95 px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[.16em] text-[#8A682A]">Live draft preview · Not published</div>
     <main>
-      <Hero content={content.hero} />
-      <About content={content.about} />
-      <Services content={content.services} />
-      <Gallery content={content.gallery} />
-      <Process content={content.process} />
-      <Packages content={content.packages} />
-      <TestimonialsPreview content={content.testimonials} />
-      <InstagramStrip content={content.instagramStrip} />
-      <CalendlyBooking content={content.calendly} />
-      <Contact content={content.contact} />
+      {visible("hero") && <Hero content={content.hero} />}
+      {visible("about") && <About content={content.about} />}
+      {visible("services") && <Services content={content.services} />}
+      {visible("gallery") && <Gallery content={content.gallery} />}
+      {visible("process") && <Process content={content.process} />}
+      {visible("packages") && <Packages content={content.packages} />}
+      {visible("testimonials") && <TestimonialsPreview content={content.testimonials} />}
+      {visible("instagramStrip") && <InstagramStrip content={content.instagramStrip} />}
+      {visible("calendly") && <CalendlyBooking content={content.calendly} />}
+      {visible("contact") && <Contact content={content.contact} />}
     </main>
-    <Footer content={content.footer} contact={content.contact} />
+    {visible("footer") && <Footer content={content.footer} contact={content.contact} />}
   </div>;
 }
