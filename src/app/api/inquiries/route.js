@@ -21,13 +21,13 @@ export async function POST(request) {
     if (!name || !email || !phone || !eventType || !message) {
       return NextResponse.json({ error: "Please complete all required fields." }, { status: 400 });
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+\$/.test(email)) {
       return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
     }
     if (!allowedEventTypes.has(eventType)) {
       return NextResponse.json({ error: "Invalid event type." }, { status: 400 });
     }
-    if (eventDate && !/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) {
+    if (eventDate && !/^\d{4}-\d{2}-\d{2}\$/.test(eventDate)) {
       return NextResponse.json({ error: "Please enter a valid event date." }, { status: 400 });
     }
 
@@ -36,6 +36,7 @@ export async function POST(request) {
 
     let emailSent = false;
     const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
+    
     if (accessKey) {
       try {
         const notification = await fetch("https://api.web3forms.com/submit", {
@@ -43,7 +44,7 @@ export async function POST(request) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             access_key: accessKey,
-            subject: `New Sterling Bloom inquiry — \${eventType}\`,
+            subject: `New Sterling Bloom inquiry — ${eventType}`,
             from_name: "Sterling Bloom Website",
             name, email, phone, eventType, eventDate: eventDate || "Not provided",
             venue: venue || "Not provided", guestCount: guestCount || "Not provided",
