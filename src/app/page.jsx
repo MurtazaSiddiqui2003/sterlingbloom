@@ -17,16 +17,16 @@ export default async function Home() {
   return (
     <main>
       <ScrollReveal />
-      <Hero content={content.hero} />
-      <About content={content.about} />
-      <Services content={content.services} />
-      <Gallery content={content.gallery} />
-      <Process content={content.process} />
-      <Packages content={content.packages} />
-      <Testimonials content={content.testimonials} />
-      <InstagramStrip content={content.instagramStrip} />
-      <CalendlyBooking content={content.calendly} />
-      <Contact content={content.contact} />
+      {visible("hero") && <Hero content={content.hero} />}
+      {visible("about") && <About content={content.about} />}
+      {visible("services") && <Services content={content.services} />}
+      {visible("gallery") && <Gallery content={content.gallery} />}
+      {visible("process") && <Process content={content.process} />}
+      {visible("packages") && <Packages content={content.packages} />}
+      {visible("testimonials") && <Testimonials content={content.testimonials} />}
+      {visible("instagramStrip") && <InstagramStrip content={content.instagramStrip} />}
+      {visible("calendly") && <CalendlyBooking content={content.calendly} />}
+      {visible("contact") && <Contact content={content.contact} />}
     </main>
   );
 }
