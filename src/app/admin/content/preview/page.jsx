@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Navbar from "../../../components/navbar";
+import Footer from "../../../components/footer";
 import Hero from "../../../components/hero";
 import About from "../../../components/about";
 import Services from "../../../components/services";
@@ -40,7 +42,8 @@ export default function ContentPreviewPage() {
     "--sb-section-spacing": String(layout.sectionSpacing || 80) + "px",
     "--sb-card-radius": String(layout.cardRadius ?? 20) + "px",
   };
-  return <div style={style} className="min-h-screen bg-[var(--sb-page-bg)] text-[var(--sb-text)]">
+  return <div style={style} className="sb-preview min-h-screen overflow-x-hidden bg-[var(--sb-page-bg)] text-[var(--sb-text)]">
+    <Navbar content={content.nav} />
     <div className="sticky top-0 z-50 border-b border-black/10 bg-white/95 px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[.16em] text-[#8A682A]">Live draft preview · Not published</div>
     <main>
       <Hero content={content.hero} />
@@ -54,5 +57,6 @@ export default function ContentPreviewPage() {
       <CalendlyBooking content={content.calendly} />
       <Contact content={content.contact} />
     </main>
+    <Footer content={content.footer} contact={content.contact} />
   </div>;
 }
