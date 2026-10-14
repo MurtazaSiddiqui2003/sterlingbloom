@@ -1,9 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function InstagramStrip({ content }) {
-  const items = (content?.items || []).filter((item) => item?.image).slice(0, 6);
+  const [feedItems, setFeedItems] = useState(null);
+  useEffect(() => {
+    let active = true;
+    fetch("/api/instagram", { cache: "no-store" })
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => { if (active && data?.items?.length) setFeedItems(data.items.slice(0, 6)); })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
+
+  const items = (feedItems || content?.items || []).filter((item) => item?.image).slice(0, 6);
   if (!items.length) return null;
 
   const profileUrl = content?.url?.trim();
@@ -28,10 +39,10 @@ export default function InstagramStrip({ content }) {
           {items.map((item, index) => (
             <a
               key={item.image + "-" + index}
-              href={profileUrl || "#instagram"}
-              target={profileUrl ? "_blank" : undefined}
-              rel={profileUrl ? "noreferrer" : undefined}
-              onClick={!profileUrl ? (event) => event.preventDefault() : undefined}
+              href={item.permalink || profileUrl || "#instagram"}
+              target={item.permalink || profileUrl ? "_blank" : undefined}
+              rel={item.permalink || profileUrl ? "noreferrer" : undefined}
+              onClick={!item.permalink && !profileUrl ? (event) => event.preventDefault() : undefined}
               className="group relative aspect-square overflow-hidden bg-[#EAE7E1]"
               aria-label={profileUrl ? (item.alt || "Instagram post") + " — open Instagram" : item.alt || "Instagram image"}
             >
