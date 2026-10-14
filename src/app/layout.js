@@ -44,10 +44,10 @@ export default async function RootLayout({ children }) {
       <body className="min-h-full flex flex-col font-[family-name:var(--font-body)]">
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
-        <Navbar content={content.nav} />
+        {content.visibility?.nav !== false && <Navbar content={content.nav} />}
         <ThemeToggle />
         {children}
-        <Footer content={content.footer} contact={content.contact} />
+        {content.visibility?.footer !== false && <Footer content={content.footer} contact={content.contact} />}
       </body>
     </html>
   );
