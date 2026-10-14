@@ -237,3 +237,24 @@ html[data-site-theme] .btn-primary { background-color: var(--sb-accent, #B68A35)
 html[data-site-theme] .special-text { background-image: linear-gradient(to right, var(--sb-accent-light, #D6B56D), var(--sb-accent, #B68A35)); }
 html[data-site-theme] [class*="border-[#B68A35]"] { border-color: var(--sb-accent, #B68A35); }
 html[data-site-theme] [class*="bg-[#B68A35]"] { background-color: var(--sb-accent, #B68A35); }
+
+/* Brand controls stay gold and square; Accent / Special Text only affects highlighted display text. */
+:root[data-site-theme] .btn-primary,
+.sb-preview .btn-primary,
+:root[data-site-theme] .sb-floating-book,
+.sb-preview .sb-floating-book {
+  background-color: #B68A35 !important;
+  border-color: #B68A35 !important;
+  border-radius: 0 !important;
+}
+:root[data-site-theme] .eyebrow,
+.sb-preview .eyebrow {
+  color: #B68A35 !important;
+  border-color: #B68A35 !important;
+}
+:root[data-site-theme] .special-text,
+.sb-preview .special-text {
+  background-image: linear-gradient(to right, var(--sb-accent-light, #D6B56D), var(--sb-accent, #B68A35)) !important;
+}
+/* Keep buttons squared throughout the site. */
+.btn-primary, .btn-ghost, .sb-floating-book, button.btn-primary, a.btn-primary { border-radius: 0 !important; }
