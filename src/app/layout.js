@@ -13,6 +13,9 @@ export const metadata = {
     "Sterling Bloom creates refined event design and decor for weddings, corporate events, and private celebrations.",
   keywords:
     "Sterling Bloom, luxury event decor, wedding decor, event design, event styling, corporate event decor, private celebrations",
+ icons: {
+    icon: "/images/Sterling Bloom - Final Logo.svg"
+}
 };
 
 export default async function RootLayout({ children }) {
