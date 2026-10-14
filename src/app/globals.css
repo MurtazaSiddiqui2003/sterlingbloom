@@ -203,3 +203,21 @@ img { -webkit-user-drag: none; }
   padding: 0;
   flex: 0 0 auto;
 }
+
+/* Draft preview palette: map component utility colors to CMS theme tokens. */
+.sb-preview .bg-white,
+.sb-preview [class~="bg-white"] { background-color: var(--sb-surface, #fff) !important; }
+.sb-preview [class*="bg-[#F8F7F4]"],
+.sb-preview [class*="bg-[#f8f7f4]"] { background-color: var(--sb-page-bg, #F8F7F4) !important; }
+.sb-preview .section-heading,
+.sb-preview [class*="text-[#211d19]"],
+.sb-preview [class*="text-[#211D19]"] { color: var(--sb-text, #211D19) !important; }
+.sb-preview .section-copy { color: var(--sb-muted, #66615B) !important; }
+.sb-preview .eyebrow { color: var(--sb-accent, #B68A35); border-color: var(--sb-accent, #B68A35); }
+.sb-preview .btn-primary { background-color: var(--sb-accent, #B68A35) !important; border-radius: var(--sb-card-radius, 2px) !important; }
+.sb-preview .special-text { background-image: linear-gradient(to right, var(--sb-accent-light, #D6B56D), var(--sb-accent, #B68A35)) !important; }
+.sb-preview [class*="border-[#B68A35]"] { border-color: var(--sb-accent, #B68A35) !important; }
+.sb-preview [class*="bg-[#B68A35]"] { background-color: var(--sb-accent, #B68A35) !important; }
+.sb-preview [class*="rounded-[20px]"],
+.sb-preview [class*="rounded-[22px]"],
+.sb-preview [class*="rounded-[24px]"] { border-radius: var(--sb-card-radius, 20px) !important; }
