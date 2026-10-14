@@ -31,7 +31,7 @@ export default async function AdminContentPage() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-5xl px-5 py-8 sm:px-8 sm:py-12">
+      <div className="mx-auto w-full max-w-[1800px] px-4 py-8 sm:px-6 sm:py-12 xl:px-8">
         <div className="mb-8">
           <p className="eyebrow">CMS</p>
           <h2 className="mt-5 font-[family-name:var(--font-display)] text-4xl font-medium sm:text-5xl">
