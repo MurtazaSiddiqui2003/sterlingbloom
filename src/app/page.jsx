@@ -13,6 +13,7 @@ import { getSiteContent } from "../lib/site-content";
 
 export default async function Home() {
   const content = await getSiteContent();
+  const visible = (key) => content.visibility?.[key] !== false;
 
   return (
     <main>
