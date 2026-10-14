@@ -7,7 +7,7 @@ import Services from "../../../components/services";
 import Gallery from "../../../components/gallery";
 import Process from "../../../components/process";
 import Packages from "../../../components/packages";
-import Testimonials from "../../../components/testimonials";
+import TestimonialsPreview from "../../../components/testimonials-preview";
 import InstagramStrip from "../../../components/instagram-strip";
 import Contact from "../../../components/contact";
 import CalendlyBooking from "../../../components/calendly-booking";
@@ -49,7 +49,7 @@ export default function ContentPreviewPage() {
       <Gallery content={content.gallery} />
       <Process content={content.process} />
       <Packages content={content.packages} />
-      <Testimonials content={content.testimonials} />
+      <TestimonialsPreview content={content.testimonials} />
       <InstagramStrip content={content.instagramStrip} />
       <CalendlyBooking content={content.calendly} />
       <Contact content={content.contact} />
