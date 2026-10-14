@@ -229,20 +229,24 @@ export default function ContentEditor({ initialContent }) {
   }
 
   return (
-    <div className="space-y-6">
-      <SectionCard eyebrow="LIVE PREVIEW" title="Website preview">
-        <p className="mb-4 text-sm leading-6 text-gray-500">Your unsaved edits appear here as you make them. This preview is a draft only; use Save Website Content to publish changes to the live website.</p>
-        <div className="overflow-hidden border border-gray-200 bg-[#F8F7F4]">
+    <div className="grid min-w-0 grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <aside className="min-w-0 lg:sticky lg:top-4">
+        <div className="overflow-hidden border border-gray-200 bg-[#F8F7F4] shadow-sm">
+          <div className="flex items-center justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3">
+            <div><p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#B68A35]">Live preview</p><p className="mt-1 text-xs text-gray-500">Unpublished · updates as you edit</p></div>
+            <span className="shrink-0 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-amber-800">Draft</span>
+          </div>
           <iframe
             ref={previewRef}
             title="Sterling Bloom live draft preview"
             src="/admin/content/preview"
             onLoad={() => previewRef.current?.contentWindow?.postMessage({ type: "STERLING_BLOOM_DRAFT", content }, window.location.origin)}
-            className="h-[720px] w-full bg-white sm:h-[860px] lg:h-[980px]"
+            className="h-[62vh] min-h-[460px] w-full bg-white lg:h-[calc(100vh-7rem)] lg:min-h-[600px]"
           />
         </div>
-        <p className="mt-3 text-[11px] text-gray-400">Tip: use the preview to review copy, images, and palette changes before publishing.</p>
-      </SectionCard>
+        <p className="mt-3 text-[11px] leading-5 text-gray-400">Changes are only a draft until you press Save Website Content. Scroll inside the preview to inspect the whole page.</p>
+      </aside>
+      <div className="min-w-0 space-y-6">
       <SectionCard eyebrow="DESIGN SYSTEM" title="Theme Studio" onReset={() => resetSection("design")}>
         <p className="max-w-3xl text-sm leading-6 text-gray-500">Customize the website palette and shared layout values. Save your changes to apply them to the public site.</p>
         <div className="grid gap-5 sm:grid-cols-2">
@@ -593,6 +597,7 @@ export default function ContentEditor({ initialContent }) {
         <Field label="Description" value={content.footer.description} onChange={(v) => update("footer", "description", v)} multiline />
       </SectionCard>
 
+      </div>
       <div className="sticky bottom-4 z-20 flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white/95 p-3 shadow-xl backdrop-blur sm:flex-row sm:items-center sm:justify-between">
         <p className={message.includes("successfully") ? "text-sm text-green-700" : "text-sm text-gray-500"}>{message || "Changes are local until you save them."}</p>
         <button type="button" onClick={save} disabled={saving} className="btn-primary shrink-0 rounded-xl px-7 py-3.5 text-xs uppercase tracking-[0.16em] disabled:opacity-60">
