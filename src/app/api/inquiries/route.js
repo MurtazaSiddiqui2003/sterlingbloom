@@ -43,7 +43,7 @@ export async function POST(request) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             access_key: accessKey,
-            subject: \`New Sterling Bloom inquiry — \${eventType}\`,
+            subject: `New Sterling Bloom inquiry — \${eventType}\`,
             from_name: "Sterling Bloom Website",
             name, email, phone, eventType, eventDate: eventDate || "Not provided",
             venue: venue || "Not provided", guestCount: guestCount || "Not provided",
