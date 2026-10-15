@@ -21,13 +21,13 @@ export async function POST(request) {
     if (!name || !email || !phone || !eventType || !message) {
       return NextResponse.json({ error: "Please complete all required fields." }, { status: 400 });
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+\$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
     }
     if (!allowedEventTypes.has(eventType)) {
       return NextResponse.json({ error: "Invalid event type." }, { status: 400 });
     }
-    if (eventDate && !/^\d{4}-\d{2}-\d{2}\$/.test(eventDate)) {
+    if (eventDate && !/^\d{4}-\d{2}-\d{2}$/.test(eventDate)) {
       return NextResponse.json({ error: "Please enter a valid event date." }, { status: 400 });
     }
 
