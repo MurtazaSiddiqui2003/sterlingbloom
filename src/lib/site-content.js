@@ -2,6 +2,11 @@ import connectDB from "./mongodb";
 import SiteContent from "../models/SiteContent";
 
 export const defaultSiteContent = {
+  visibility: {
+    hero: true, about: true, services: true, gallery: true, process: true,
+    packages: true, testimonials: true, instagramStrip: true, calendly: true,
+    contact: true, nav: true, footer: true,
+  },
   nav: {
     brand: "Sterling Bloom",
     logo: "/images/sterling-bloom-logo.svg",
