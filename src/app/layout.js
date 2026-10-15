@@ -7,15 +7,43 @@ import { getSiteContent } from "../lib/site-content";
 
 export const dynamic = "force-dynamic";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sterlingbloom.vercel.app";
+
 export const metadata = {
-  title: "Sterling Bloom | Luxury Event Decor",
+  metadataBase: new URL(siteUrl),
+  title: "Sterling Bloom | Luxury Event Decor & Styling",
   description:
-    "Sterling Bloom creates refined event design and decor for weddings, corporate events, and private celebrations.",
-  keywords:
-    "Sterling Bloom, luxury event decor, wedding decor, event design, event styling, corporate event decor, private celebrations",
- icons: {
-    icon: "/images/Sterling Bloom - Final Logo.svg"
-}
+    "Sterling Bloom creates refined event design and decor for weddings, Nikah and Mehndi celebrations, corporate events, and private occasions.",
+  keywords: [
+    "Sterling Bloom",
+    "luxury event decor",
+    "wedding decor",
+    "Nikah decor",
+    "Mehndi decor",
+    "event design",
+    "event styling",
+    "corporate event decor",
+    "private celebrations",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Sterling Bloom",
+    title: "Sterling Bloom | Luxury Event Decor & Styling",
+    description:
+      "Thoughtfully designed event decor for weddings, celebrations, and special occasions.",
+    images: [{ url: "/images/Sterling Bloom - Final Logo.svg", alt: "Sterling Bloom" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Sterling Bloom | Luxury Event Decor & Styling",
+    description:
+      "Thoughtfully designed event decor for weddings, celebrations, and special occasions.",
+  },
+  icons: {
+    icon: "/images/Sterling Bloom - Final Logo.svg",
+  },
 };
 
 export default async function RootLayout({ children }) {
