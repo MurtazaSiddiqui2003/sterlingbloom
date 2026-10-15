@@ -22,7 +22,7 @@ export default function About({ content }) {
 
           <h2 className="section-heading max-w-xl">
             {content.before}{" "}
-            <span className="text-[#B68A35]">{content.highlight}</span>{" "}
+            <span className="about-highlight">{content.highlight}</span>{" "}
             {content.after}
           </h2>
 
