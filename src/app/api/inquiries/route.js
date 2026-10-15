@@ -35,9 +35,12 @@ export async function POST(request) {
     const inquiry = await Inquiry.create({ name, email, phone, eventType, eventDate, venue, guestCount, budget, message });
 
     let emailSent = false;
+    let emailStatus = "missing_config";
     const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
-    
+    if (!accessKey) console.error("Inquiry saved, but WEB3FORMS_ACCESS_KEY is not configured for this deployment.");
+
     if (accessKey) {
+      emailStatus = "provider_rejected";
       try {
         const notification = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -55,13 +58,19 @@ export async function POST(request) {
         });
         const result = await notification.json().catch(() => ({}));
         emailSent = notification.ok && result.success === true;
-        if (!emailSent) console.error("Inquiry saved, but Web3Forms notification failed.");
+        if (emailSent) {
+          emailStatus = "sent";
+        } else {
+          emailStatus = "provider_rejected";
+          console.error("Inquiry saved, but Web3Forms rejected the notification:", { httpStatus: notification.status, providerMessage: result.message || "No provider message returned" });
+        }
       } catch (notificationError) {
+        emailStatus = "network_error";
         console.error("Inquiry saved, but notification delivery failed:", notificationError);
       }
     }
 
-    return NextResponse.json({ ok: true, emailSent, id: inquiry._id.toString() }, { status: 201 });
+    return NextResponse.json({ ok: true, emailSent, emailStatus, id: inquiry._id.toString() }, { status: 201 });
   } catch (error) {
     console.error("Inquiry submission failed:", error);
     return NextResponse.json({ error: "We couldn't submit your inquiry right now. Please try again." }, { status: 500 });
