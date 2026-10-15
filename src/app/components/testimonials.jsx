@@ -1,17 +1,7 @@
-import connectDB from "../../lib/mongodb";
-import Review from "../../models/Review";
 import ReviewForm from "./review-form";
 
 export default function Testimonials({ content, approvedReviews = [] }) {
-  // Uses server-fetched reviews if provided, otherwise falls back to the preview content
-  const displayItems = approvedReviews.length
-    ? approvedReviews.map((review) => ({
-        name: review.name,
-        event: review.event,
-        review: review.review,
-        approved: true,
-      }))
-    : (content?.items || []).map((item) => ({ ...item, approved: false }));
+  const displayItems = approvedReviews.map((review) => ({ name: review.name, event: review.event, review: review.review, approved: true }));
 
   return (
     <section data-reveal id="testimonials" className="bg-[#F8F7F4] py-20 sm:py-24 lg:py-28">
@@ -43,11 +33,10 @@ export default function Testimonials({ content, approvedReviews = [] }) {
           ))}
         </div>
 
+        {!displayItems.length && <p className="mx-auto mt-10 max-w-xl border border-dashed border-gray-300 px-6 py-8 text-center text-sm leading-6 text-gray-500">Our client reviews will appear here once they have been reviewed and approved.</p>}
+
         <p className="mt-2 text-center text-[10px] uppercase tracking-[0.18em] text-gray-400 md:hidden">Swipe to explore reviews</p>
 
-        {!approvedReviews.length && (
-          <p className="mx-auto mt-8 max-w-xl text-center text-xs leading-6 text-gray-400">{content?.note}</p>
-        )}
 
         <ReviewForm />
       </div>
