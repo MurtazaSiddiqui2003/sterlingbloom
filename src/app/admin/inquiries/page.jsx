@@ -28,15 +28,19 @@ function formatDate(date) {
   }).format(new Date(date));
 }
 
-export default async function AdminInquiriesPage() {
+export default async function AdminInquiriesPage({ searchParams }) {
   if (!(await isAdminAuthenticated())) redirect("/admin/login");
 
+  const params = await searchParams;
+  const validStatuses = ["new", "contacted", "consultation", "booked", "closed"];
+  const selectedStatus = validStatuses.includes(params?.status) ? params.status : "all";
   let inquiries = [];
   let loadError = "";
 
   try {
     await connectDB();
-    inquiries = await Inquiry.find({}).sort({ createdAt: -1 }).limit(100).lean();
+    const filter = selectedStatus === "all" ? {} : { status: selectedStatus };
+    inquiries = await Inquiry.find(filter).sort({ createdAt: -1 }).limit(100).lean();
   } catch (error) {
     console.error("Admin inquiries page failed:", error);
     loadError = "Unable to connect to the inquiry database right now.";
@@ -79,6 +83,14 @@ export default async function AdminInquiriesPage() {
             {inquiries.length} request{inquiries.length === 1 ? "" : "s"}
           </div>
         </div>
+
+        <nav aria-label="Filter inquiries by status" className="mt-7 flex flex-wrap gap-2">
+          {[["all", "All inquiries"], ["new", "New"], ["contacted", "Contacted"], ["consultation", "Consultation"], ["booked", "Booked"], ["closed", "Closed"]].map(([value, label]) => (
+            <Link key={value} href={value === "all" ? "/admin/inquiries" : "/admin/inquiries?status=" + value} aria-current={selectedStatus === value ? "page" : undefined} className={"border px-4 py-2 text-xs uppercase tracking-[0.1em] transition " + (selectedStatus === value ? "border-[#B68A35] bg-[#B68A35] text-white" : "border-gray-200 bg-white text-gray-600 hover:border-[#B68A35] hover:text-[#8C6824]")}>
+              {label}
+            </Link>
+          ))}
+        </nav>
 
         {loadError ? (
           <div className="mt-8 rounded-[18px] border border-red-200 bg-red-50 p-5 text-sm text-red-700">
