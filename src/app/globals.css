@@ -408,3 +408,60 @@ html[data-theme="dark"] .sb-floating-actions .sb-theme-toggle {
   color: #f4efe7;
   border-color: #76613d;
 }
+
+
+/* Public-site dark mode: override inline CMS palette tokens as well as hard-coded utility classes. */
+html[data-theme="dark"] {
+  --sb-page-bg: #171614 !important;
+  --sb-surface: #201e1b !important;
+  --sb-text: #eee8df !important;
+  --sb-muted: #c0b8ad !important;
+  --sb-accent: #c5a15d !important;
+  --sb-accent-light: #e0c58c !important;
+  color-scheme: dark;
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] main,
+html[data-theme="dark"] main section,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] nav,
+html[data-theme="dark"] #mobile-navigation {
+  background-color: #171614 !important;
+  color: #eee8df !important;
+}
+html[data-theme="dark"] [class*="bg-"],
+html[data-theme="dark"] [style*="background-color"] {
+  background-color: #201e1b !important;
+}
+html[data-theme="dark"] nav.bg-transparent {
+  background-color: transparent !important;
+}
+html[data-theme="dark"] [class*="text-"] {
+  color: #eee8df;
+}
+html[data-theme="dark"] [class*="text-white"],
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .btn-ghost,
+html[data-theme="dark"] .sb-floating-book {
+  color: #fff !important;
+}
+html[data-theme="dark"] [class*="border-"] {
+  border-color: #454039;
+}
+html[data-theme="dark"] img,
+html[data-theme="dark"] video,
+html[data-theme="dark"] picture {
+  background-color: transparent !important;
+}
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .special-text,
+html[data-theme="dark"] .about-highlight {
+  color: #d6b56d !important;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background-color: #201e1b !important;
+  color: #eee8df !important;
+  border-color: #554a39 !important;
+}
