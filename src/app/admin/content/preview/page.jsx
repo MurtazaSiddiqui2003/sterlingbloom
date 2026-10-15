@@ -40,7 +40,7 @@ export default function ContentPreviewPage() {
     "--sb-accent-light": colors.accentLight || "#D6B56D",
     "--sb-content-width": String(layout.contentWidth || 1280) + "px",
     "--sb-section-spacing": String(layout.sectionSpacing || 80) + "px",
-    "--sb-card-radius": String(layout.cardRadius ?? 20) + "px",
+    "--sb-card-radius": String(layout.cardRadius ?? 20) + "px",\n    "--sb-card-padding": String(layout.cardPadding ?? 24) + "px",
   };
   const visible = (key) => content.visibility?.[key] !== false;
   return <div style={style} className="sb-preview min-h-screen overflow-x-hidden bg-[var(--sb-page-bg)] text-[var(--sb-text)]">
