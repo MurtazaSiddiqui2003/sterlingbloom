@@ -63,6 +63,10 @@ export default async function AdminInquiryDetail({ params }) {
               <div><dt className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Email</dt><dd className="mt-1 break-all text-sm">{inquiry.email}</dd></div>
               <div><dt className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Phone</dt><dd className="mt-1 text-sm">{inquiry.phone}</dd></div>
               <div><dt className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Event</dt><dd className="mt-1 text-sm">{inquiry.eventType}</dd></div>
+              <div><dt className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Event date</dt><dd className="mt-1 text-sm">{inquiry.eventDate || "Not provided"}</dd></div>
+              <div><dt className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Venue / city</dt><dd className="mt-1 text-sm">{inquiry.venue || "Not provided"}</dd></div>
+              <div><dt className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Guest count</dt><dd className="mt-1 text-sm">{inquiry.guestCount || "Not provided"}</dd></div>
+              <div><dt className="text-[10px] uppercase tracking-[0.12em] text-gray-400">Estimated budget</dt><dd className="mt-1 text-sm">{inquiry.budget || "Not provided"}</dd></div>
             </dl>
           </section>
 
