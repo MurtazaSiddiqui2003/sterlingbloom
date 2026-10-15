@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import BrandLogo from "./brand-logo";
 import { isCalendlyUrl, openCalendly } from "../../lib/calendly-popup";
 
-export default function Navbar({ content }) {
+export default function Navbar({ content, preview = false }) {
   const pathname = usePathname();
   const navLinks = content.links.map(([name, href]) => ({ name, href }));
   const consultationHref = content.ctaHref && content.ctaHref !== "#contact" ? content.ctaHref : "https://calendly.com/murtazasiddiqui250/30min";
@@ -38,7 +38,7 @@ export default function Navbar({ content }) {
     return () => document.removeEventListener("pointerdown", handlePointerDown);
   }, [isOpen]);
 
-  if (pathname?.startsWith("/admin")) return null;
+  if (pathname?.startsWith("/admin") && !preview) return null;
 
   const navClass = isScrolled
     ? "bg-[#F8F7F4]/96 text-[#6f5226] shadow-[0_8px_30px_rgba(29,24,19,0.08)] backdrop-blur-xl"
