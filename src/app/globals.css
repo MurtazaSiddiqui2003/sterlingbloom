@@ -264,3 +264,60 @@ html[data-site-theme] [class*="bg-[#B68A35]"] { background-color: var(--sb-accen
 :root[data-theme="dark"] .about-section { background-color: #201e1b !important; color: #eee8df; }
 :root[data-theme="dark"] .about-section .about-feature { color: #eee8df !important; }
 :root[data-theme="light"] .about-section .about-feature { color: #292521; }
+
+
+/* Theme studio reliability fixes: readable headings, configurable surfaces, and layout tokens. */
+html[data-theme="dark"] .section-heading,
+html[data-theme="dark"] .about-section h2,
+html[data-theme="dark"] #consultation h2,
+html[data-theme="dark"] #instagram h2,
+html[data-theme="dark"] #testimonials h2,
+html[data-theme="dark"] #packages h2,
+html[data-theme="dark"] #process h2,
+html[data-theme="dark"] #portfolio h2,
+html[data-theme="dark"] #services h2 {
+  color: #f4efe7 !important;
+}
+html[data-theme="dark"] .about-section .about-highlight { color: var(--sb-accent, #c5a15d) !important; }
+.about-section .about-highlight { color: var(--sb-accent, #b68a35) !important; }
+html[data-theme="dark"] #consultation,
+html[data-theme="dark"] #instagram,
+html[data-theme="dark"] #testimonials,
+html[data-theme="dark"] #packages,
+html[data-theme="dark"] #process,
+html[data-theme="dark"] #portfolio,
+html[data-theme="dark"] #services,
+html[data-theme="dark"] #about {
+  background-color: var(--sb-page-bg, #171614) !important;
+}
+html[data-theme="dark"] #consultation > div > div,
+html[data-theme="dark"] #testimonials article,
+html[data-theme="dark"] #packages article,
+html[data-theme="dark"] #process .group > div,
+html[data-theme="dark"] #services article,
+html[data-theme="dark"] #instagram a {
+  background-color: var(--sb-surface, #201e1b) !important;
+  color: var(--sb-text, #eee8df);
+}
+#packages article { padding: var(--sb-card-padding, 24px) !important; }
+#packages article a { color: #B68A35; }
+#packages article a:hover,
+#packages article a:focus-visible { color: #fff !important; background-color: #9f762e !important; }
+#packages article a:focus-visible { outline: 2px solid var(--sb-accent, #B68A35); outline-offset: 3px; }
+.sb-preview .bg-white,
+.sb-preview [class~="bg-white"],
+html[data-site-theme] .bg-white,
+html[data-site-theme] [class~="bg-white"] {
+  background-color: var(--sb-surface, #fff) !important;
+}
+.sb-preview [class*="bg-[#F8F7F4]"],
+.sb-preview [class*="bg-[#f8f7f4]"],
+html[data-site-theme] [class*="bg-[#F8F7F4]"],
+html[data-site-theme] [class*="bg-[#f8f7f4]"] {
+  background-color: var(--sb-page-bg, #F8F7F4) !important;
+}
+.sb-preview [class*="bg-white"] { background-color: var(--sb-surface, #fff) !important; }
+.sb-preview #packages article,
+.sb-preview #testimonials article { padding: var(--sb-card-padding, 24px) !important; }
+.sb-preview .section-heading { color: var(--sb-text, #211D19) !important; }
+.sb-preview .about-highlight { color: var(--sb-accent, #B68A35) !important; }
