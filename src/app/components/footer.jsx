@@ -14,9 +14,9 @@ function Icon({ type }) {
   return <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">{paths[type]}</svg>;
 }
 
-export default function Footer({ content, contact }) {
+export default function Footer({ content, contact, preview = false }) {
   const pathname = usePathname();
-  if (pathname?.startsWith("/admin")) return null;
+  if (pathname?.startsWith("/admin") && !preview) return null;
 
   const explore = [
     ["About", "#about"],
@@ -35,7 +35,6 @@ export default function Footer({ content, contact }) {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="flex flex-col gap-8 py-12 lg:flex-row lg:items-end lg:justify-between lg:py-16">
           <div className="max-w-2xl">
-            <BrandLogo priority className="h-16 w-16 object-contain sm:h-[72px] sm:w-[72px]" />
             <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.28em] text-[#D6B56D]">{content.eyebrow}</p>
             <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-medium leading-[1.05] sm:text-5xl lg:text-6xl">
               {content.heading}
