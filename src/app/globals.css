@@ -258,3 +258,9 @@ html[data-site-theme] [class*="bg-[#B68A35]"] { background-color: var(--sb-accen
 }
 /* Keep buttons squared throughout the site. */
 .btn-primary, .btn-ghost, .sb-floating-book, button.btn-primary, a.btn-primary { border-radius: 0 !important; }
+
+
+/* About section follows the selected display theme, including feature-list text. */
+:root[data-theme="dark"] .about-section { background-color: #201e1b !important; color: #eee8df; }
+:root[data-theme="dark"] .about-section .about-feature { color: #eee8df !important; }
+:root[data-theme="light"] .about-section .about-feature { color: #292521; }
