@@ -5,6 +5,10 @@ import { useEffect, useRef, useState } from "react";
 function Field({ label, value, onChange, multiline = false, hint, type = "text", min, max, step }) {
   const common = {
     value: value ?? "",
+    type,
+    min,
+    max,
+    step,
     onChange: (event) => onChange(event.target.value),
     className: "mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-[#211d19] outline-none transition focus:border-[#B68A35] focus:ring-2 focus:ring-[#B68A35]/10",
   };
