@@ -16,6 +16,7 @@ export default function InquiryStatus({ inquiryId, initialStatus }) {
   const [error, setError] = useState("");
 
   async function updateStatus(event) {
+    const previousStatus = status;
     const nextStatus = event.target.value;
     setStatus(nextStatus);
     setSaving(true);
@@ -30,7 +31,7 @@ export default function InquiryStatus({ inquiryId, initialStatus }) {
 
       if (!response.ok) throw new Error("Status update failed.");
     } catch {
-      setStatus(initialStatus);
+      setStatus(previousStatus);
       setError("Could not save status.");
     } finally {
       setSaving(false);
