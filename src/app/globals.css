@@ -321,3 +321,90 @@ html[data-site-theme] [class*="bg-[#f8f7f4]"] {
 .sb-preview #testimonials article { padding: var(--sb-card-padding, 24px) !important; }
 .sb-preview .section-heading { color: var(--sb-text, #211D19) !important; }
 .sb-preview .about-highlight { color: var(--sb-accent, #B68A35) !important; }
+
+
+/* Full-site dark mode restoration: darken every light section and surface, not just body copy. */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --sb-page-bg: #171614;
+  --sb-surface: #201e1b;
+  --sb-text: #eee8df;
+  --sb-muted: #c0b8ad;
+  --sb-accent: #c5a15d;
+  --sb-accent-light: #e0c58c;
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] main,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] section {
+  background-color: #171614;
+  color: #eee8df;
+}
+html[data-theme="dark"] section[class*="bg-"],
+html[data-theme="dark"] [class*="bg-white"],
+html[data-theme="dark"] [class*="bg-gray-50"],
+html[data-theme="dark"] [class*="bg-gray-100"],
+html[data-theme="dark"] [class*="bg-stone-50"],
+html[data-theme="dark"] [class*="bg-stone-100"],
+html[data-theme="dark"] [class*="bg-[#F8F7F4]"],
+html[data-theme="dark"] [class*="bg-[#f8f7f4]"],
+html[data-theme="dark"] [class*="bg-[#FFFFFF]"],
+html[data-theme="dark"] [class*="bg-[#FFFFFF]/"] {
+  background-color: #201e1b !important;
+}
+html[data-theme="dark"] article,
+html[data-theme="dark"] [class*="card"],
+html[data-theme="dark"] [class*="Card"],
+html[data-theme="dark"] [class*="surface"] {
+  background-color: #201e1b;
+  color: #eee8df;
+}
+html[data-theme="dark"] .section-heading,
+html[data-theme="dark"] .section-copy,
+html[data-theme="dark"] .about-section,
+html[data-theme="dark"] .about-section p,
+html[data-theme="dark"] .about-section li,
+html[data-theme="dark"] [class*="text-[#211d19]"],
+html[data-theme="dark"] [class*="text-[#211D19]"],
+html[data-theme="dark"] [class*="text-[#1D1813]"],
+html[data-theme="dark"] [class*="text-[#1d1813]"],
+html[data-theme="dark"] [class*="text-gray-900"],
+html[data-theme="dark"] [class*="text-gray-800"],
+html[data-theme="dark"] [class*="text-gray-700"],
+html[data-theme="dark"] [class*="text-gray-600"],
+html[data-theme="dark"] [class*="text-stone-900"],
+html[data-theme="dark"] [class*="text-stone-800"],
+html[data-theme="dark"] [class*="text-stone-700"],
+html[data-theme="dark"] [class*="text-stone-600"] {
+  color: #eee8df !important;
+}
+html[data-theme="dark"] [class*="text-gray-500"],
+html[data-theme="dark"] [class*="text-stone-500"] {
+  color: #c0b8ad !important;
+}
+html[data-theme="dark"] [class*="border-gray-"],
+html[data-theme="dark"] [class*="border-stone-"],
+html[data-theme="dark"] [class*="border-black/"] {
+  border-color: #454039 !important;
+}
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .package-action {
+  color: #fff !important;
+}
+html[data-theme="dark"] .package-action:not(:hover):not(:focus-visible) {
+  color: #e0c58c !important;
+}
+html[data-theme="dark"] .package-action:hover,
+html[data-theme="dark"] .package-action:focus-visible {
+  background-color: #9f762e !important;
+  color: #fff !important;
+}
+html[data-theme="dark"] .about-section .about-highlight {
+  color: #c5a15d !important;
+}
+/* Preserve image overlays and photo-led hero/portfolio media; only recolor their surrounding surfaces. */
+html[data-theme="dark"] .sb-floating-actions .sb-theme-toggle {
+  background-color: #292621;
+  color: #f4efe7;
+  border-color: #76613d;
+}
