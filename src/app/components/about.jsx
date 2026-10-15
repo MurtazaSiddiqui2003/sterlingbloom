@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function About({ content }) {
   return (
-    <section data-reveal id="about" className="bg-[#F8F7F4] py-16 sm:py-20 lg:py-24">
+    <section data-reveal id="about" className="about-section bg-[#F8F7F4] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-9 px-5 sm:gap-12 sm:px-8 lg:grid-cols-[0.78fr_1fr] lg:gap-16 lg:px-10 xl:gap-20">
         <div className="group relative h-[360px] overflow-hidden rounded-[20px] shadow-xl shadow-black/10 sm:h-[460px] lg:h-[540px] xl:h-[570px]">
           <Image
@@ -34,7 +34,7 @@ export default function About({ content }) {
             {content.features.map((feature, index) => (
               <li
                 key={index}
-                className="flex items-start gap-3 text-base text-gray-800 sm:text-lg"
+                className="about-feature flex items-start gap-3 text-base text-gray-800 sm:text-lg"
               >
                 <span className="mt-0.5 text-[#C9A96E]" aria-hidden="true">
                   ✓
