@@ -323,7 +323,7 @@ html[data-site-theme] [class*="bg-[#f8f7f4]"] {
 .sb-preview .about-highlight { color: var(--sb-accent, #B68A35) !important; }
 
 
-/* Full-site dark mode restoration: darken every light section and surface, not just body copy. */
+/* Public-site dark theme: recolor UI surfaces and text without touching media or media wrappers. */
 html[data-theme="dark"] {
   color-scheme: dark;
   --sb-page-bg: #171614;
@@ -333,135 +333,76 @@ html[data-theme="dark"] {
   --sb-accent: #c5a15d;
   --sb-accent-light: #e0c58c;
 }
-html[data-theme="dark"] body,
-html[data-theme="dark"] main,
-html[data-theme="dark"] footer,
-html[data-theme="dark"] section {
-  background-color: #171614;
-  color: #eee8df;
+html[data-theme="dark"] body {
+  background-color: var(--sb-page-bg) !important;
+  color: var(--sb-text);
 }
-html[data-theme="dark"] section[class*="bg-"],
-html[data-theme="dark"] [class*="bg-white"],
-html[data-theme="dark"] [class*="bg-gray-50"],
-html[data-theme="dark"] [class*="bg-gray-100"],
-html[data-theme="dark"] [class*="bg-stone-50"],
-html[data-theme="dark"] [class*="bg-stone-100"],
-html[data-theme="dark"] [class*="bg-[#F8F7F4]"],
-html[data-theme="dark"] [class*="bg-[#f8f7f4]"],
-html[data-theme="dark"] [class*="bg-[#FFFFFF]"],
-html[data-theme="dark"] [class*="bg-[#FFFFFF]/"] {
-  background-color: #201e1b !important;
+html[data-theme="dark"] main > section,
+html[data-theme="dark"] footer {
+  background-color: var(--sb-page-bg) !important;
+  color: var(--sb-text);
 }
-html[data-theme="dark"] article,
-html[data-theme="dark"] [class*="card"],
-html[data-theme="dark"] [class*="Card"],
-html[data-theme="dark"] [class*="surface"] {
-  background-color: #201e1b;
-  color: #eee8df;
+/* Darken only plain UI cards; leave any element containing photos/video untouched. */
+html[data-theme="dark"] article:not(:has(img, video, picture)),
+html[data-theme="dark"] [class*="bg-white"]:not(:has(img, video, picture)),
+html[data-theme="dark"] [class*="bg-gray-50"]:not(:has(img, video, picture)),
+html[data-theme="dark"] [class*="bg-gray-100"]:not(:has(img, video, picture)),
+html[data-theme="dark"] [class*="bg-stone-50"]:not(:has(img, video, picture)),
+html[data-theme="dark"] [class*="bg-stone-100"]:not(:has(img, video, picture)) {
+  background-color: var(--sb-surface) !important;
+  color: var(--sb-text);
 }
 html[data-theme="dark"] .section-heading,
-html[data-theme="dark"] .section-copy,
-html[data-theme="dark"] .about-section,
-html[data-theme="dark"] .about-section p,
-html[data-theme="dark"] .about-section li,
-html[data-theme="dark"] [class*="text-[#211d19]"],
-html[data-theme="dark"] [class*="text-[#211D19]"],
-html[data-theme="dark"] [class*="text-[#1D1813]"],
-html[data-theme="dark"] [class*="text-[#1d1813]"],
-html[data-theme="dark"] [class*="text-gray-900"],
-html[data-theme="dark"] [class*="text-gray-800"],
-html[data-theme="dark"] [class*="text-gray-700"],
-html[data-theme="dark"] [class*="text-gray-600"],
-html[data-theme="dark"] [class*="text-stone-900"],
-html[data-theme="dark"] [class*="text-stone-800"],
-html[data-theme="dark"] [class*="text-stone-700"],
-html[data-theme="dark"] [class*="text-stone-600"] {
-  color: #eee8df !important;
+html[data-theme="dark"] main h1,
+html[data-theme="dark"] main h2,
+html[data-theme="dark"] main h3,
+html[data-theme="dark"] main p,
+html[data-theme="dark"] main li,
+html[data-theme="dark"] main label,
+html[data-theme="dark"] main [class*="text-[#211d19]"],
+html[data-theme="dark"] main [class*="text-[#211D19]"],
+html[data-theme="dark"] main [class*="text-gray-900"],
+html[data-theme="dark"] main [class*="text-gray-800"],
+html[data-theme="dark"] main [class*="text-gray-700"],
+html[data-theme="dark"] main [class*="text-stone-900"],
+html[data-theme="dark"] main [class*="text-stone-800"],
+html[data-theme="dark"] main [class*="text-stone-700"] {
+  color: var(--sb-text) !important;
 }
-html[data-theme="dark"] [class*="text-gray-500"],
-html[data-theme="dark"] [class*="text-stone-500"] {
-  color: #c0b8ad !important;
-}
-html[data-theme="dark"] [class*="border-gray-"],
-html[data-theme="dark"] [class*="border-stone-"],
-html[data-theme="dark"] [class*="border-black/"] {
-  border-color: #454039 !important;
+html[data-theme="dark"] main img,
+html[data-theme="dark"] main video,
+html[data-theme="dark"] main picture,
+html[data-theme="dark"] main canvas,
+html[data-theme="dark"] main svg {
+  background-color: transparent !important;
+  filter: none !important;
 }
 html[data-theme="dark"] .btn-primary,
-html[data-theme="dark"] .package-action {
+html[data-theme="dark"] .sb-floating-book {
   color: #fff !important;
 }
 html[data-theme="dark"] .package-action:not(:hover):not(:focus-visible) {
-  color: #e0c58c !important;
+  color: var(--sb-accent-light) !important;
 }
 html[data-theme="dark"] .package-action:hover,
 html[data-theme="dark"] .package-action:focus-visible {
   background-color: #9f762e !important;
   color: #fff !important;
 }
-html[data-theme="dark"] .about-section .about-highlight {
-  color: #c5a15d !important;
-}
-/* Preserve image overlays and photo-led hero/portfolio media; only recolor their surrounding surfaces. */
-html[data-theme="dark"] .sb-floating-actions .sb-theme-toggle {
-  background-color: #292621;
-  color: #f4efe7;
-  border-color: #76613d;
-}
-
-
-/* Public-site dark mode: override inline CMS palette tokens as well as hard-coded utility classes. */
-html[data-theme="dark"] {
-  --sb-page-bg: #171614 !important;
-  --sb-surface: #201e1b !important;
-  --sb-text: #eee8df !important;
-  --sb-muted: #c0b8ad !important;
-  --sb-accent: #c5a15d !important;
-  --sb-accent-light: #e0c58c !important;
-  color-scheme: dark;
-}
-html[data-theme="dark"] body,
-html[data-theme="dark"] main,
-html[data-theme="dark"] main section,
-html[data-theme="dark"] footer,
-html[data-theme="dark"] nav,
-html[data-theme="dark"] #mobile-navigation {
-  background-color: #171614 !important;
-  color: #eee8df !important;
-}
-html[data-theme="dark"] [class*="bg-"],
-html[data-theme="dark"] [style*="background-color"] {
-  background-color: #201e1b !important;
-}
-html[data-theme="dark"] nav.bg-transparent {
-  background-color: transparent !important;
-}
-html[data-theme="dark"] [class*="text-"] {
-  color: #eee8df;
-}
-html[data-theme="dark"] [class*="text-white"],
-html[data-theme="dark"] .btn-primary,
-html[data-theme="dark"] .btn-ghost,
-html[data-theme="dark"] .sb-floating-book {
-  color: #fff !important;
-}
-html[data-theme="dark"] [class*="border-"] {
-  border-color: #454039;
-}
-html[data-theme="dark"] img,
-html[data-theme="dark"] video,
-html[data-theme="dark"] picture {
-  background-color: transparent !important;
-}
+html[data-theme="dark"] .about-section .about-highlight,
 html[data-theme="dark"] .eyebrow,
-html[data-theme="dark"] .special-text,
-html[data-theme="dark"] .about-highlight {
-  color: #d6b56d !important;
+html[data-theme="dark"] .special-text {
+  color: var(--sb-accent-light) !important;
 }
 html[data-theme="dark"] input,
 html[data-theme="dark"] textarea,
 html[data-theme="dark"] select {
-  background-color: #201e1b !important;
-  color: #eee8df !important;
+  background-color: var(--sb-surface) !important;
+  color: var(--sb-text) !important;
   border-color: #554a39 !important;
+}
+html[data-theme="dark"] .sb-floating-actions .sb-theme-toggle {
+  background-color: #292621;
+  color: #f4efe7;
+  border-color: #76613d;
 }
