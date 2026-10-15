@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-function Field({ label, value, onChange, multiline = false, hint }) {
+function Field({ label, value, onChange, multiline = false, hint, type = "text", min, max, step }) {
   const common = {
     value: value ?? "",
     onChange: (event) => onChange(event.target.value),
@@ -12,7 +12,7 @@ function Field({ label, value, onChange, multiline = false, hint }) {
   return (
     <label className="block">
       <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">{label}</span>
-      {multiline ? <textarea {...common} rows={4} /> : <input {...common} />}
+      {multiline ? <textarea {...common} rows={4} /> : <input {...common} /> }
       {hint && <span className="mt-1 block text-[11px] leading-5 text-gray-400">{hint}</span>}
     </label>
   );
@@ -280,10 +280,10 @@ export default function ContentEditor({ initialContent }) {
           <ColorField label="Dark Contrast Color" value={content.design?.colors?.dark || "#1D1813"} onChange={(v) => updateDesign("colors", "dark", v)} />
         </div>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <Field label="Content Width (px)" value={content.design?.layout?.contentWidth ?? 1280} onChange={(v) => updateDesign("layout", "contentWidth", Math.max(720, Math.min(1800, Number(v) || 1280)))} hint="Range: 720–1800px." />
-          <Field label="Section Spacing (px)" value={content.design?.layout?.sectionSpacing ?? 80} onChange={(v) => updateDesign("layout", "sectionSpacing", Math.max(24, Math.min(180, Number(v) || 80)))} hint="Shared spacing scale: 24–180px." />
-          <Field label="Card Corner Radius (px)" value={content.design?.layout?.cardRadius ?? 20} onChange={(v) => updateDesign("layout", "cardRadius", Math.max(0, Math.min(48, Number(v) || 0)))} hint="Use 0 for sharp corners." />
-          <Field label="Card Padding (px)" value={content.design?.layout?.cardPadding ?? 24} onChange={(v) => updateDesign("layout", "cardPadding", Math.max(8, Math.min(64, Number(v) || 24)))} hint="Spacing token for components wired to the design system." />
+          <Field label="Content Width (px)" type="number" min={720} max={1800} step={1} value={content.design?.layout?.contentWidth ?? 1280} onChange={(v) => updateDesign("layout", "contentWidth", Math.max(720, Math.min(1800, Number(v) || 1280)))} hint="Range: 720–1800px." />
+          <Field label="Section Spacing (px)" type="number" min={24} max={180} step={1} value={content.design?.layout?.sectionSpacing ?? 80} onChange={(v) => updateDesign("layout", "sectionSpacing", Math.max(24, Math.min(180, Number(v) || 80)))} hint="Shared spacing scale: 24–180px." />
+          <Field label="Card Corner Radius (px)" type="number" min={0} max={48} step={1} value={content.design?.layout?.cardRadius ?? 20} onChange={(v) => updateDesign("layout", "cardRadius", Math.max(0, Math.min(48, Number(v) || 0)))} hint="Use 0 for sharp corners." />
+          <Field label="Card Padding (px)" type="number" min={8} max={64} step={1} value={content.design?.layout?.cardPadding ?? 24} onChange={(v) => updateDesign("layout", "cardPadding", Math.max(8, Math.min(64, Number(v) || 24)))} hint="Spacing token for components wired to the design system." />
         </div>
         <div className="mt-6 rounded-xl border border-gray-200 p-4">
           <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">Palette Preview</p>
@@ -332,11 +332,11 @@ export default function ContentEditor({ initialContent }) {
             <ToggleField label="Show background behind logo when scrolled" checked={content.nav.logoSettings?.backgroundEnabled ?? true} onChange={(v) => updateNested("nav", "logoSettings", "backgroundEnabled", v)} />
             <ToggleField label="Show border when scrolled" checked={content.nav.logoSettings?.borderEnabled ?? true} onChange={(v) => updateNested("nav", "logoSettings", "borderEnabled", v)} />
             <ToggleField label="Show logo shadow when scrolled" checked={content.nav.logoSettings?.shadowEnabled ?? true} onChange={(v) => updateNested("nav", "logoSettings", "shadowEnabled", v)} />
-            <Field label="Mobile Logo Size (px)" value={content.nav.logoSettings?.mobileSize ?? 76} onChange={(v) => updateNested("nav", "logoSettings", "mobileSize", Math.max(32, Math.min(140, Number(v) || 76)))} />
-            <Field label="Desktop Logo Size (px)" value={content.nav.logoSettings?.desktopSize ?? 88} onChange={(v) => updateNested("nav", "logoSettings", "desktopSize", Math.max(40, Math.min(180, Number(v) || 88)))} />
+            <Field label="Mobile Logo Size (px)" type="number" min={32} max={140} step={1} value={content.nav.logoSettings?.mobileSize ?? 76} onChange={(v) => updateNested("nav", "logoSettings", "mobileSize", Math.max(32, Math.min(140, Number(v) || 76)))} />
+            <Field label="Desktop Logo Size (px)" type="number" min={40} max={180} step={1} value={content.nav.logoSettings?.desktopSize ?? 88} onChange={(v) => updateNested("nav", "logoSettings", "desktopSize", Math.max(40, Math.min(180, Number(v) || 88)))} />
             <ColorField label="Scrolled Logo Background" value={content.nav.logoSettings?.background || "#F8F7F4"} onChange={(v) => updateNested("nav", "logoSettings", "background", v)} />
             <ColorField label="Scrolled Border Color" value={content.nav.logoSettings?.borderColor || "#B68A35"} onChange={(v) => updateNested("nav", "logoSettings", "borderColor", v)} />
-            <Field label="Border Thickness (px)" value={content.nav.logoSettings?.borderWidth ?? 1} onChange={(v) => updateNested("nav", "logoSettings", "borderWidth", Math.max(0, Math.min(8, Number(v) || 0)))} />
+            <Field label="Border Thickness (px)" type="number" min={0} max={8} step={1} value={content.nav.logoSettings?.borderWidth ?? 1} onChange={(v) => updateNested("nav", "logoSettings", "borderWidth", Math.max(0, Math.min(8, Number(v) || 0)))} />
           </div>
         </div>
       </SectionCard>
