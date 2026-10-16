@@ -409,3 +409,39 @@ html[data-theme="dark"] .sb-floating-actions .sb-theme-toggle {
   color: #f4efe7 !important;
   border-color: #76613d !important;
 }
+
+
+/* Dark-mode surface fallback: neutralize hard-coded light backgrounds across nested public UI. */
+html[data-theme="dark"] body,
+html[data-theme="dark"] body > div,
+html[data-theme="dark"] main,
+html[data-theme="dark"] main > *,
+html[data-theme="dark"] main section,
+html[data-theme="dark"] main section > *,
+html[data-theme="dark"] footer {
+  background-color: #171614 !important;
+}
+html[data-theme="dark"] main *:not(img):not(video):not(picture):not(canvas):not(svg):not(path):not(.btn-primary):not(.btn-ghost):not(.sb-floating-book):not(.sb-theme-toggle) {
+  background-color: transparent !important;
+}
+html[data-theme="dark"] main article,
+html[data-theme="dark"] main [class*="bg-white"],
+html[data-theme="dark"] main [class*="bg-gray-"],
+html[data-theme="dark"] main [class*="bg-stone-"],
+html[data-theme="dark"] main [class*="bg-[#F8F7F4]"],
+html[data-theme="dark"] main [class*="bg-[#f8f7f4]"],
+html[data-theme="dark"] main .about-feature,
+html[data-theme="dark"] main [role="dialog"],
+html[data-theme="dark"] main input,
+html[data-theme="dark"] main textarea,
+html[data-theme="dark"] main select {
+  background-color: #201e1b !important;
+}
+html[data-theme="dark"] main img,
+html[data-theme="dark"] main video,
+html[data-theme="dark"] main picture,
+html[data-theme="dark"] main canvas {
+  background-color: transparent !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
