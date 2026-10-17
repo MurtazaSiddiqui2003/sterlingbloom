@@ -25,6 +25,7 @@ export default function Footer({ content, contact, preview = false }) {
     ["Our Process", "#process"],
     ["Packages", "#packages"],
     ["Testimonials", "#testimonials"],
+    ["FAQ", "#faq"],
   ];
 
   const phoneHref = `tel:${String(contact.phone || "").replace(/[^+\d]/g, "")}`;
