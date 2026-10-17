@@ -79,7 +79,7 @@ export default async function RootLayout({ children }) {
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
         {content.visibility?.nav !== false && <Navbar content={content.nav} />}
         <ThemeToggle />
-        <SiteEnhancements analyticsId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+        <SiteEnhancements analyticsId={process.env.NEXT_PUBLIC_GA_ID || "G-MHP199PFVE"} />
         {children}
         {content.visibility?.footer !== false && <Footer content={content.footer} contact={content.contact} />}
       </body>
