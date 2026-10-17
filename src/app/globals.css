@@ -693,3 +693,20 @@ html[data-theme] #contact .contact-form-card .btn-primary { color: #fff !importa
 html[data-theme] #contact .contact-form-card input,
 html[data-theme] #contact .contact-form-card select,
 html[data-theme] #contact .contact-form-card textarea { color-scheme: light; }
+
+
+/* Ensure the floral background overlay stays visible in dark mode.
+   The broad dark-mode reset makes nested backgrounds transparent, so explicitly restore this layer. */
+html[data-theme="dark"] #contact .contact-background-overlay {
+  background-color: rgba(42, 33, 24, .88) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  z-index: 1 !important;
+}
+html[data-theme="dark"] #contact > div[style*="background-image"] {
+  z-index: 0 !important;
+}
+html[data-theme="dark"] #contact > .relative.z-10 {
+  position: relative;
+  z-index: 10 !important;
+}
