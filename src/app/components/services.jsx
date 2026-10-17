@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 
 export default function Services({ content }) {
@@ -113,7 +114,7 @@ export default function Services({ content }) {
 
         <div ref={stageRef} className="mt-8 grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-14">
           <div ref={imageRef} className="relative overflow-hidden rounded-[2px] bg-[#F8F7F4] shadow-xl shadow-black/10">
-            <img src={active.image} alt={active.title} className="h-[400px] w-full object-cover sm:h-[500px] lg:h-[600px]" />
+            <Image src={active.image} alt={active.title} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" priority={activeService === 0} />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 border border-white/30 bg-black/20 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-white backdrop-blur-sm sm:bottom-6 sm:left-6">
               {String(activeService + 1).padStart(2, "0")} / {String(content.items.length).padStart(2, "0")}
