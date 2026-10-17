@@ -27,7 +27,7 @@ export default function Footer({ content, contact, preview = false }) {
     ["Testimonials", "#testimonials"],
   ];
 
-  const phoneHref = `tel:${String(contact.phone || "").replace(/[^+\\d]/g, "")}`;
+  const phoneHref = `tel:${String(contact.phone || "").replace(/[^+\d]/g, "")}`;
   const emailHref = `mailto:${contact.email || ""}`;
 
   return (
