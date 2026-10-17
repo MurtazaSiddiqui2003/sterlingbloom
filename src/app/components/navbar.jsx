@@ -23,6 +23,15 @@ export default function Navbar({ content, preview = false }) {
 
   useEffect(() => {
     if (!isOpen) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
 
     const handlePointerDown = (event) => {
       if (
@@ -49,7 +58,7 @@ export default function Navbar({ content, preview = false }) {
     : navClass;
 
   return (
-    <nav className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
+    <nav aria-label="Primary navigation" className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
       <div className={"mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-10 " + (isScrolled ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4")}>
         {(content.logoSettings?.visible ?? true) && (
           <Link
@@ -106,7 +115,7 @@ export default function Navbar({ content, preview = false }) {
       <div
         id="mobile-navigation"
         aria-hidden={!isOpen}
-        className={"overflow-hidden border-t border-black/5 bg-[#F8F7F4] px-5 text-[#6f5226] shadow-lg transition-all duration-300 ease-out md:hidden " + (isOpen ? "max-h-[420px] pb-6 pt-4 opacity-100" : "max-h-0 pb-0 pt-0 opacity-0")}
+        className={"max-h-[85vh] overflow-y-auto border-t border-black/5 bg-[#F8F7F4] px-5 text-[#6f5226] shadow-lg transition-all duration-300 ease-out md:hidden " + (isOpen ? "pb-6 pt-4 opacity-100" : "max-h-0 overflow-hidden pb-0 pt-0 opacity-0")}
       >
         <div className="flex flex-col gap-4">
           {navLinks.map((link) => (
