@@ -326,12 +326,14 @@ html[data-site-theme] [class*="bg-[#f8f7f4]"] {
 /* Public website dark theme v3: force light utility backgrounds to dark surfaces. */
 html[data-theme="dark"] {
   color-scheme: dark;
-  --sb-page-bg: #171614;
-  --sb-surface: #201e1b;
-  --sb-text: #eee8df;
-  --sb-muted: #c0b8ad;
-  --sb-accent: #c5a15d;
-  --sb-accent-light: #e0c58c;
+  /* These tokens are also set inline by the CMS in layout.js.
+     !important is required here so dark mode can override those inline light-theme values. */
+  --sb-page-bg: #171614 !important;
+  --sb-surface: #201e1b !important;
+  --sb-text: #eee8df !important;
+  --sb-muted: #c0b8ad !important;
+  --sb-accent: #c5a15d !important;
+  --sb-accent-light: #e0c58c !important;
 }
 html[data-theme="dark"] body,
 html[data-theme="dark"] main,
