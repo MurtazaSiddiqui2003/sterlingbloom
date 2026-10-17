@@ -634,3 +634,19 @@ html[data-theme="dark"] .sb-cookie-copy { color: #c0b8ad; }
 .sb-modal-primary:hover { background: #9d742d; }
 .sb-modal-secondary:hover { background: #eee5d5; }
 .sb-confirmation-modal :focus-visible { outline: 2px solid #b68a35; outline-offset: 3px; }
+
+
+/* Keep quick actions separate from the existing theme and booking controls. */
+.sb-quick-actions {
+  left: 1rem;
+  right: auto;
+  bottom: 1rem;
+  flex-direction: row;
+}
+.sb-cookie-banner { bottom: 5rem; }
+.sb-copy-toast { left: 1rem; right: auto; bottom: 4.5rem; }
+@media (max-width: 640px) {
+  .sb-quick-actions { left: .75rem; right: auto; bottom: .75rem; flex-direction: row; }
+  .sb-cookie-banner { bottom: 4.25rem; }
+  .sb-copy-toast { left: .75rem; right: auto; bottom: 4rem; }
+}
