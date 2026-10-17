@@ -52,7 +52,7 @@ export default function InstagramStrip({ content }) {
                 alt={item.alt || ""}
                 fill
                 sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
-                unoptimized={/^https?:\\/\\//.test(item.image)}
+                unoptimized={item.image.startsWith("http://") || item.image.startsWith("https://")}
                 className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
               />
               <span className="pointer-events-none absolute inset-0 bg-black/0 transition duration-500 group-hover:bg-black/20" />
