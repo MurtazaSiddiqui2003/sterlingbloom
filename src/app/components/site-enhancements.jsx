@@ -51,8 +51,6 @@ export default function SiteEnhancements({ analyticsId = "" }) {
   return (
     <>
       <div className="sb-scroll-progress" style={{ width: progress + "%" }} aria-hidden="true" />
-      <a className="sb-skip-link" href="#main-content">Skip to content</a>
-
       {cookieChoice === "pending" && (
         <section className="sb-cookie-banner" aria-label="Cookie preferences">
           <div>
