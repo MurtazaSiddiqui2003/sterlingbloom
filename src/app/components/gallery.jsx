@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 export default function Gallery({ content }) {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -108,7 +109,7 @@ export default function Gallery({ content }) {
           {visibleGallery.map((item, index) => (
             <article key={item.id} data-gallery-card className={"group relative overflow-hidden rounded-[2px] bg-white " + (index === 0 ? "sm:row-span-2" : "")}>
               <div className={"relative overflow-hidden " + (index === 0 ? "aspect-[4/5] h-full" : "aspect-[4/3]")}>
-                <img src={item.image} alt={item.title} loading={index < 3 ? "eager" : "lazy"} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" />
+                <Image src={item.image} alt={item.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" priority={index === 0} className="object-cover transition-transform duration-700 group-hover:scale-[1.035]" />
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                   <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/75 sm:text-xs">{item.category}</p>
