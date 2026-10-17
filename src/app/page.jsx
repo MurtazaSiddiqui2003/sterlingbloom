@@ -9,6 +9,7 @@ import InstagramStrip from "./components/instagram-strip";
 import Contact from "./components/contact";
 import CalendlyBooking from "./components/calendly-booking";
 import ScrollReveal from "./components/scroll-reveal";
+import FAQ from "./components/faq";
 import { getSiteContent } from "../lib/site-content";
 import connectDB from "../lib/mongodb";
 import Review from "../models/Review";
@@ -25,7 +26,7 @@ export default async function Home() {
   const visible = (key) => content.visibility?.[key] !== false;
 
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <ScrollReveal />
       {visible("hero") && <Hero content={content.hero} />}
       {visible("about") && <About content={content.about} />}
@@ -36,6 +37,7 @@ export default async function Home() {
       {visible("testimonials") && <Testimonials content={content.testimonials} approvedReviews={approvedReviews} />}
       {visible("instagramStrip") && <InstagramStrip content={content.instagramStrip} />}
       {visible("calendly") && <CalendlyBooking content={content.calendly} />}
+      {visible("faq") && <FAQ />}
       {visible("contact") && <Contact content={content.contact} />}
     </main>
   );
