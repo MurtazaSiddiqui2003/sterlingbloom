@@ -613,3 +613,24 @@ html[data-theme="dark"] .sb-cookie-copy { color: #c0b8ad; }
   img { max-width: 100% !important; page-break-inside: avoid; }
   h1, h2, h3 { color: #111 !important; break-after: avoid; }
 }
+
+
+/* Accessible inquiry confirmation dialog. */
+.sb-modal-backdrop {
+  position: fixed; inset: 0; z-index: 150; display: grid; place-items: center;
+  padding: 1.25rem; background: rgba(16,13,10,.68); backdrop-filter: blur(5px);
+}
+.sb-confirmation-modal {
+  width: min(100%, 480px); padding: clamp(1.35rem, 4vw, 2rem);
+  border: 1px solid rgba(182,138,53,.5); background: #f8f5ee; color: #211d19;
+  box-shadow: 0 24px 80px rgba(0,0,0,.35);
+}
+.sb-modal-primary, .sb-modal-secondary {
+  min-height: 2.8rem; padding: .85rem 1.1rem; border: 1px solid #b68a35;
+  font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+}
+.sb-modal-primary { background: #b68a35; color: #fff; }
+.sb-modal-secondary { background: transparent; color: #4c3d27; }
+.sb-modal-primary:hover { background: #9d742d; }
+.sb-modal-secondary:hover { background: #eee5d5; }
+.sb-confirmation-modal :focus-visible { outline: 2px solid #b68a35; outline-offset: 3px; }
