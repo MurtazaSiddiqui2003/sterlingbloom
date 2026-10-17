@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import ThemeToggle from "./components/theme-toggle";
+import SiteEnhancements from "./components/site-enhancements";
 import { getSiteContent } from "../lib/site-content";
 
 export const dynamic = "force-dynamic";
@@ -33,10 +34,10 @@ export const metadata = {
     title: "Sterling Bloom | Luxury Event Decor & Styling",
     description:
       "Thoughtfully designed event decor for weddings, celebrations, and special occasions.",
-    images: [{ url: "/images/Sterling Bloom - Final Logo.svg", alt: "Sterling Bloom" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Sterling Bloom — Luxury Event Decor & Styling" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Sterling Bloom | Luxury Event Decor & Styling",
     description:
       "Thoughtfully designed event decor for weddings, celebrations, and special occasions.",
@@ -73,10 +74,12 @@ export default async function RootLayout({ children }) {
       style={designStyle}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-body)]">
+        <a className="sb-skip-link" href="#main-content">Skip to content</a>
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
         <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
         {content.visibility?.nav !== false && <Navbar content={content.nav} />}
         <ThemeToggle />
+        <SiteEnhancements analyticsId={process.env.NEXT_PUBLIC_GA_ID || ""} />
         {children}
         {content.visibility?.footer !== false && <Footer content={content.footer} contact={content.contact} />}
       </body>
