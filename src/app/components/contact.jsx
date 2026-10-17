@@ -58,7 +58,7 @@ export default function Contact({ content }) {
           aria-hidden="true"
         />
       )}
-      <div className="pointer-events-none absolute inset-0 bg-[#2A2118]/88" aria-hidden="true" />
+      <div className="contact-background-overlay pointer-events-none absolute inset-0 bg-[#2A2118]/88" aria-hidden="true" />
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="text-white lg:sticky lg:top-28">
