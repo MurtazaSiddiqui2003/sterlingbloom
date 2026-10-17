@@ -503,3 +503,33 @@ html[data-theme="dark"] .sb-floating-actions .sb-theme-toggle {
 @media (max-width: 480px) {
   .sb-floating-actions .sb-theme-toggle { width: 2.6rem; height: 2.6rem; }
 }
+
+
+/* Keep the floating theme/booking controls free of inherited dark slabs or duplicate toggle styling. */
+.sb-floating-actions {
+  width: max-content;
+  height: auto;
+  padding: 0 !important;
+  margin: 0;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  isolation: isolate;
+}
+.sb-floating-actions::before,
+.sb-floating-actions::after,
+.sb-floating-actions .sb-theme-toggle::before,
+.sb-floating-actions .sb-theme-toggle::after {
+  content: none !important;
+  display: none !important;
+}
+.sb-floating-actions .sb-theme-toggle {
+  box-sizing: border-box;
+  min-width: 2.8rem;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+@media (max-width: 480px) {
+  .sb-floating-actions .sb-theme-toggle { min-width: 2.6rem; }
+}
