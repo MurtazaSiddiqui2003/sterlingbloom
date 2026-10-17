@@ -62,7 +62,7 @@ export default function Contact({ content }) {
             <p className="mt-8 border-l border-[#B68A35] pl-4 text-xs leading-6 text-white/45">{content.note}</p>
           </div>
 
-          <div className="rounded-[24px] bg-white p-6 shadow-2xl shadow-black/20 sm:p-9 lg:p-10">
+          <div className="contact-form-card rounded-[2px] border border-white/10 bg-white p-6 shadow-2xl shadow-black/20 sm:p-9 lg:p-10">
             <div className="mb-8">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#B68A35]">{content.formEyebrow}</p>
               <h3 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-medium text-gray-900 sm:text-4xl">{content.formHeading}</h3>
