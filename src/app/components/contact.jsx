@@ -12,11 +12,20 @@ const eventLabels = {
 
 export default function Contact({ content }) {
   const [status, setStatus] = useState("idle");
+  const [pendingForm, setPendingForm] = useState(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
+    setPendingForm(event.currentTarget);
+    setConfirmOpen(true);
+  }
+
+  async function submitInquiry() {
+    if (!pendingForm) return;
+    setConfirmOpen(false);
     setStatus("loading");
-    const form = event.currentTarget;
+    const form = pendingForm;
     const payload = Object.fromEntries(new FormData(form).entries());
     const eventType = eventLabels[payload.event] || "Other";
 
@@ -30,10 +39,13 @@ export default function Contact({ content }) {
       if (!response.ok) throw new Error(data.error || "Submission failed.");
 
       form.reset();
+      setPendingForm(null);
       setStatus(data.emailSent ? "success" : "email-error");
     } catch (error) {
       console.error(error);
       setStatus("error");
+    } finally {
+      setPendingForm(null);
     }
   }
 
@@ -126,6 +138,20 @@ export default function Contact({ content }) {
               </button>
             </form>
             <p className="mt-4 text-center text-[11px] leading-5 text-gray-400">{content.formFootnote}</p>
+
+            {confirmOpen && (
+              <div className="sb-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) { setConfirmOpen(false); setPendingForm(null); } }}>
+                <section className="sb-confirmation-modal" role="dialog" aria-modal="true" aria-labelledby="sb-confirm-title" aria-describedby="sb-confirm-description">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#B68A35]">Confirm inquiry</p>
+                  <h4 id="sb-confirm-title" className="mt-3 font-[family-name:var(--font-display)] text-2xl text-[#211D19]">Ready to send your inquiry?</h4>
+                  <p id="sb-confirm-description" className="mt-3 text-sm leading-6 text-[#71695e]">We’ll securely submit the details you provided to the Sterling Bloom team.</p>
+                  <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                    <button type="button" className="sb-modal-secondary" onClick={() => { setConfirmOpen(false); setPendingForm(null); }}>Review details</button>
+                    <button type="button" className="sb-modal-primary" onClick={submitInquiry}>Send inquiry</button>
+                  </div>
+                </section>
+              </div>
+            )}
           </div>
         </div>
       </div>
