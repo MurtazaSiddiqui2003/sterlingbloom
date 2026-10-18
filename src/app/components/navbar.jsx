@@ -76,8 +76,8 @@ export default function Navbar({ content, preview = false }) {
               priority
               className="h-[var(--sb-logo-mobile)] w-[var(--sb-logo-mobile)] sm:h-[var(--sb-logo-desktop)] sm:w-[var(--sb-logo-desktop)]"
               style={{
-                "--sb-logo-mobile": String(content.logoSettings?.mobileSize ?? 76) + "px",
-                "--sb-logo-desktop": String(content.logoSettings?.desktopSize ?? 88) + "px",
+                "--sb-logo-mobile": Math.min(Number(content.logoSettings?.mobileSize ?? 76), 76) + "px",
+                "--sb-logo-desktop": Math.min(Number(content.logoSettings?.desktopSize ?? 88), 88) + "px",
               }}
             />
           </Link>
