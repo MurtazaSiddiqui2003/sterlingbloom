@@ -25,25 +25,17 @@ export default function Hero({ content }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.fromTo(videoRef.current, { scale: 1.12 }, { scale: 1, duration: 2.5 })
-        .from(eyebrowRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=0.8")
-        .from(titleRef.current, { opacity: 0, y: 60, duration: 1 }, "-=0.6")
-        .from(textRef.current, { opacity: 0, y: 25, duration: 0.8 }, "-=0.5")
-        .from(buttonsRef.current, { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
-        .from(scrollRef.current, { opacity: 0, y: 15, duration: 0.5 }, "-=0.2");
-    },
-    { scope: heroRef },
-  );
+  useGSAP(() => {
+    // Keep hero copy visible immediately on mobile/slow connections; animate only the background video.
+    if (videoRef.current) gsap.fromTo(videoRef.current, { scale: 1.06 }, { scale: 1, duration: 2, ease: "power2.out" });
+  }, { scope: heroRef });
 
   return (
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-[100svh] overflow-hidden lg:min-h-screen"
+      className="relative min-h-[100svh] overflow-hidden bg-[#1d1813] bg-cover bg-center lg:min-h-screen"
+      style={{ backgroundImage: `url("${content.backgroundImage || "/images/hero.jpg"}")` }}
     >
       <video
         ref={videoRef}
@@ -71,6 +63,7 @@ export default function Hero({ content }) {
 
             <h1
               ref={titleRef}
+              style={{ opacity: 1 }}
               className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-[3.25rem] font-medium leading-[0.94] tracking-[-0.025em] sm:text-6xl text-white sm:text-6xl lg:text-8xl"
             >
               {content.before}{" "}
@@ -80,12 +73,13 @@ export default function Hero({ content }) {
 
             <p
               ref={textRef}
+              style={{ opacity: 1 }}
               className="mt-5 max-w-2xl text-[0.95rem] leading-7 text-white/85 sm:mt-6 sm:text-lg sm:leading-8 lg:text-xl"
             >
               {content.description}
             </p>
 
-            <div ref={buttonsRef} className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+            <div ref={buttonsRef} style={{ opacity: 1 }} className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
               {isCalendlyUrl(primaryHref) ? (
                 <button type="button" onClick={openCalendly} className="btn-primary">
                   {content.primaryButton}
