@@ -59,7 +59,7 @@ export default function Navbar({ content, preview = false }) {
 
   return (
     <nav aria-label="Primary navigation" className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
-      <div className={"mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-10 " + (isScrolled ? "py-2.5 sm:py-3" : "py-3.5 sm:py-4")}>
+      <div className={"mx-auto flex h-[84px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[96px] lg:px-10 " + (isScrolled ? "lg:h-[76px]" : "")}>
         {(content.logoSettings?.visible ?? true) && (
           <Link
             href="/"
@@ -74,10 +74,10 @@ export default function Navbar({ content, preview = false }) {
           >
             <BrandLogo
               priority
-              className="h-[var(--sb-logo-mobile)] w-[var(--sb-logo-mobile)] sm:h-[var(--sb-logo-desktop)] sm:w-[var(--sb-logo-desktop)]"
+              className="h-[64px] w-[64px] sm:h-[76px] sm:w-[76px]"
               style={{
-                "--sb-logo-mobile": Math.min(Number(content.logoSettings?.mobileSize ?? 76), 76) + "px",
-                "--sb-logo-desktop": Math.min(Number(content.logoSettings?.desktopSize ?? 88), 88) + "px",
+                "--sb-logo-mobile": "64px",
+                "--sb-logo-desktop": "76px",
               }}
             />
           </Link>
