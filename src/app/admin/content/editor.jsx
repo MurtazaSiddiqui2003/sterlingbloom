@@ -512,6 +512,25 @@ export default function ContentEditor({ initialContent }) {
         </div>
       </SectionCard>
 
+      <SectionCard eyebrow="FAQS" title="Frequently Asked Questions" onReset={() => resetSection("faq")}>
+        <ToggleField label="Show FAQs on the public website" checked={content.visibility?.faq ?? true} onChange={(value) => setContent((current) => ({ ...current, visibility: { ...(current.visibility || {}), faq: value } }))} hint="Turn the entire FAQ section on or off without deleting its content." />
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label="Eyebrow" value={content.faq?.eyebrow || ""} onChange={(v) => update("faq", "eyebrow", v)} />
+          <Field label="Heading" value={content.faq?.heading || ""} onChange={(v) => update("faq", "heading", v)} />
+        </div>
+        <Field label="Description" value={content.faq?.description || ""} onChange={(v) => update("faq", "description", v)} multiline />
+        <div className="space-y-4">
+          {(content.faq?.items || []).map((item, index) => (
+            <div key={index} className="rounded-2xl border border-gray-200 bg-[#FBFAF7] p-5">
+              <div className="mb-4 flex items-center justify-between"><p className="text-xs font-medium uppercase tracking-[0.14em] text-gray-500">Question {String(index + 1).padStart(2, "0")}</p><button type="button" onClick={() => removeItem("faq", "items", index)} className="text-xs text-gray-400 hover:text-red-600">Remove</button></div>
+              <Field label="Question" value={item.question} onChange={(v) => updateArray("faq", "items", index, "question", v)} />
+              <div className="mt-4"><Field label="Answer" value={item.answer} onChange={(v) => updateArray("faq", "items", index, "answer", v)} multiline /></div>
+            </div>
+          ))}
+          <button type="button" onClick={() => addItem("faq", "items", { question: "New question", answer: "" })} className="text-xs font-medium uppercase tracking-[0.12em] text-[#B68A35]">+ Add FAQ</button>
+        </div>
+      </SectionCard>
+
       <SectionCard eyebrow="TESTIMONIALS" title="Client Stories" onReset={() => resetSection("testimonials")}>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Eyebrow" value={content.testimonials.eyebrow} onChange={(v) => update("testimonials", "eyebrow", v)} />
