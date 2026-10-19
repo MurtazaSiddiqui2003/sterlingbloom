@@ -5,7 +5,7 @@ export const defaultSiteContent = {
   visibility: {
     hero: true, about: true, services: true, gallery: true, process: true,
     packages: true, testimonials: true, instagramStrip: true, calendly: true,
-    contact: true, nav: true, footer: true,
+    contact: true, nav: true, footer: true, faq: true,
   },
   nav: {
     brand: "Sterling Bloom",
@@ -122,6 +122,18 @@ export const defaultSiteContent = {
     note: "Every celebration is different. Final pricing is tailored to your event requirements, guest count, venue, and design scope.",
     button: "Request Pricing",
     featuredLabel: "Most Popular",
+  },
+  faq: {
+    eyebrow: "GOOD TO KNOW",
+    heading: "Frequently Asked Questions",
+    description: "A few helpful details before we start planning your celebration.",
+    items: [
+      { question: "What events does Sterling Bloom design?", answer: "We design weddings, Nikah and Mehndi celebrations, corporate events, and private occasions. Each concept is tailored to your event and venue." },
+      { question: "How do we get started?", answer: "Send us an inquiry with your event type, date, venue, guest count, and ideas. We will follow up to discuss availability and the next steps." },
+      { question: "Do you offer custom packages?", answer: "Yes. Styling, florals, decor, and planning support can be tailored to the scale, priorities, and creative direction of your celebration." },
+      { question: "How is pricing determined?", answer: "Pricing depends on the event date, venue, guest count, design scope, and selected details. Contact us for a proposal based on your needs." },
+      { question: "How far in advance should we book?", answer: "As early as possible is best, especially for popular dates. Share your date with us and we can discuss availability." },
+    ],
   },
   testimonials: {
     eyebrow: "TESTIMONIALS",
