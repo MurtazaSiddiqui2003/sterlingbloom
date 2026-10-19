@@ -37,7 +37,7 @@ export default async function Home() {
       {visible("testimonials") && <Testimonials content={content.testimonials} approvedReviews={approvedReviews} />}
       {visible("instagramStrip") && <InstagramStrip content={content.instagramStrip} />}
       {visible("calendly") && <CalendlyBooking content={content.calendly} />}
-      {visible("faq") && <FAQ />}
+      {visible("faq") && <FAQ content={content.faq} />}
       {visible("contact") && <Contact content={content.contact} />}
     </main>
   );
