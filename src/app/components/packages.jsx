@@ -30,7 +30,7 @@ export default function Packages({ content }) {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className={"package-action mt-10 inline-flex w-full items-center justify-center rounded-[10px] border py-3.5 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 " + (pkg.featured ? "border-[#B68A35] bg-[#B68A35] text-white hover:bg-[#9F762E]" : "border-[#B68A35] bg-[#211d19] text-white hover:bg-[#B68A35] hover:text-white")}>
+              <a href="#contact" className={"package-action mt-10 inline-flex w-full items-center justify-center rounded-[10px] border py-3.5 text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B68A35] " + (pkg.featured ? "border-[#8A6425] bg-[#8A6425] text-white hover:border-[#6F4E1A] hover:bg-[#6F4E1A]" : "border-[#211d19] bg-[#211d19] text-white hover:border-[#8A6425] hover:bg-[#8A6425] hover:text-white")}>
                 {content.button}
               </a>
             </article>
