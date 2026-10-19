@@ -25,7 +25,7 @@ export default function FAQ({ content = {} }) {
             const panelId = "sb-faq-panel-" + index;
             return <div className="sb-faq-item" key={index}>
               <h3><button type="button" className="sb-faq-question" aria-expanded={isOpen} aria-controls={panelId} onClick={() => setOpenIndex(isOpen ? -1 : index)}><span>{item.question}</span><span className="sb-faq-mark" aria-hidden="true">{isOpen ? "−" : "+"}</span></button></h3>
-              <div id={panelId} hidden={!isOpen} className="sb-faq-answer"><p>{item.answer}</p></div>
+              <div id={panelId} className={"sb-faq-answer-wrap" + (isOpen ? " is-open" : "")} aria-hidden={!isOpen} inert={!isOpen}><div className="sb-faq-answer"><p>{item.answer}</p></div></div>
             </div>;
           })}
         </div>
