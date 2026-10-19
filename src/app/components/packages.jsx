@@ -21,16 +21,16 @@ export default function Packages({ content }) {
                 <span className="font-[family-name:var(--font-display)] text-4xl font-light text-[#D6B56D]/45">0{index + 1}</span>
               </div>
               <div className="mt-6 h-px w-12 bg-[#D6B56D]" />
-              <p className="mt-6 text-sm leading-7 text-gray-500">{pkg.description}</p>
+              <p className="mt-6 text-sm leading-7 text-[#5b554d]">{pkg.description}</p>
               <ul className="mt-8 space-y-4">
                 {pkg.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start gap-3 text-sm leading-6 text-gray-600">
+                  <li key={featureIndex} className="flex items-start gap-3 text-sm leading-6 text-[#514a42]">
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-[#D6B56D] text-[9px] text-[#B68A35]" aria-hidden="true">✓</span>
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className={"package-action mt-10 inline-flex w-full items-center justify-center rounded-[10px] border py-3.5 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 " + (pkg.featured ? "border-[#B68A35] bg-[#B68A35] text-white hover:bg-[#9F762E]" : "border-[#B68A35] text-white hover:bg-[#B68A35] hover:text-white")}>
+              <a href="#contact" className={"package-action mt-10 inline-flex w-full items-center justify-center rounded-[10px] border py-3.5 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 " + (pkg.featured ? "border-[#B68A35] bg-[#B68A35] text-white hover:bg-[#9F762E]" : "border-[#B68A35] bg-[#211d19] text-white hover:bg-[#B68A35] hover:text-white")}>
                 {content.button}
               </a>
             </article>
