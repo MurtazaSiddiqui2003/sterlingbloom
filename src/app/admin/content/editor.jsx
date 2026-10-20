@@ -69,10 +69,24 @@ function MediaPicker({ label, value, onChange }) {
   return (
     <div>
       <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-gray-500">{label}</span>
-      <div className="mt-2 flex gap-3">
-        <input value={value ?? ""} onChange={(e) => onChange(e.target.value)} className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-[#B68A35]" placeholder="Media URL" />
-        <button type="button" onClick={openPicker} className="sb-admin-choose-button shrink-0 rounded-xl border px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em]">Choose</button>
+      <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+        <input value={value ?? ""} onChange={(e) => onChange(e.target.value)} className="min-w-0 flex-1 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-[#211d19] outline-none focus:border-[#B68A35]" placeholder="Paste image URL or choose from Media Library" />
+        <button type="button" onClick={openPicker} className="sb-admin-choose-button shrink-0 rounded-xl border px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em]">Choose Image</button>
       </div>
+      {value ? (
+        <div className="mt-3 flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3">
+          <div className="h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-[#F1EEE8]">
+            <img src={value} alt={label + " preview"} className="h-full w-full object-cover" onError={(event) => { event.currentTarget.style.display = "none"; }} />
+          </div>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-[#211d19]">Current image</p>
+            <p className="mt-1 break-all text-[11px] leading-5 text-gray-500">{value}</p>
+            <button type="button" onClick={() => onChange("")} className="mt-1 text-xs font-semibold text-red-700 underline underline-offset-2">Clear image</button>
+          </div>
+        </div>
+      ) : (
+        <p className="mt-2 text-[11px] leading-5 text-gray-500">No image selected. Add a URL or choose an image from the Media Library.</p>
+      )}
       {open && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-3 sm:items-center">
           <div className="max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-[22px] bg-[#F8F7F4] shadow-2xl">
@@ -408,7 +422,7 @@ export default function ContentEditor({ initialContent }) {
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Title" value={item.title} onChange={(v) => updateArray("services", "items", index, "title", v)} />
-                <MediaPicker label="Image" value={item.image} onChange={(v) => updateArray("services", "items", index, "image", v)} />
+                <MediaPicker label="Service image" value={item.image} onChange={(v) => updateArray("services", "items", index, "image", v)} />
               </div>
               <div className="mt-4">
                 <Field label="Description" value={item.description} onChange={(v) => updateArray("services", "items", index, "description", v)} multiline />
