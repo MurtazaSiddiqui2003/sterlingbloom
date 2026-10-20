@@ -53,14 +53,20 @@ function MediaPicker({ label, value, onChange }) {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState("");
 
   async function openPicker() {
     setOpen(true);
     setLoading(true);
+    setLoadError("");
     try {
       const response = await fetch("/api/admin/media", { cache: "no-store" });
       const data = await response.json();
-      if (response.ok) setItems(data.items || []);
+      if (!response.ok) throw new Error(data.error || (response.status === 401 ? "Your admin session has expired. Sign in again." : "Unable to load the Media Library."));
+      setItems(Array.isArray(data.items) ? data.items : []);
+    } catch (error) {
+      setLoadError(error.message || "Unable to load the Media Library.");
+      setItems([]);
     } finally {
       setLoading(false);
     }
@@ -98,16 +104,19 @@ function MediaPicker({ label, value, onChange }) {
               <button type="button" onClick={() => setOpen(false)} className="sb-admin-secondary-button rounded-lg border px-3 py-2 text-xs font-medium">Close</button>
             </div>
             <div className="max-h-[70vh] overflow-y-auto p-5">
-              {loading ? <p className="text-sm text-gray-400">Loading library…</p> : items.length ? (
+              {loading ? <p className="text-sm text-gray-600">Loading library…</p> : loadError ? <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{loadError}</p> : items.length ? (
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-                  {items.map((item) => (
-                    <button type="button" key={item.publicId} onClick={() => { onChange(item.secureUrl); setOpen(false); }} className="overflow-hidden rounded-xl border border-gray-200 bg-white text-left transition hover:-translate-y-0.5 hover:border-[#B68A35]">
-                      <div className="aspect-[4/3] bg-gray-100">
-                        {item.resourceType === "video" ? <video src={item.secureUrl} muted className="h-full w-full object-cover" /> : <img src={item.secureUrl} alt="" className="h-full w-full object-cover" />}
-                      </div>
-                      <p className="truncate px-3 py-2 text-xs text-gray-600">{item.title || item.publicId}</p>
-                    </button>
-                  ))}
+                  {items.map((item, index) => {
+                    const assetUrl = item.secureUrl || item.url || "";
+                    return (
+                      <button type="button" key={item.publicId || assetUrl || index} disabled={!assetUrl} onClick={() => { onChange(assetUrl); setOpen(false); }} className="overflow-hidden rounded-xl border border-gray-200 bg-white text-left transition hover:-translate-y-0.5 hover:border-[#B68A35] disabled:cursor-not-allowed disabled:opacity-60">
+                        <div className="relative aspect-[4/3] bg-gray-100">
+                          {item.resourceType === "video" ? <video src={assetUrl} muted playsInline className="h-full w-full object-cover" /> : assetUrl ? <img src={assetUrl} alt={item.alt || item.title || "Media library image"} className="h-full w-full object-cover" loading="lazy" /> : <span className="flex h-full items-center justify-center p-3 text-xs text-gray-500">Image URL missing</span>}
+                        </div>
+                        <p className="truncate px-3 py-2 text-xs text-gray-600">{item.title || item.publicId || "Untitled asset"}</p>
+                      </button>
+                    );
+                  })}
                 </div>
               ) : <p className="text-sm text-gray-400">No media yet. Upload something in Media Library first.</p>}
             </div>
