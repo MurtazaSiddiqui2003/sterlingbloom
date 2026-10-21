@@ -14,6 +14,9 @@ import { getSiteContent } from "../lib/site-content";
 import connectDB from "../lib/mongodb";
 import Review from "../models/Review";
 
+// Website content is editable in the admin panel and must be read from MongoDB per request.
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const content = await getSiteContent();
   let approvedReviews = [];
