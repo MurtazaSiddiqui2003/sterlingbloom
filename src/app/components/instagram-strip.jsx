@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function InstagramStrip({ content }) {
@@ -47,13 +46,11 @@ export default function InstagramStrip({ content }) {
               className="group relative aspect-square overflow-hidden bg-[#EAE7E1]"
               aria-label={profileUrl ? (item.alt || "Instagram post") + " — open Instagram" : item.alt || "Instagram image"}
             >
-              <Image
+              <img
                 src={item.image}
                 alt={item.alt || ""}
-                fill
-                sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
-                unoptimized={item.image.startsWith("http://") || item.image.startsWith("https://")}
-                className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
               />
               <span className="pointer-events-none absolute inset-0 bg-black/0 transition duration-500 group-hover:bg-black/20" />
             </a>
