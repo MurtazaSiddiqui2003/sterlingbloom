@@ -13,6 +13,7 @@ export default function Navbar({ content, preview = false }) {
   const logoSettings = content.logoSettings || {};
   const mobileLogoSize = Math.max(32, Math.min(140, Number(logoSettings.mobileSize) || 76));
   const desktopLogoSize = Math.max(40, Math.min(180, Number(logoSettings.desktopSize) || 88));
+  const logoRadius = Math.max(0, Math.min(50, Number(logoSettings.borderRadius) || 0));
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -67,9 +68,10 @@ export default function Navbar({ content, preview = false }) {
           <Link
             href="/"
             aria-label="Sterling Bloom home"
-            className="shrink-0 rounded-full transition-all duration-300"
+            className="shrink-0 transition-all duration-300"
             style={{
               padding: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? 4 : 0,
+              borderRadius: logoRadius + "%",
               backgroundColor: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? (logoSettings?.background || "#F8F7F4") : "transparent",
               border: isScrolled && (logoSettings?.borderEnabled ?? true) ? (String(logoSettings?.borderWidth ?? 1) + "px solid " + (logoSettings?.borderColor || "#B68A35")) : "none",
               boxShadow: isScrolled && (logoSettings?.shadowEnabled ?? true) ? "0 3px 14px rgba(29,24,19,0.14)" : "none",
@@ -77,10 +79,12 @@ export default function Navbar({ content, preview = false }) {
           >
             <BrandLogo
               priority
-              className="h-[var(--sb-logo-mobile)] w-[var(--sb-logo-mobile)] sm:h-[var(--sb-logo-desktop)] sm:w-[var(--sb-logo-desktop)]"
+              className="sb-brand-logo"
               style={{
                 "--sb-logo-mobile": mobileLogoSize + "px",
                 "--sb-logo-desktop": desktopLogoSize + "px",
+                width: mobileLogoSize + "px",
+                height: mobileLogoSize + "px",
               }}
             />
           </Link>
