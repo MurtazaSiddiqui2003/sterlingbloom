@@ -46,7 +46,7 @@ export default function ContentPreviewPage() {
   const visible = (key) => content.visibility?.[key] !== false;
   return <div style={style} className="sb-preview min-h-screen overflow-x-hidden bg-[var(--sb-page-bg)] text-[var(--sb-text)]">
     {visible("nav") && <Navbar content={content.nav} preview />}
-    <div className="sticky top-0 z-50 border-b border-black/10 bg-white/95 px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[.16em] text-[#8A682A]">Live draft preview · Not published</div>
+    <div className="relative z-10 border-b border-black/10 bg-white/95 px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[.16em] text-[#8A682A]">Live draft preview · Not published</div>
     <main>
       {visible("hero") && <Hero content={content.hero} />}
       {visible("about") && <About content={content.about} />}
