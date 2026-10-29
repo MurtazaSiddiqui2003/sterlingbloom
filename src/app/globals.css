@@ -834,3 +834,31 @@ html[data-theme="dark"] .package-action:hover, html[data-theme="dark"] .package-
   .sb-navbar-inner { min-height: max(96px, calc(var(--sb-logo-desktop, 88px) + 12px)); }
   .sb-navbar-inner.is-scrolled { min-height: max(76px, calc(var(--sb-logo-desktop, 88px) + 12px)); }
 }
+
+
+/* Mobile menu animation fix: do not use display:none on the closed panel,
+   because display changes prevent max-height/opacity transitions from running. */
+@media (max-width: 767px) {
+  nav[aria-label="Primary navigation"] #mobile-navigation[aria-hidden="true"] {
+    display: block !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    visibility: hidden;
+    transition: max-height 360ms cubic-bezier(.22,.61,.36,1), opacity 240ms ease, padding 360ms ease, visibility 0s linear 360ms !important;
+  }
+  nav[aria-label="Primary navigation"] #mobile-navigation[aria-hidden="false"] {
+    display: block !important;
+    max-height: 85vh !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    visibility: visible;
+    transition: max-height 360ms cubic-bezier(.22,.61,.36,1), opacity 240ms ease, padding 360ms ease, visibility 0s !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  nav[aria-label="Primary navigation"] #mobile-navigation {
+    transition: none !important;
+  }
+}
