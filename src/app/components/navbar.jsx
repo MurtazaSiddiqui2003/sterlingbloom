@@ -18,7 +18,7 @@ export default function Navbar({ content, preview = false }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    if (pathname?.startsWith("/admin")) return undefined;
+    if (pathname?.startsWith("/admin") && !preview) return undefined;
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     handleScroll();
