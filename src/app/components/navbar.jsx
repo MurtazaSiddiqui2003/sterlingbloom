@@ -10,7 +10,7 @@ export default function Navbar({ content, preview = false }) {
   const pathname = usePathname();
   const navLinks = content.links.map(([name, href]) => ({ name, href }));
   const consultationHref = content.ctaHref && content.ctaHref !== "#contact" ? content.ctaHref : "https://calendly.com/murtazasiddiqui250/30min";
-  const logoSettings = content.nav?.logoSettings || {};
+  const logoSettings = content.logoSettings || {};
   const mobileLogoSize = Math.max(32, Math.min(140, Number(logoSettings.mobileSize) || 76));
   const desktopLogoSize = Math.max(40, Math.min(180, Number(logoSettings.desktopSize) || 88));
   const [isOpen, setIsOpen] = useState(false);
@@ -69,10 +69,10 @@ export default function Navbar({ content, preview = false }) {
             aria-label="Sterling Bloom home"
             className="shrink-0 rounded-full transition-all duration-300"
             style={{
-              padding: isScrolled && (content.logoSettings?.backgroundEnabled ?? true) ? 4 : 0,
-              backgroundColor: isScrolled && (content.logoSettings?.backgroundEnabled ?? true) ? (content.logoSettings?.background || "#F8F7F4") : "transparent",
-              border: isScrolled && (content.logoSettings?.borderEnabled ?? true) ? (String(content.logoSettings?.borderWidth ?? 1) + "px solid " + (content.logoSettings?.borderColor || "#B68A35")) : "none",
-              boxShadow: isScrolled && (content.logoSettings?.shadowEnabled ?? true) ? "0 3px 14px rgba(29,24,19,0.14)" : "none",
+              padding: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? 4 : 0,
+              backgroundColor: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? (logoSettings?.background || "#F8F7F4") : "transparent",
+              border: isScrolled && (logoSettings?.borderEnabled ?? true) ? (String(logoSettings?.borderWidth ?? 1) + "px solid " + (logoSettings?.borderColor || "#B68A35")) : "none",
+              boxShadow: isScrolled && (logoSettings?.shadowEnabled ?? true) ? "0 3px 14px rgba(29,24,19,0.14)" : "none",
             }}
           >
             <BrandLogo
