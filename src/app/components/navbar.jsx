@@ -63,15 +63,17 @@ export default function Navbar({ content, preview = false }) {
 
   return (
     <nav aria-label="Primary navigation" className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
-      <div className={"mx-auto flex h-[84px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[96px] lg:px-10 " + (isScrolled ? "lg:h-[76px]" : "")}>
+      <div className={"sb-navbar-inner mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10 " + (isScrolled ? "is-scrolled" : "")}
+        style={{ "--sb-logo-mobile": mobileLogoSize + "px", "--sb-logo-desktop": desktopLogoSize + "px", "--sb-logo-radius": logoRadius + "%" }}>
         {(logoSettings?.visible ?? true) && (
           <Link
             href="/"
             aria-label="Sterling Bloom home"
-            className="shrink-0 transition-all duration-300"
+            className="sb-logo-frame shrink-0 transition-all duration-300"
             style={{
               padding: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? 4 : 0,
               borderRadius: logoRadius + "%",
+              overflow: "hidden",
               backgroundColor: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? (logoSettings?.background || "#F8F7F4") : "transparent",
               border: isScrolled && (logoSettings?.borderEnabled ?? true) ? (String(logoSettings?.borderWidth ?? 1) + "px solid " + (logoSettings?.borderColor || "#B68A35")) : "none",
               boxShadow: isScrolled && (logoSettings?.shadowEnabled ?? true) ? "0 3px 14px rgba(29,24,19,0.14)" : "none",
@@ -81,10 +83,8 @@ export default function Navbar({ content, preview = false }) {
               priority
               className="sb-brand-logo"
               style={{
-                "--sb-logo-mobile": mobileLogoSize + "px",
-                "--sb-logo-desktop": desktopLogoSize + "px",
-                width: mobileLogoSize + "px",
-                height: mobileLogoSize + "px",
+                borderRadius: logoRadius + "%",
+                overflow: "hidden",
               }}
             />
           </Link>
