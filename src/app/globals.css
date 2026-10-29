@@ -793,3 +793,8 @@ html[data-theme="dark"] .package-action:hover, html[data-theme="dark"] .package-
 .sb-admin-choose-button:hover, .sb-admin-choose-button:focus-visible { color: #fff !important; background: #76531e !important; border-color: #76531e !important; }
 .sb-admin-secondary-button { color: #453b2c !important; background: #fff !important; border-color: #b9ad9a !important; }
 .sb-admin-secondary-button:hover, .sb-admin-secondary-button:focus-visible { color: #211d19 !important; background: #f0e8da !important; border-color: #8a6425 !important; }
+
+
+/* Responsive logo sizing controlled by Logo Studio. */
+.sb-brand-logo { width: var(--sb-logo-mobile, 76px) !important; height: var(--sb-logo-mobile, 76px) !important; }
+@media (min-width: 640px) { .sb-brand-logo { width: var(--sb-logo-desktop, 88px) !important; height: var(--sb-logo-desktop, 88px) !important; } }
