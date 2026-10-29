@@ -795,13 +795,42 @@ html[data-theme="dark"] .package-action:hover, html[data-theme="dark"] .package-
 .sb-admin-secondary-button:hover, .sb-admin-secondary-button:focus-visible { color: #211d19 !important; background: #f0e8da !important; border-color: #8a6425 !important; }
 
 
-/* Logo Studio: responsive logo dimensions, shape clipping, and navbar auto-height. */
-.sb-brand-logo { display: block; width: var(--sb-logo-mobile, 76px) !important; height: var(--sb-logo-mobile, 76px) !important; max-width: none; flex: 0 0 auto; border-radius: inherit; overflow: hidden; }
-.sb-logo-frame { display: inline-flex; align-items: center; justify-content: center; overflow: hidden; border-radius: var(--sb-logo-radius, 0%); flex: 0 0 auto; }
-.sb-navbar-inner { min-height: max(84px, calc(var(--sb-logo-mobile, 76px) + 12px)); height: auto; gap: 1rem; }
-.sb-navbar-inner.is-scrolled { min-height: max(84px, calc(var(--sb-logo-mobile, 76px) + 12px)); }
+/* Logo Studio: size the actual frame at each breakpoint, then clip the SVG inside it. */
+.sb-logo-frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sb-logo-mobile, 76px);
+  height: var(--sb-logo-mobile, 76px);
+  min-width: var(--sb-logo-mobile, 76px);
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: var(--sb-logo-radius, 0%);
+}
+.sb-brand-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  max-width: none;
+  flex: 0 0 auto;
+  border-radius: inherit;
+  overflow: hidden;
+}
+.sb-navbar-inner {
+  min-height: max(84px, calc(var(--sb-logo-mobile, 76px) + 12px));
+  height: auto;
+  gap: 1rem;
+}
+.sb-navbar-inner.is-scrolled {
+  min-height: max(84px, calc(var(--sb-logo-mobile, 76px) + 12px));
+}
 @media (min-width: 640px) {
-  .sb-brand-logo { width: var(--sb-logo-desktop, 88px) !important; height: var(--sb-logo-desktop, 88px) !important; }
+  .sb-logo-frame {
+    width: var(--sb-logo-desktop, 88px);
+    height: var(--sb-logo-desktop, 88px);
+    min-width: var(--sb-logo-desktop, 88px);
+  }
   .sb-navbar-inner { min-height: max(96px, calc(var(--sb-logo-desktop, 88px) + 12px)); }
   .sb-navbar-inner.is-scrolled { min-height: max(76px, calc(var(--sb-logo-desktop, 88px) + 12px)); }
 }
