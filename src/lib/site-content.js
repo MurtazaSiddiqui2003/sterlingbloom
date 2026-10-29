@@ -24,6 +24,7 @@ export const defaultSiteContent = {
       visible: true,
       mobileSize: 76,
       desktopSize: 88,
+      borderRadius: 0,
       borderEnabled: true,
       borderColor: "#B68A35",
       borderWidth: 1,
@@ -107,7 +108,8 @@ export const defaultSiteContent = {
       { number: "02", title: "Concept & Moodboard", description: "We turn your ideas into a refined visual direction that brings your celebration to life." },
       { number: "03", title: "Planning", description: "We plan every detail with precision, from styling and florals to layout and execution." },
       { number: "04", title: "Installation", description: "Our team transforms the venue with careful attention to every design element." },
-      { number: "05", title: "Celebrate", description: "Everything comes together beautifully, leaving you free to enjoy your special occasion." },
+      { number: "05", title: "Celebrate", description: "Everything comes together beautifully, leaving you free to enjoy your special occasion.",
+      },
     ],
   },
   packages: {
