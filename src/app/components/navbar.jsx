@@ -10,6 +10,9 @@ export default function Navbar({ content, preview = false }) {
   const pathname = usePathname();
   const navLinks = content.links.map(([name, href]) => ({ name, href }));
   const consultationHref = content.ctaHref && content.ctaHref !== "#contact" ? content.ctaHref : "https://calendly.com/murtazasiddiqui250/30min";
+  const logoSettings = content.nav?.logoSettings || {};
+  const mobileLogoSize = Math.max(32, Math.min(140, Number(logoSettings.mobileSize) || 76));
+  const desktopLogoSize = Math.max(40, Math.min(180, Number(logoSettings.desktopSize) || 88));
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -60,7 +63,7 @@ export default function Navbar({ content, preview = false }) {
   return (
     <nav aria-label="Primary navigation" className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
       <div className={"mx-auto flex h-[84px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[96px] lg:px-10 " + (isScrolled ? "lg:h-[76px]" : "")}>
-        {(content.logoSettings?.visible ?? true) && (
+        {(logoSettings?.visible ?? true) && (
           <Link
             href="/"
             aria-label="Sterling Bloom home"
@@ -74,10 +77,10 @@ export default function Navbar({ content, preview = false }) {
           >
             <BrandLogo
               priority
-              className="h-[64px] w-[64px] sm:h-[76px] sm:w-[76px]"
+              className="h-[var(--sb-logo-mobile)] w-[var(--sb-logo-mobile)] sm:h-[var(--sb-logo-desktop)] sm:w-[var(--sb-logo-desktop)]"
               style={{
-                "--sb-logo-mobile": "64px",
-                "--sb-logo-desktop": "76px",
+                "--sb-logo-mobile": mobileLogoSize + "px",
+                "--sb-logo-desktop": desktopLogoSize + "px",
               }}
             />
           </Link>
