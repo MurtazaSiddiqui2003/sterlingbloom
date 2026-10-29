@@ -800,9 +800,9 @@ html[data-theme="dark"] .package-action:hover, html[data-theme="dark"] .package-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--sb-logo-mobile, 76px);
-  height: var(--sb-logo-mobile, 76px);
-  min-width: var(--sb-logo-mobile, 76px);
+  width: var(--sb-logo-mobile, 76px) !important;
+  height: var(--sb-logo-mobile, 76px) !important;
+  min-width: var(--sb-logo-mobile, 76px) !important;
   flex: 0 0 auto;
   overflow: hidden;
   border-radius: var(--sb-logo-radius, 0%);
@@ -818,7 +818,7 @@ html[data-theme="dark"] .package-action:hover, html[data-theme="dark"] .package-
   overflow: hidden;
 }
 .sb-navbar-inner {
-  min-height: max(84px, calc(var(--sb-logo-mobile, 76px) + 12px));
+  min-height: max(84px, calc(var(--sb-logo-mobile, 76px) + 12px)) !important;
   height: auto;
   gap: 1rem;
 }
@@ -827,9 +827,9 @@ html[data-theme="dark"] .package-action:hover, html[data-theme="dark"] .package-
 }
 @media (min-width: 640px) {
   .sb-logo-frame {
-    width: var(--sb-logo-desktop, 88px);
-    height: var(--sb-logo-desktop, 88px);
-    min-width: var(--sb-logo-desktop, 88px);
+    width: var(--sb-logo-desktop, 88px) !important;
+    height: var(--sb-logo-desktop, 88px) !important;
+    min-width: var(--sb-logo-desktop, 88px) !important;
   }
   .sb-navbar-inner { min-height: max(96px, calc(var(--sb-logo-desktop, 88px) + 12px)); }
   .sb-navbar-inner.is-scrolled { min-height: max(76px, calc(var(--sb-logo-desktop, 88px) + 12px)); }
