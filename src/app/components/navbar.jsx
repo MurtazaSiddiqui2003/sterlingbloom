@@ -75,9 +75,7 @@ export default function Navbar({ content, preview = false }) {
               borderRadius: logoRadius + "%",
               clipPath: "inset(0 round " + logoRadius + "%)",
               overflow: "hidden",
-              width: "var(--sb-logo-mobile)",
-              height: "var(--sb-logo-mobile)",
-              backgroundColor: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? (logoSettings?.background || "#F8F7F4") : "transparent",
+                          backgroundColor: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? (logoSettings?.background || "#F8F7F4") : "transparent",
               border: isScrolled && (logoSettings?.borderEnabled ?? true) ? (String(logoSettings?.borderWidth ?? 1) + "px solid " + (logoSettings?.borderColor || "#B68A35")) : "none",
               boxShadow: isScrolled && (logoSettings?.shadowEnabled ?? true) ? "0 3px 14px rgba(29,24,19,0.14)" : "none",
             }}
