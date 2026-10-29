@@ -64,7 +64,7 @@ export default function Navbar({ content, preview = false }) {
   return (
     <nav aria-label="Primary navigation" className={"fixed left-0 top-0 z-50 w-full transition-all duration-500 " + effectiveNavClass}>
       <div className={"sb-navbar-inner mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10 " + (isScrolled ? "is-scrolled" : "")}
-        style={{ "--sb-logo-mobile": mobileLogoSize + "px", "--sb-logo-desktop": desktopLogoSize + "px", "--sb-logo-radius": logoRadius + "%" }}>
+        style={{ "--sb-logo-mobile": mobileLogoSize + "px", "--sb-logo-desktop": desktopLogoSize + "px", "--sb-logo-radius": logoRadius + "%", minHeight: "max(84px, " + (mobileLogoSize + 12) + "px)" }}>
         {(logoSettings?.visible ?? true) && (
           <Link
             href="/"
@@ -73,7 +73,10 @@ export default function Navbar({ content, preview = false }) {
             style={{
               padding: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? 4 : 0,
               borderRadius: logoRadius + "%",
+              clipPath: "inset(0 round " + logoRadius + "%)",
               overflow: "hidden",
+              width: "var(--sb-logo-mobile)",
+              height: "var(--sb-logo-mobile)",
               backgroundColor: isScrolled && (logoSettings?.backgroundEnabled ?? true) ? (logoSettings?.background || "#F8F7F4") : "transparent",
               border: isScrolled && (logoSettings?.borderEnabled ?? true) ? (String(logoSettings?.borderWidth ?? 1) + "px solid " + (logoSettings?.borderColor || "#B68A35")) : "none",
               boxShadow: isScrolled && (logoSettings?.shadowEnabled ?? true) ? "0 3px 14px rgba(29,24,19,0.14)" : "none",
